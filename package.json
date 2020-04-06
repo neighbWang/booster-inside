@@ -1,0 +1,33 @@
+{
+  "name": "booster-inside",
+  "version": "1.0.0",
+  "description": "Booster Inside",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "start": "npx gitbook serve . docs",
+    "serve": "npm start",
+    "build": "npx gitbook build . docs",
+    "deploy": "npm build && git add . && git commit -m 'chore: deploy' && git push origin master:master"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/johnsonlee/booster-inside.git"
+  },
+  "author": "johnsonlee",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/johnsonlee/booster-inside/issues"
+  },
+  "homepage": "https://github.com/johnsonlee/booster-inside",
+  "dependencies": {
+    "gitbook-cli": "2.3.2",
+    "gitbook-plugin-codeblock-filename": "0.0.9",
+    "gitbook-plugin-mathjax": "2.7.6",
+    "gitbook-plugin-splitter": "0.0.8",
+    "gitbook-plugin-theme-comscore": "0.0.3",
+    "gitbook-theme-comscore": "0.0.3"
+  }
+}

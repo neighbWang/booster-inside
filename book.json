@@ -1,0 +1,36 @@
+{
+    "gitbook": ">=3.1.0",
+    "root": "./content/",
+    "title": "深入理解 Booster",
+    "description": "使用 Booster 对你的 Android 应用进行深度优化",
+    "language": "zh-hans",
+    "output": "docs",
+    "generator": "site",
+    "structure": {
+        "readme": "README.md"
+    },
+    "plugins": [
+        "mathjax",
+        "splitter",
+        "codeblock-filename",
+        "theme-comscore"
+    ],
+    "pluginsConfig": {
+        "fontsettings": {
+            "theme": "white",
+            "family": "sans",
+            "size": 1
+        },
+        "theme-default": {
+            "showLevel": true
+        }
+    },
+    "links": {
+        "sharing": {
+            "google": false,
+            "facebook": false,
+            "twitter": false,
+            "all": false
+        }
+    }
+}
