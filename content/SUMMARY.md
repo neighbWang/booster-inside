@@ -1,36 +1,52 @@
 # Summary
 
 * [前言](./README.md)
+* [Booster 简介](./overview.md)
+* [快速上手](./getting-started.md)
 
-## 字节码简介
+## Booster 特性简介
+
+* 性能优化
+  * [静态分析](./performance/booster-static-analysis.md)
+  * 多线程优化
+  * WebView 预加载
+  * SharedPreferences 优化
+* 包体积瘦身
+  * WebP 图片压缩
+  * PNG 图片压缩
+  * ZIP 文件压缩
+  * 去冗余资源
+  * 资源索引内联
+* 系统 bug 修复
+  * 系统 bug 兜底
+  * Finalizer 导致的 TimeoutException
+  * Android 7.1 上 Toast 问题
+  * Android 7.0 覆盖安装问题
+
+## Booster 插件开发
+
+* Javassist 还是 ASM？
+* 第一个 Transformer
+* 第一个 VariantProcessor
+* Transformer 与 VariantProcessor 完美组合
+* 在 Java 工程中使用 Transformer
+* Transformer 实战
+
+## 质量优化进阶
+
+* Android Gradle Plugin 基础
+  * AAPT2 容器
+  * Resource Table 概述
+* VirtualAPK 插件构建方案
+* 应用构建优化
+
+## 附录
 
 * Java 虚拟机
     * [class 文件格式](./jvm/class-file.md)
-    * [手写 Class Parser](./jvm/write-class-parser-manually.md)
     * [JVM 指令](./jvm/instructions.md)
     * [栈帧](./jvm/frame.md)
     * [Java Agent](./jvm/java-agent.md)
 * Dalvik 虚拟机
-    * [dex 文件格式](./dalvik/dex-file.md)
-    * [Dalvik 指令](./dalvik/instructions.md)
-
-## Android 应用构建
-
-* [Android Gradle Plugin 概述](./agp/overview.md)
-* [Transform API 概述](./agp/transform-api.md)
-* [AAPT2 容器](./agp/aapt2.md)
-* [Resource Table 概述](./agp/resource-table.md)
-* [VirtualAPK 插件构建方案](./agp/virtual-apk.md)
-* [构建面临的挑战](./agp/challenge.md)
-* [构建优化](./agp/build-optimziation.md)
-
-## 基于 Booster 开发插件
-
-* [第一个 Transformer](./booster/first-transformer.md)
-* [第一个 VariantProcessor](./booster/first-variant-processor.md)
-* [Transformer 搭配 VariantProcessor](./booster/transformer-plus-variant-processor.md)
-* [单独使用 Transformer](./booster/standalone-transformer.md)
-
-## 基于 Gradle API 开发插件
-
-* Gradle 版本差异
+    * dex 文件格式
+    * Dalvik 指令
