@@ -43,13 +43,13 @@
 * VirtualAPK 插件构建
 * Android 构建优化
 
-## 字节码
+## 深入字节码
 
 * Java 虚拟机
     * [class 文件格式](./jvm/class-file.md)
     * [JVM 指令](./jvm/instructions.md)
-    * [栈帧](./jvm/frame.md)
-    * [Java Agent](./jvm/java-agent.md)
+    * 栈帧
+    * Java Agent
 * Dalvik 虚拟机
     * dex 文件格式
     * Dalvik 指令
