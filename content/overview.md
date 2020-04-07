@@ -77,4 +77,4 @@ Booster 不仅仅只是一个框架，它还提供了性能检测、多线程优
 
 在 *Booster* 中，除了 [Task SPI](https://github.com/didi/booster/blob/master/booster-task-spi) 和 [Transform SPI](https://github.com/didi/booster/blob/master/booster-transform-spi) 以外，还提供了一种 SPI —— [Command SPI](https://github.com/didi/booster/blob/master/booster-command/src/main/kotlin/com/didiglobal/booster/command/CommandProvider.kt)。
 
-[Command SPI](https://github.com/didi/booster/blob/master/booster-command/src/main/kotlin/com/didiglobal/booster/command/CommandProvider.kt) 主要是为了解决在 *Apache License* 的协议框下使用采用了 *GPL License* 的开源软件，如：*pngquant* 采用了 *GPL License* 开源许可，直接在项目中使用会有一定的法律风险，所以 *Booster* 的做法是将部分抽象出来，以 *SPI* 的形式在运行时动态发现和加载 *Command SPI* 的实现，这样，既能保证开源许可的合法性，又能使用优秀的 *GPL* 开源软件。
+[Command SPI](https://github.com/didi/booster/blob/master/booster-command/src/main/kotlin/com/didiglobal/booster/command/CommandProvider.kt) 主要是为了解决在 *Apache License* 的协议许可下使用 *GPL License* 的开源软件，如：*pngquant* 采用了 *GPL License* 开源许可，直接在项目中使用会有一定的法律风险，所以 *Booster* 的做法是将部分抽象出来，以 *SPI* 的形式在运行时动态发现和加载 *Command SPI* 的实现，这样，既能保证开源许可的合法性，又能使用优秀的 *GPL* 开源软件。
