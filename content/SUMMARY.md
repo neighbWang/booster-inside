@@ -7,8 +7,8 @@
 ## Booster 特性简介
 
 * 性能优化
-  * [静态分析](./performance/booster-static-analysis.md)
-  * 多线程优化
+  * [静态分析](./performance/static-analysis.md)
+  * [多线程优化](./performance/multithreading-optimization.md)
   * WebView 预加载
   * SharedPreferences 优化
 * 包体积瘦身
