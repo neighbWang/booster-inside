@@ -12,7 +12,7 @@
 
 # *Analyser* 的实现思路
 
-## *Analyser Task*
+## 独立的 Task
 
 *Booster* 的静态分析采用独立的 *task* 来执行，之所以这样设计，主要有几个方面的考虑：
 
@@ -20,7 +20,7 @@
 1. *CHA (Class Hierarchy Analysis)* 需要提前拿到所有类信息，而 *Transformer* 是流水线处理，也不太合适；
 1. 静态分析的过程可能会比较慢，作为 *Transformer* 可能会严重影响构建效率，而且应用的构建并不依赖静态分析的产出物；
 
-静态分析的 task 依赖关系如下图所示：
+*Analyser Task* 的依赖关系如下图所示：
 
 <svg width="514pt" height="188pt" viewBox="0.00 0.00 513.51 188.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 184)">
