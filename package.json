@@ -9,7 +9,7 @@
   "scripts": {
     "start": "npx gitbook serve . docs",
     "serve": "npm start",
-    "build": "npx gitbook build . docs",
+    "build": "npx gitbook build . docs && cp -v CNAME docs/",
     "deploy": "npm build && git add . && git commit -m 'chore: deploy' && git push origin master:master"
   },
   "repository": {
