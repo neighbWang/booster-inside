@@ -43,7 +43,7 @@ buildscript {
 
 > 如果未配置任何模块，[BoosterTransform](https://github.com/didi/booster/blob/master/booster-gradle-plugin/src/main/kotlin/com/didiglobal/booster/gradle/BoosterTransform.kt) 则不会被执行，这个特性可以用于仅构建 *Release* 包时启用 *Booster* 模块，加快 *Debug* 包的构建速度。
 
-# 应用 *Booster Gralde* 插件
+# 应用 *Booster Gradle* 插件
 
 在 *App* 子工程中启用 *booster-gradle-plugin*:
 
