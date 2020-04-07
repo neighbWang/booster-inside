@@ -20,8 +20,12 @@
 * 系统 bug 修复
   * 系统 bug 兜底
   * Finalizer 导致的 TimeoutException
-  * Android 7.1 上 Toast 问题
   * Android 7.0 覆盖安装问题
+  * Android 7.1 上 Toast 问题
+* 其它
+  * 正式包版本检查
+  * 权限清单
+  * 构建中间产物清单
 
 ## Booster 插件开发
 
@@ -40,6 +44,8 @@
 
 ## Android 构建进阶
 
+* 增量编译概述
+* Gradle 缓存概述
 * VirtualAPK 插件构建
 * Android 构建优化
 
