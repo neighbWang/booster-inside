@@ -112,7 +112,7 @@ Android 本身提供了 [Thread Annotations](https://developer.android.com/studi
 
   考虑到一些主流的应用框架也有线程注解，因此，*Analyser* 对 *Event Bus* 做了支持，通过 `@Subscribe(threadMode = MAIN)` 标的方法会被识别为主线程入口方法。
 
-# 快速上手
+# 如何使用
 
 首先在 *build.gradle* 中引用 *booster-task-analyser*：
 
@@ -141,4 +141,30 @@ apply plugin: 'com.didiglobal.booster'
 
 ```bash
 find build/reports -name '*.dot' | xargs -t -I{} dot -O -Tpng {}
+```
+
+# 白名单与黑名单
+
+「白名单」是分析过程中忽略的 API，「黑名单」是分析过程中要匹配的 API，*Booster* 内置了 [whiltelist.txt](https://github.com/didi/booster/blob/master/booster-task-analyser/src/main/resources/whitelist.txt) 和 [blacklist.txt](https://github.com/didi/booster/blob/master/booster-task-analyser/src/main/resources/blacklist.txt)，这些都是项目实践经验所得，当然，*Booster* 也支持自定义「白名单」与「黑名单」。
+
+## 通过 *gradle.properties* 指定黑/白名单
+
+```properties:gradle.properties
+booster.task.analyser.whitelist=file:///Users/booster/whitelist.txt
+booster.task.analyser.blacklist=file:///Users/booster/blacklist.txt
+```
+
+## 通过命令行指定黑/白名单
+
+```bash
+./gradlew assembleDebug \
+    -Pbooster.task.analyser.whitelist=file:///Users/booster/whitelist.txt \
+    -Pbooster.task.analyser.blacklist=file:///Users/booster/blacklist.txt
+```
+
+*whitelist* 和 *blacklist* 可以是远程的 URL，如:
+
+```bash
+./gradlew assembleDebug \
+    -Pbooster.task.analyser.whitelist=https://booster.johnsonlee.io/analyser/whitelist.txt
 ```
