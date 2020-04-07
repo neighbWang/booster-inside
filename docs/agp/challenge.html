@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>Resource Table · 深入理解 Booster</title>
+        <title>构建面临的挑战 · 深入理解 Booster</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -69,8 +69,10 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
+    <link rel="next" href="build-optimziation.md" />
     
-    <link rel="prev" href="aapt2.html" />
+    
+    <link rel="prev" href="virtual-apk.html" />
     
 
     </head>
@@ -197,6 +199,21 @@
             
         </li>
     
+        <li class="chapter " data-level="2.1.5" data-path="../jvm/java-agent.html">
+            
+                <a href="../jvm/java-agent.html">
+            
+                    
+                        <b>2.1.5.</b>
+                    
+                    Java Agent
+            
+                </a>
+            
+
+            
+        </li>
+    
 
             </ul>
             
@@ -256,18 +273,18 @@
 
     
         
-        <li class="header">操作字节码</li>
+        <li class="header">Android 应用构建</li>
         
         
     
-        <li class="chapter " data-level="3.1" data-path="../instrumentation/java-agent.html">
+        <li class="chapter " data-level="3.1" data-path="overview.html">
             
-                <a href="../instrumentation/java-agent.html">
+                <a href="overview.html">
             
                     
                         <b>3.1.</b>
                     
-                    Java Agent
+                    Android Gradle Plugin 概述
             
                 </a>
             
@@ -275,14 +292,14 @@
             
         </li>
     
-        <li class="chapter " data-level="3.2" data-path="../instrumentation/transform-api.html">
+        <li class="chapter " data-level="3.2" data-path="transform-api.html">
             
-                <a href="../instrumentation/transform-api.html">
+                <a href="transform-api.html">
             
                     
                         <b>3.2.</b>
                     
-                    Transform API
+                    Transform API 概述
             
                 </a>
             
@@ -290,12 +307,94 @@
             
         </li>
     
-        <li class="chapter " data-level="3.3" data-path="../instrumentation/first-transformer.html">
+        <li class="chapter " data-level="3.3" data-path="aapt2.html">
             
-                <a href="../instrumentation/first-transformer.html">
+                <a href="aapt2.html">
             
                     
                         <b>3.3.</b>
+                    
+                    AAPT2 容器
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.4" data-path="resource-table.html">
+            
+                <a href="resource-table.html">
+            
+                    
+                        <b>3.4.</b>
+                    
+                    Resource Table 概述
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.5" data-path="virtual-apk.html">
+            
+                <a href="virtual-apk.html">
+            
+                    
+                        <b>3.5.</b>
+                    
+                    VirtualAPK 插件构建方案
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="3.6" data-path="challenge.html">
+            
+                <a href="challenge.html">
+            
+                    
+                        <b>3.6.</b>
+                    
+                    构建面临的挑战
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.7" data-path="build-optimziation.md">
+            
+                <span>
+            
+                    
+                        <b>3.7.</b>
+                    
+                    构建优化
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">基于 Booster 开发插件</li>
+        
+        
+    
+        <li class="chapter " data-level="4.1" data-path="../booster/first-transformer.html">
+            
+                <a href="../booster/first-transformer.html">
+            
+                    
+                        <b>4.1.</b>
                     
                     第一个 Transformer
             
@@ -305,12 +404,12 @@
             
         </li>
     
-        <li class="chapter " data-level="3.4" data-path="../instrumentation/first-variant-processor.html">
+        <li class="chapter " data-level="4.2" data-path="../booster/first-variant-processor.html">
             
-                <a href="../instrumentation/first-variant-processor.html">
+                <a href="../booster/first-variant-processor.html">
             
                     
-                        <b>3.4.</b>
+                        <b>4.2.</b>
                     
                     第一个 VariantProcessor
             
@@ -320,12 +419,12 @@
             
         </li>
     
-        <li class="chapter " data-level="3.5" data-path="../instrumentation/transformer-plus-variant-processor.html">
+        <li class="chapter " data-level="4.3" data-path="../booster/transformer-plus-variant-processor.html">
             
-                <a href="../instrumentation/transformer-plus-variant-processor.html">
+                <a href="../booster/transformer-plus-variant-processor.html">
             
                     
-                        <b>3.5.</b>
+                        <b>4.3.</b>
                     
                     Transformer 搭配 VariantProcessor
             
@@ -335,12 +434,12 @@
             
         </li>
     
-        <li class="chapter " data-level="3.6" data-path="../instrumentation/standalone-transformer.html">
+        <li class="chapter " data-level="4.4" data-path="../booster/standalone-transformer.html">
             
-                <a href="../instrumentation/standalone-transformer.html">
+                <a href="../booster/standalone-transformer.html">
             
                     
-                        <b>3.6.</b>
+                        <b>4.4.</b>
                     
                     单独使用 Transformer
             
@@ -353,50 +452,20 @@
 
     
         
-        <li class="header">操作资源</li>
+        <li class="header">基于 Gradle API 开发插件</li>
         
         
     
-        <li class="chapter " data-level="4.1" data-path="build-immediates.html">
+        <li class="chapter " data-level="5.1" >
             
-                <a href="build-immediates.html">
-            
-                    
-                        <b>4.1.</b>
-                    
-                    构建中间产物
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="4.2" data-path="aapt2.html">
-            
-                <a href="aapt2.html">
+                <span>
             
                     
-                        <b>4.2.</b>
+                        <b>5.1.</b>
                     
-                    AAPT2
+                    Gradle 版本差异
             
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter active" data-level="4.3" data-path="resource-table.html">
-            
-                <a href="resource-table.html">
-            
-                    
-                        <b>4.3.</b>
-                    
-                    Resource Table
-            
-                </a>
+                </span>
             
 
             
@@ -432,7 +501,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >Resource Table</a>
+        <a href=".." >构建面临的挑战</a>
     </h1>
 </div>
 
@@ -447,7 +516,7 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="resource-table">Resource Table</h1>
+                                <h1 id="&#x6784;&#x5EFA;&#x9762;&#x4E34;&#x7684;&#x6311;&#x6218;">&#x6784;&#x5EFA;&#x9762;&#x4E34;&#x7684;&#x6311;&#x6218;</h1>
 
                                 
                                 </section>
@@ -475,10 +544,14 @@
 
             
                 
-                <a href="aapt2.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: AAPT2">
+                <a href="virtual-apk.html" class="navigation navigation-prev " aria-label="Previous page: VirtualAPK 插件构建方案">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
+                
+                <a href="build-optimziation.md" class="navigation navigation-next " aria-label="Next page: 构建优化">
+                    <i class="fa fa-angle-right"></i>
+                </a>
                 
             
         
@@ -487,7 +560,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Resource Table","level":"4.3","depth":1,"previous":{"title":"AAPT2","level":"4.2","depth":1,"path":"gradle/aapt2.md","ref":"./gradle/aapt2.md","articles":[]},"dir":"ltr"},"config":{"plugins":["mathjax","splitter","codeblock-filename","theme-comscore","livereload"],"root":"./content/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"livereload":{},"splitter":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":1},"highlight":{},"codeblock-filename":{},"theme-comscore":{},"mathjax":{"forceSVG":false,"version":"2.6-latest"},"sharing":{"facebook":false,"twitter":false,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":[]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":true}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"深入理解 Booster","language":"zh-hans","links":{"sharing":{"google":false,"facebook":false,"twitter":false,"all":false}},"gitbook":">=3.1.0","description":"使用 Booster 对你的 Android 应用进行深度优化"},"file":{"path":"gradle/resource-table.md","mtime":"2020-04-06T18:30:14.000Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-04-07T02:51:23.369Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"构建面临的挑战","level":"3.6","depth":1,"next":{"title":"构建优化","level":"3.7","depth":1,"path":"agp/build-optimziation.md","ref":"./agp/build-optimziation.md","articles":[]},"previous":{"title":"VirtualAPK 插件构建方案","level":"3.5","depth":1,"path":"agp/virtual-apk.md","ref":"./agp/virtual-apk.md","articles":[]},"dir":"ltr"},"config":{"plugins":["mathjax","splitter","codeblock-filename","theme-comscore","livereload"],"root":"./content/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"livereload":{},"splitter":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":1},"highlight":{},"codeblock-filename":{},"theme-comscore":{},"mathjax":{"forceSVG":false,"version":"2.6-latest"},"sharing":{"facebook":false,"twitter":false,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":[]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":true}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"深入理解 Booster","language":"zh-hans","links":{"sharing":{"google":false,"facebook":false,"twitter":false,"all":false}},"gitbook":">=3.1.0","description":"使用 Booster 对你的 Android 应用进行深度优化"},"file":{"path":"agp/challenge.md","mtime":"2020-04-07T03:16:35.000Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-04-07T03:00:06.492Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
