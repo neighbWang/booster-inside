@@ -53,3 +53,9 @@
 * Dalvik 虚拟机
     * dex 文件格式
     * Dalvik 指令
+
+## 关于作者
+
+* [GitHub](https://github.com/johnsonlee/)
+* [我的博客](https://johnsonlee.io/)
+* [如何打赏](https://johnsonlee.io/donate/?AliPayQR=/img/AliPayQR.png&WeChatQR=/img/WeChatQR.png)
