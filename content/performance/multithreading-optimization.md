@@ -12,8 +12,8 @@
 
 这些现象最终导致的问题是：
 
-1. OOM
-1. 无法分辨出线程所属的业务线，导致排查问题效率低下
+1. Out Of Memory
+1. 无法分辨出线程所属的模块，导致排查问题困难
 
 # 常规的优化方案
 
@@ -45,7 +45,7 @@
 
 1. 为 `maxPoolSize` 设置上限
 
-  有些开发者或者第三方设置的线程池 `maxPoolSize` 通常是 `2 ＊ NCPU + 1` 或者 `2 ＊ NCPU`，当有多个模块都这样使用的时候，就容易造成某一时刻出现大量的线程，尤其是 *CachedThreadPoolExecutor*，通过控制单个线程池的 `maxPoolSize` 的上限，可以将某一时刻，所有线程池造成的叠加效应降到尽可能低的水平。
+  有些开发者或者第三方库设置的线程池 `maxPoolSize` 通常是 `2 ＊ NCPU + 1` 或者 `2 ＊ NCPU`，当有多个模块都这样使用的时候，就容易造成某一时刻出现大量的线程，尤其是 *CachedThreadPoolExecutor*，通过控制单个线程池的 `maxPoolSize` 的上限，可以将某一时刻，所有线程池造成的叠加效应降到尽可能低的水平。
 
    ```java
    new ThreadPoolExecutor(0, Math.min(maxCorePoolSize, NCPU), keepAliveTime, timeUnit, workQueue, threadFactory);
