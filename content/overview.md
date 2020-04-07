@@ -53,7 +53,8 @@ Booster 不仅仅只是一个框架，它还提供了性能检测、多线程优
 1. 抽象 *Transform* 过程，直接将解析好的 *class* 文件结构暴露给开发者；
 1. 将 *Transform* 与 *Gradle* 解耦，在非 *Gradle* 工程中同样可以复用 *Booster* 的 *Transformer*；
 1. 通过 [VariantProcessor](https://github.com/didi/booster/blob/master/booster-task-spi/src/main/kotlin/com/didiglobal/booster/task/spi/VariantProcessor.kt) 解决注入外部库的依赖问题，使得大规模字节码注入成为可能；
-1. 从 *AGP 3.0* 开始，依次做 *AGP* 做兼容性适配，并抽象出通用的 [Android Gradle API](https://github.com/didi/booster/blob/master/booster-android-gradle-api)，使得开发者不用关心 *AGP* 各版本间的差异；
+1. 从 *AGP 3.0* 开始，依次对 *AGP* 的每个版本进行兼容性适配，并抽象出通用的 [Android Gradle API](https://github.com/didi/booster/blob/master/booster-android-gradle-api)，使得开发者不用关心 *AGP* 各版本间的差异；
+1. 提供了一系列实用的工具类库，为功能模块开发提升效率；
 
 ## 如何保证构建的性能？
 
