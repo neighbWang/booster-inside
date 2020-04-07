@@ -32,15 +32,18 @@
 * 在 Java 工程中使用 Transformer
 * Transformer 实战
 
-## 质量优化进阶
+## Android 构建概述
 
-* Android Gradle Plugin 基础
-  * AAPT2 容器
-  * Resource Table 概述
-* VirtualAPK 插件构建方案
-* 应用构建优化
+* Android Gradle Plugin 概述
+* AAPT2 容器
+* Resource Table 概述
 
-## 附录
+## Android 构建进阶
+
+* VirtualAPK 插件构建
+* Android 构建优化
+
+## 字节码
 
 * Java 虚拟机
     * [class 文件格式](./jvm/class-file.md)
