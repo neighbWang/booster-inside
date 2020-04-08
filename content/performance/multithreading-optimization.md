@@ -43,9 +43,11 @@
   new ThreadPoolExecutor(0, maxCorePoolSize, keepAliveTime, timeUnit, workQueue, threadFactory);
   ```
 
+  > 将 `ScheduledThreadPoolExecutor` 的 `minPoolSize` 设置为 *0* 在 *JDK 9* 以下的版本会导致 CPU 负载严重，详见：[JDK-8022642](https://bugs.openjdk.java.net/browse/JDK-8022642), [JDK-8129861](https://bugs.openjdk.java.net/browse/JDK-8129861)，这两个 bug 在 *JDK 9* 中被修复。
+
 1. 为 `maxPoolSize` 设置上限
 
-  有些开发者或者第三方库设置的线程池 `maxPoolSize` 通常是 `2 ＊ NCPU + 1` 或者 `2 ＊ NCPU`，当有多个模块都这样使用的时候，就容易造成某一时刻出现大量的线程，尤其是 *CachedThreadPoolExecutor*，通过控制单个线程池的 `maxPoolSize` 的上限，可以将某一时刻，所有线程池造成的叠加效应降到尽可能低的水平。
+  有些开发者或者第三方库设置的线程池 `maxPoolSize` 通常是 `2 * NCPU + 1` 或者 `2 * NCPU`，当有多个模块都这样使用的时候，就容易造成某一时刻出现大量的线程，尤其是 *CachedThreadPoolExecutor*，通过控制单个线程池的 `maxPoolSize` 的上限，可以将某一时刻，所有线程池造成的叠加效应降到尽可能低的水平。
 
    ```java
    new ThreadPoolExecutor(0, Math.min(maxCorePoolSize, NCPU), keepAliveTime, timeUnit, workQueue, threadFactory);
