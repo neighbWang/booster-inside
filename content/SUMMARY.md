@@ -2,7 +2,7 @@
 
 * [关于本书](./README.md)
 * [贡献者](./contributors.md)
-* [如何打赏](https://johnsonlee.io/donate/?AliPayQR=/img/AliPayQR.png&WeChatQR=/img/WeChatQR.png)
+* [如何打赏](./donate.md)
 
 ## 概览
 
