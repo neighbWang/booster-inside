@@ -9,7 +9,7 @@
 * 性能优化
   * [静态分析](./performance/static-analysis.md)
   * [多线程优化](./performance/multithreading-optimization.md)
-  * [SharedPreferences 优化](./performance/shared-preferences.md)
+  * [SharedPreferences 优化](./performance/shared-preferences-optimization.md)
   * WebView 预加载
 * 包体积瘦身
   * WebP 图片压缩
