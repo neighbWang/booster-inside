@@ -17,11 +17,11 @@
   * [SharedPreferences 优化](./performance/shared-preferences-optimization.md)
   * [WebView 预加载](./performance/webview-preloading.md)
 * 包体积瘦身
-  * WebP 图片压缩
-  * PNG 图片压缩
-  * ZIP 文件压缩
-  * 去冗余资源
-  * 资源索引内联
+  * [PNG 图片压缩](./shrink/png-compression.md)
+  * [WebP 图片压缩](./shrink/webp-compression.md)
+  * [ZIP 文件压缩](./shrink/zip-compression.md)
+  * [去冗余资源](./shrink/res-deredundancy.md)
+  * [资源索引内联](./shrink/res-index-inline.md)
 * 系统 bug 修复
   * 系统 bug 兜底
   * Finalizer 导致的 TimeoutException
