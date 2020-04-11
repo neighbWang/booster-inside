@@ -195,36 +195,36 @@ public class ShadowSharedPreferences {
 
 此方案有考虑过，但是一直未推出，主要有以下几个方面的原因：
 
-1. *MMKV* 未实现 `OnSharedPreferenceChangeListener` 监听
+1. *MMKV* 未实现 [OnSharedPreferenceChangeListener](https://developer.android.com/reference/android/content/SharedPreferences.OnSharedPreferenceChangeListener) 监听
 
-  ```java:MMKV.java
-  public class MMKV implements SharedPreferences, SharedPreferences.Editor {
+    ```java
+    public class MMKV implements SharedPreferences, SharedPreferences.Editor {
 
-      @Override
-      public void registerOnSharedPreferenceChangeListener(OnSharedPreferenceChangeListener listener) {
-          throw new java.lang.UnsupportedOperationException("Not implement in MMKV");
-      }
+        @Override
+        public void registerOnSharedPreferenceChangeListener(OnSharedPreferenceChangeListener listener) {
+            throw new java.lang.UnsupportedOperationException("Not implement in MMKV");
+        }
 
-      @Override
-      public void unregisterOnSharedPreferenceChangeListener(OnSharedPreferenceChangeListener listener) {
-          throw new java.lang.UnsupportedOperationException("Not implement in MMKV");
-      }
-  }
-  ```
+        @Override
+        public void unregisterOnSharedPreferenceChangeListener(OnSharedPreferenceChangeListener listener) {
+            throw new java.lang.UnsupportedOperationException("Not implement in MMKV");
+        }
+    }
+    ```
 
 1. *MMKV* 未校验数据类型，以下代码被认为是合法的
 
-  ```java
-  mmkv.edit().putInt("a", 1).apply();
-  boolean result = mmkv.getBoolean("a", false);
-  // result 为 true
-  ```
+    ```java
+    mmkv.edit().putInt("a", 1).apply();
+    boolean result = mmkv.getBoolean("a", false);
+    // result 为 true
+    ```
 
 1. *MMKV* 与系统原生 API 的行为不一致，如下面这段代码，*MMKV* 得到的结果与原生 API 的结果是不同的
 
-  ```java
-  editor.put(”a“, ”abc“).clear().apply();
-  ```
+    ```java
+    editor.put("a", "abc").clear().apply();
+    ```
 
 所以，基于以上的考虑，*Booster* 暂时不会采用 *MMKV* 作为通用的优化方案，如果大家对这个方案感兴趣，而且以上问题都可以忽略的话，可以参考 [booster-transform-shared-preferences](https://github.com/didi/booster/blob/master/booster-transform-shared-preferences) 和 [booster-android-instrument-shared-preferences](https://github.com/didi/booster/blob/master/booster-android-instrument-shared-preferences) 的实现。
 
