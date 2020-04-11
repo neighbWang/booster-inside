@@ -1,6 +1,11 @@
 # Summary
 
-* [前言](./README.md)
+* [关于本书](./README.md)
+* [贡献者](./contributors.md)
+* [如何打赏](https://johnsonlee.io/donate/?AliPayQR=/img/AliPayQR.png&WeChatQR=/img/WeChatQR.png)
+
+## 概览
+
 * [Booster 简介](./overview.md)
 * [快速上手](./getting-started.md)
 
@@ -10,7 +15,7 @@
   * [静态分析](./performance/static-analysis.md)
   * [多线程优化](./performance/multithreading-optimization.md)
   * [SharedPreferences 优化](./performance/shared-preferences-optimization.md)
-  * WebView 预加载
+  * [WebView 预加载](./performance/webview-preloading.md)
 * 包体积瘦身
   * WebP 图片压缩
   * PNG 图片压缩
@@ -60,8 +65,3 @@
     * dex 文件格式
     * Dalvik 指令
 
-## 关于作者
-
-* [GitHub](https://github.com/johnsonlee/)
-* [我的博客](https://johnsonlee.io/)
-* [如何打赏](https://johnsonlee.io/donate/?AliPayQR=/img/AliPayQR.png&WeChatQR=/img/WeChatQR.png)
