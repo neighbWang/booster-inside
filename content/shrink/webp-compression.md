@@ -93,7 +93,7 @@ booster.task.compression.cwebp.option.quality=75
 
 ## 通过命令行配置
 
-```bash
-./gradlew assembleDebug -Pbooster.task.compression.cwebp.option.quality=75
+```shell
+$ ./gradlew assembleDebug -Pbooster.task.compression.cwebp.option.quality=75
 ```
 

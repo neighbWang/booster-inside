@@ -74,8 +74,8 @@ booster.task.compression.pngquant.option.speed=1
 
 ## 通过命令行配置
 
-```bash
-./gradlew assembleDebug \
+```shell
+$ ./gradlew assembleDebug \
     -Pbooster.task.compression.pngquant.option.quality=75 \
     -Pbooster.task.compression.pngquant.option.speed=1
 ```
