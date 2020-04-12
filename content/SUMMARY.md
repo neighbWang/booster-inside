@@ -20,7 +20,7 @@
   * [PNG 图片压缩](./shrink/png-compression.md)
   * [WebP 图片压缩](./shrink/webp-compression.md)
   * [ZIP 文件压缩](./shrink/zip-compression.md)
-  * [去冗余资源](./shrink/res-deredundancy.md)
+  * [移除冗余资源](./shrink/res-deredundancy.md)
   * [资源索引内联](./shrink/res-index-inline.md)
 * 系统 bug 修复
   * 系统 bug 兜底
