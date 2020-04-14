@@ -23,8 +23,8 @@
   * [移除冗余资源](./shrink/res-deredundancy.md)
   * [资源索引内联](./shrink/res-index-inline.md)
 * 系统 bug 修复
-  * 系统 bug 兜底
-  * Finalizer 导致的 TimeoutException
+  * [为系统崩溃兜底](./bugfix/prevent-crash-from-system-bug.md)
+  * [Finalizer 导致的 TimeoutException](./bugfix/finalizer-timeout-exception.md)
   * Android 7.0 覆盖安装问题
   * Android 7.1 上 Toast 问题
 * 其它
