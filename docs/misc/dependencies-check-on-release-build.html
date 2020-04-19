@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>资源为 null 的问题 · 深入理解 Booster</title>
+        <title>Release 构建依赖检查 · 深入理解 Booster</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -69,10 +69,8 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="toast-crash-on-android-25.html" />
+    <link rel="next" href="android-permission-list.html" />
     
-    
-    <link rel="prev" href="finalizer-timeout-exception.html" />
     
 
     </head>
@@ -383,9 +381,9 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="3.3.1" data-path="prevent-crash-from-system-bug.html">
+        <li class="chapter " data-level="3.3.1" data-path="../bugfix/prevent-crash-from-system-bug.html">
             
-                <a href="prevent-crash-from-system-bug.html">
+                <a href="../bugfix/prevent-crash-from-system-bug.html">
             
                     
                         <b>3.3.1.</b>
@@ -398,9 +396,9 @@
             
         </li>
     
-        <li class="chapter " data-level="3.3.2" data-path="finalizer-timeout-exception.html">
+        <li class="chapter " data-level="3.3.2" data-path="../bugfix/finalizer-timeout-exception.html">
             
-                <a href="finalizer-timeout-exception.html">
+                <a href="../bugfix/finalizer-timeout-exception.html">
             
                     
                         <b>3.3.2.</b>
@@ -413,9 +411,9 @@
             
         </li>
     
-        <li class="chapter active" data-level="3.3.3" data-path="null-resource-assets.html">
+        <li class="chapter " data-level="3.3.3" data-path="../bugfix/null-resource-assets.html">
             
-                <a href="null-resource-assets.html">
+                <a href="../bugfix/null-resource-assets.html">
             
                     
                         <b>3.3.3.</b>
@@ -428,9 +426,9 @@
             
         </li>
     
-        <li class="chapter " data-level="3.3.4" data-path="toast-crash-on-android-25.html">
+        <li class="chapter " data-level="3.3.4" data-path="../bugfix/toast-crash-on-android-25.html">
             
-                <a href="toast-crash-on-android-25.html">
+                <a href="../bugfix/toast-crash-on-android-25.html">
             
                     
                         <b>3.3.4.</b>
@@ -464,9 +462,9 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="3.4.1" data-path="../misc/dependencies-check-on-release-build.html">
+        <li class="chapter active" data-level="3.4.1" data-path="dependencies-check-on-release-build.html">
             
-                <a href="../misc/dependencies-check-on-release-build.html">
+                <a href="dependencies-check-on-release-build.html">
             
                     
                         <b>3.4.1.</b>
@@ -479,9 +477,9 @@
             
         </li>
     
-        <li class="chapter " data-level="3.4.2" data-path="../misc/android-permission-list.html">
+        <li class="chapter " data-level="3.4.2" data-path="android-permission-list.html">
             
-                <a href="../misc/android-permission-list.html">
+                <a href="android-permission-list.html">
             
                     
                         <b>3.4.2.</b>
@@ -494,9 +492,9 @@
             
         </li>
     
-        <li class="chapter " data-level="3.4.3" data-path="../misc/shared-library-list.html">
+        <li class="chapter " data-level="3.4.3" data-path="shared-library-list.html">
             
-                <a href="../misc/shared-library-list.html">
+                <a href="shared-library-list.html">
             
                     
                         <b>3.4.3.</b>
@@ -509,9 +507,9 @@
             
         </li>
     
-        <li class="chapter " data-level="3.4.4" data-path="../misc/build-artifact-list.html">
+        <li class="chapter " data-level="3.4.4" data-path="build-artifact-list.html">
             
-                <a href="../misc/build-artifact-list.html">
+                <a href="build-artifact-list.html">
             
                     
                         <b>3.4.4.</b>
@@ -914,7 +912,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >资源为 null 的问题</a>
+        <a href=".." >Release 构建依赖检查</a>
     </h1>
 </div>
 
@@ -929,47 +927,37 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="&#x8D44;&#x6E90;&#x4E3A;-null-&#x7684;&#x95EE;&#x9898;">&#x8D44;&#x6E90;&#x4E3A; null &#x7684;&#x95EE;&#x9898;</h1>
-<p>&#x76F8;&#x4FE1;&#x5F88;&#x591A; <em>Android</em> &#x5F00;&#x53D1;&#x8005;&#x90FD;&#x9047;&#x5230;&#x50CF;&#x8FD9;&#x6837;&#x7684;&#x5D29;&#x6E83;&#xFF1A;</p>
-<pre><code>java.lang.NullPointerException: Attempt to invoke virtual method &apos;android.content.res.AssetManager android.content.res.Resources.getAssets()&apos; on a null object reference
-    at android.app.LoadedApk.getAssets(LoadedApk.java:581)
-    at android.app.LoadedApk.prepareResources(LoadedApk.java:643)
-    at android.app.LoadedApk.makeApplication(LoadedApk.java:636)
-    at android.app.ActivityThread.handleBindApplication(ActivityThread.java:4673)
-    at android.app.ActivityThread.access$1500(ActivityThread.java:162)
-    at android.app.ActivityThread$H.handleMessage(ActivityThread.java:1409)
-    at android.os.Handler.dispatchMessage(Handler.java:102)
-    at android.os.Looper.loop(Looper.java:135)
-    at android.app.ActivityThread.main(ActivityThread.java:5422)
-    at java.lang.reflect.Method.invoke(Native Method)
-    at java.lang.reflect.Method.invoke(Method.java:372)
-    at com.android.internal.os.ZygoteInit$MethodAndArgsCaller.run(ZygoteInit.java:914)
-    at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:707)
-</code></pre><p>&#x8FD9;&#x79CD;&#x95EE;&#x9898;&#x57FA;&#x672C;&#x4E0A;&#x90FD;&#x662F;&#x53D1;&#x751F;&#x5728;&#x8986;&#x76D6;&#x5B89;&#x88C5;&#x4E4B;&#x540E;&#xFF0C;<em>App</em> &#x7531; <em>Broadcast</em> &#x5524;&#x8D77;&#xFF0C;&#x7531;&#x4E8E;&#x7CFB;&#x7EDF; bug &#x5BFC;&#x81F4;&#x52A0;&#x8F7D;&#x4E86;&#x65E7;&#x7684; <em>APK</em>&#xFF0C;&#x4E00;&#x822C;&#x8868;&#x73B0;&#x51FA;&#x6765;&#x7684;&#x5F02;&#x5E38;&#x6709;&#xFF1A;</p>
-<ul>
-<li><em>Context.getResources()</em> &#x8FD4;&#x56DE; <code>null</code></li>
-<li><em>Class.getResourceAsStream()</em> &#x8FD4;&#x56DE; <code>null</code></li>
-<li><em>Context.getAssets()</em> &#x629B;&#x51FA; <code>NullPointerException</code></li>
-<li><em>Context.getSystemService(Context.AUDIO_SERVICE)</em> &#x629B;&#x51FA; <code>NullPointerException</code></li>
-</ul>
-<h1 id="&#x89E3;&#x51B3;&#x601D;&#x8DEF;">&#x89E3;&#x51B3;&#x601D;&#x8DEF;</h1>
-<p>&#x50CF;&#x8FD9;&#x6837;&#x7684;&#x7CFB;&#x7EDF; bug&#xFF0C;&#x53EF;&#x80FD;&#x8DDF;&#x7CFB;&#x7EDF;&#x7248;&#x672C;&#x6709;&#x5173;&#xFF0C;&#x4E5F;&#x6CA1;&#x6709;&#x4EC0;&#x4E48;&#x901A;&#x7528;&#x7684;&#x89E3;&#x51B3;&#x65B9;&#x6848;&#xFF0C;&#x6240;&#x4EE5; <em>Booster</em> &#x7684;&#x89E3;&#x51B3;&#x601D;&#x8DEF;&#x662F;&#xFF0C;&#x5728; <em>Application</em> &#x542F;&#x52A8;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x5BF9; <em>Resources</em> &#x548C; <em>Assets</em> &#x8FDB;&#x884C;&#x68C0;&#x67E5;&#xFF0C;&#x5982;&#x679C; <code>Resources</code> &#x6216;&#x8005; <code>AssetManager</code> &#x4E3A; <code>null</code>&#xFF0C;&#x76F4;&#x63A5;&#x6740;&#x8FDB;&#x7A0B;&#xFF1A;</p>
-<div><p class="code-filename">ResChecker.java</p></div>
-<pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ResChecker</span> </span>{
+                                <h1 id="release-&#x6784;&#x5EFA;&#x4F9D;&#x8D56;&#x68C0;&#x67E5;">Release &#x6784;&#x5EFA;&#x4F9D;&#x8D56;&#x68C0;&#x67E5;</h1>
+<p><em>APP</em> &#x5728;&#x65E5;&#x5E38;&#x7684;&#x7248;&#x672C;&#x53D1;&#x5E03;&#x4E2D;&#xFF0C;&#x96BE;&#x514D;&#x56E0;&#x4E3A;&#x67D0;&#x4E9B;&#x539F;&#x56E0;&#x8981;&#x56DE;&#x6EDA;&#x7248;&#x672C;&#xFF0C;&#x5C3D;&#x7BA1;&#x53D1;&#x5E03;&#x4E4B;&#x524D;&#x4F1A;&#x5728; <em>Git</em> &#x4E0A;&#x6253; <em>Tag</em>&#xFF0C;&#x56DE;&#x6EDA;&#x5230;&#x539F;&#x6765;&#x7684; <em>Tag</em> &#xFF0C;&#x5373;&#x4F7F;&#x5728;&#x540C;&#x4E00;&#x53F0;&#x673A;&#x5668;&#x4E0A;&#xFF0C;&#x4E5F;&#x672A;&#x5FC5;&#x80FD;&#x6784;&#x5EFA;&#x51FA;&#x8DDF;&#x539F;&#x6765;&#x4E00;&#x6A21;&#x4E00;&#x6837;&#x7684; <em>APK</em>&#xFF0C;&#x5176;&#x4E2D;&#xFF0C;&#x5F71;&#x54CD;&#x56DE;&#x6EDA;&#x7684;&#x5F88;&#x91CD;&#x8981;&#x7684;&#x4E00;&#x4E2A;&#x539F;&#x56E0;&#x662F;&#x4F9D;&#x8D56;&#x7684;&#x7248;&#x672C;&#x7BA1;&#x7406;&#x3002;&#x4E3A;&#x4EC0;&#x4E48;&#x4F9D;&#x8D56;&#x7684;&#x7248;&#x672C;&#x7BA1;&#x7406;&#x5982;&#x6B64;&#x91CD;&#x8981;&#x5462;&#xFF1F;&#x8FD9;&#x5F97;&#x4ECE;&#x4E00;&#x4E2A;&#x6545;&#x4E8B;&#x8BF4;&#x8D77;&#x3002;</p>
+<blockquote>
+<p>&#x67D0; <em>APP</em> &#x5728;&#x4E0A;&#x4E00;&#x4E2A;&#x7248;&#x672C; <em>v1.2.0</em> &#x4E2D;&#x4F9D;&#x8D56;&#x4E86; <em>libsecurity</em> &#x5E93;&#xFF0C;&#x7248;&#x672C;&#x53F7;&#x4E3A; <em>1.0.0-SNAPSHOT</em>&#xFF0C;&#x63A5;&#x4E0B;&#x6765;&#xFF0C;<em>APP</em> &#x8981;&#x53D1;&#x5E03; <em>v1.3.0</em>&#xFF0C;&#x5728;&#x8FD9;&#x4E2A;&#x7248;&#x672C;&#x4E2D;&#xFF0C;&#x4F9D;&#x8D56;&#x4E86; <em>libsecurity</em> &#x5E93;&#x7684; <em>1.0.1-SNAPSHOT</em> &#x7248;&#x672C;&#xFF0C;&#x7ECF;&#x8FC7;&#x7070;&#x5EA6;&#x53D1;&#x5E03;&#x540E;&#xFF0C;&#x672A;&#x89C1;&#x660E;&#x663E;&#x5F02;&#x5E38;&#xFF0C;&#x4E8E;&#x662F;&#x5F00;&#x59CB;&#x5168;&#x91CF;&#x53D1;&#x5E03;&#xFF0C;&#x7ED3;&#x679C;&#xFF0C;&#x5728;&#x653E;&#x91CF;&#x7684;&#x8FC7;&#x7A0B;&#x4E2D;&#xFF0C;&#x53D1;&#x73B0;&#x6709;&#x4E2A;&#x65B0;&#x589E;&#x7684;&#x5D29;&#x6E83;&#x9661;&#x589E;&#xFF0C;&#x7ECF;&#x6392;&#x67E5;&#x53D1;&#x73B0;&#xFF0C;&#x662F;&#x7531;&#x4E8E; <em>libsecurity</em> &#x5E93;&#x4E2D;&#x7684;&#x52A8;&#x6001;&#x5E93;&#x5BFC;&#x81F4;&#xFF0C;&#x56E0;&#x6B64;&#x4E0D;&#x5F97;&#x4E0D;&#x5C06; <em>libsecurity</em> &#x5E93;&#x7684;&#x7248;&#x672C;&#x56DE;&#x6EDA;&#x5230;&#x4E0A;&#x4E00;&#x4E2A;&#x7248;&#x672C; &#x2014;&#x2014; <em>1.0.0-SNAPSHOT</em>&#xFF0C;&#x56DE;&#x6EDA;&#x540E;&#x7070;&#x5EA6;&#x4F9D;&#x7136;&#x672A;&#x53D1;&#x73B0;&#x95EE;&#x9898;&#xFF0C;&#x63A5;&#x7740;&#x5F00;&#x59CB;&#x5168;&#x91CF;&#xFF0C;&#x5728;&#x5168;&#x91CF;&#x7684;&#x8FC7;&#x7A0B;&#xFF0C;&#x53C8;&#x53D1;&#x73B0;&#x4E86;&#x8DDF;&#x4E4B;&#x524D;&#x4E00;&#x6837;&#x7684;&#x5D29;&#x6E83;&#x3002;</p>
+</blockquote>
+<p>&#x6545;&#x4E8B;&#x5230;&#x8FD9;&#x513F;&#xFF0C;&#x53EF;&#x80FD;&#x6709;&#x4EBA;&#x5C31;&#x4F1A;&#x95EE;&#x4E86;&#xFF0C;&#x4E0A;&#x4E00;&#x4E2A;&#x7248;&#x672C;&#x4E0D;&#x662F;&#x6CA1;&#x95EE;&#x9898;&#x4E48;&#xFF1F;&#x4E3A;&#x4EC0;&#x4E48;&#x56DE;&#x6EDA;&#x7248;&#x672C;&#x4E86;&#xFF0C;&#x5728;&#x65B0;&#x7248;&#x672C;&#x4E2D;&#x51FA;&#x73B0;&#x7684;&#x5D29;&#x6E83;&#x4E3A;&#x4EC0;&#x4E48;&#x4F1A;&#x51FA;&#x73B0;&#x5728;&#x65E7;&#x7248;&#x672C;&#x4E2D;&#xFF1F;</p>
+<p>&#x7ECF;&#x8FC7;&#x6392;&#x67E5;&#x53D1;&#x73B0;&#xFF0C;&#x539F;&#x6765;&#x662F; <em>libsecurity</em> &#x5E93;&#x7684;&#x7EF4;&#x62A4;&#x8005;&#x5C06; <em>1.0.1-SNAPSHOT</em> &#x4E2D;&#x7684; <em>feature</em> &#x4EE5; <em>1.0.0-SNAPSHOT</em> &#x7684;&#x7248;&#x672C;&#x53F7;&#x53D1;&#x5E03;&#x5230;&#x4E86; <em>Maven</em> &#x4ED3;&#x5E93;&#x4E2D;&#xFF0C;&#x5BFC;&#x81F4;&#x539F;&#x6765;&#x7684; <em>1.0.0-SNAPSHOT</em> &#x6DF7;&#x5165;&#x4E86;&#x65B0;&#x7684;&#x4EE3;&#x7801;&#xFF0C;&#x6240;&#x4EE5;&#xFF0C;&#x5373;&#x4F7F;&#x56DE;&#x6EDA;&#x5230;&#x4E86;&#x539F;&#x6765;&#x7684;&#x7248;&#x672C;&#xFF0C;&#x95EE;&#x9898;&#x4F9D;&#x7136;&#x8FD8;&#x5B58;&#x5728;&#x3002;</p>
+<h1 id="&#x89E3;&#x51B3;&#x65B9;&#x6848;">&#x89E3;&#x51B3;&#x65B9;&#x6848;</h1>
+<p>&#x4F46;&#x5E73;&#x5E38;&#x7684;&#x5F00;&#x53D1;&#x8FED;&#x4EE3;&#x4E2D;&#xFF0C;&#x5982;&#x679C; <em>Code Review</em> &#x4E0D;&#x591F;&#x4ED4;&#x7EC6;&#xFF0C;&#x5C31;&#x5BB9;&#x6613;&#x51FA;&#x73B0;&#x4E0A;&#x9762;&#x7684;&#x60C5;&#x51B5;&#xFF0C;&#x5C06; <em>SNAPSHOT</em> &#x7248;&#x672C;&#x5E26;&#x5230;&#x7EBF;&#x4E0A;&#xFF0C;&#x4E3A;&#x4E86;&#x65B9;&#x4FBF;&#x7684;&#x89E3;&#x51B3;&#x8FD9;&#x4E00;&#x95EE;&#x9898;&#xFF0C;<em>Booster</em> &#x63D0;&#x4F9B;&#x4E86; <a href="https://github.com/didi/booster/blob/master/booster-task-check-snapshot" target="_blank">booster-task-check-snapshot</a> &#x6A21;&#x5757;&#xFF0C;&#x7528;&#x4E8E;&#x5BF9; <em>Release</em> &#x6784;&#x5EFA;&#x7684;&#x4F9D;&#x8D56;&#x5E93;&#x7248;&#x672C;&#x8FDB;&#x884C;&#x68C0;&#x67E5;&#xFF0C;&#x907F;&#x514D;&#x4F9D;&#x8D56; <em>SNAPSHOT</em> &#x7248;&#x672C;&#x7684;&#x5E93;&#xFF1A;</p>
+<div><p class="code-filename">CheckSnapshot.kt</p></div>
+<pre><code class="lang-kotlin">internal <span class="hljs-keyword">open</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CheckSnapshot</span> : <span class="hljs-type">DefaultTask</span></span>() {
 
-    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">checkRes</span><span class="hljs-params">(<span class="hljs-keyword">final</span> Application app)</span> </span>{
-        <span class="hljs-keyword">if</span> (<span class="hljs-keyword">null</span> == app.getAssets() || <span class="hljs-keyword">null</span> == app.getResources()) {
-            <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> pid = Process.myPid();
-            Log.w(TAG, <span class="hljs-string">&quot;Process &quot;</span> + pid + <span class="hljs-string">&quot; is going to be killed&quot;</span>);
-            Process.killProcess(pid);
-            System.exit(<span class="hljs-number">10</span>);
+    lateinit <span class="hljs-variable"><span class="hljs-keyword">var</span> variant</span>: BaseVariant
+
+    @TaskAction
+    <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">run</span><span class="hljs-params">()</span> {</span>
+        <span class="hljs-keyword">if</span> (!variant.buildType.isDebuggable) {
+            variant.dependencies.filter {
+                it.id.componentIdentifier <span class="hljs-keyword">is</span> MavenUniqueSnapshotComponentIdentifier
+            }.map {
+                it.id.componentIdentifier <span class="hljs-keyword">as</span> MavenUniqueSnapshotComponentIdentifier
+            }.ifNotEmpty { snapshots -&gt;
+                println(<span class="hljs-string">&quot;$CSI_YELLOW &#x26A0;&#xFE0F;  ${snapshots.size} SNAPSHOT artifacts found in ${variant.name} variant:$CSI_RESET\n${snapshots.joinToString(&quot;</span>\n<span class="hljs-string">&quot;) { snapshot -&gt; &quot;</span>$CSI_YELLOW&#x2192;  ${snapshot.displayName}$CSI_RESET<span class="hljs-string">&quot; }}&quot;</span>)
+            }
         }
     }
 
 }
 </code></pre>
 <h1 id="&#x5982;&#x4F55;&#x4F7F;&#x7528;">&#x5982;&#x4F55;&#x4F7F;&#x7528;</h1>
-<p>&#x4FEE;&#x590D;&#x8986;&#x76D6;&#x5B89;&#x88C5;&#x5BFC;&#x81F4;&#x7684; <code>NullPointerException</code> &#x53EA;&#x9700;&#x8981;&#x5F15;&#x5165; <a href="https://github.com/didi/booster/blob/master/booster-transform-res-check" target="_blank">booster-transform-res-check</a> &#x5373;&#x53EF;&#xFF0C;&#x5982;&#x4E0B;&#x6240;&#x793A;&#xFF1A;</p>
+<p>&#x542F;&#x7528; <em>SNAPSHOT</em> &#x68C0;&#x67E5;&#x53EA;&#x9700;&#x8981;&#x5728;&#x6839;&#x5DE5;&#x7A0B;&#x7684; <em>build.gradle</em> &#x4E2D;&#x5F15;&#x5165; <a href="https://github.com/didi/booster/blob/master/booster-task-check-snapshot" target="_blank">booster-task-check-snapshot</a> &#x6A21;&#x5757;&#xFF0C;&#x5982;&#x4E0B;&#x6240;&#x793A;&#xFF1A;</p>
 <div><p class="code-filename">build.gradle</p></div>
 <pre><code class="lang-gradle"><span class="hljs-keyword">buildscript</span> {
     ext {
@@ -990,9 +978,12 @@
         <span class="hljs-keyword">classpath</span> <span class="hljs-string">&quot;com.didiglobal.booster:booster-gradle-plugin:$booster_version&quot;</span>
 
         <span class="hljs-comment">/* &#x1F447;&#x1F447;&#x1F447;&#x1F447; &#x5F15;&#x7528;&#x8FD9;&#x4E2A;&#x6A21;&#x5757; &#x1F447;&#x1F447;&#x1F447;&#x1F447; */</span>
-        <span class="hljs-keyword">classpath</span> <span class="hljs-string">&quot;com.didiglobal.booster:booster-transform-res-check:$booster_version&quot;</span>
+        <span class="hljs-keyword">classpath</span> <span class="hljs-string">&quot;com.didiglobal.booster:booster-task-check-snapshot:$booster_version&quot;</span>
     }
 }
+</code></pre>
+<p>&#x7136;&#x540E;&#xFF0C;&#x5728;&#x547D;&#x4EE4;&#x884C;&#x4E2D;&#x6267;&#x884C; <code>checkSnapshot</code> &#x4EFB;&#x52A1;&#xFF1A;</p>
+<pre><code class="lang-shell">$ ./gradlew checkSnapshot
 </code></pre>
 
                                 
@@ -1021,12 +1012,8 @@
 
             
                 
-                <a href="finalizer-timeout-exception.html" class="navigation navigation-prev " aria-label="Previous page: Finalizer 导致的 TimeoutException">
-                    <i class="fa fa-angle-left"></i>
-                </a>
                 
-                
-                <a href="toast-crash-on-android-25.html" class="navigation navigation-next " aria-label="Next page: Android 7.1 Toast 崩溃">
+                <a href="android-permission-list.html" class="navigation navigation-next navigation-unique" aria-label="Next page: Android 权限清单">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -1037,7 +1024,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"资源为 null 的问题","level":"3.3.3","depth":2,"next":{"title":"Android 7.1 Toast 崩溃","level":"3.3.4","depth":2,"path":"bugfix/toast-crash-on-android-25.md","ref":"./bugfix/toast-crash-on-android-25.md","articles":[]},"previous":{"title":"Finalizer 导致的 TimeoutException","level":"3.3.2","depth":2,"path":"bugfix/finalizer-timeout-exception.md","ref":"./bugfix/finalizer-timeout-exception.md","articles":[]},"dir":"ltr"},"config":{"plugins":["mathjax","splitter","codeblock-filename","theme-comscore","livereload"],"root":"./content/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"livereload":{},"splitter":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":1},"highlight":{},"codeblock-filename":{},"theme-comscore":{},"mathjax":{"forceSVG":false,"version":"2.6-latest"},"sharing":{"facebook":false,"twitter":false,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":[]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":true}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"深入理解 Booster","language":"zh-hans","links":{"sharing":{"google":false,"facebook":false,"twitter":false,"all":false}},"gitbook":">=3.1.0","description":"使用 Booster 对你的 Android 应用进行深度优化"},"file":{"path":"bugfix/null-resource-assets.md","mtime":"2020-04-19T11:24:10.000Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-04-19T05:10:39.369Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Release 构建依赖检查","level":"3.4.1","depth":2,"next":{"title":"Android 权限清单","level":"3.4.2","depth":2,"path":"misc/android-permission-list.md","ref":"./misc/android-permission-list.md","articles":[]},"previous":{"title":"其它","level":"3.4","depth":1,"ref":"","articles":[{"title":"Release 构建依赖检查","level":"3.4.1","depth":2,"path":"misc/dependencies-check-on-release-build.md","ref":"./misc/dependencies-check-on-release-build.md","articles":[]},{"title":"Android 权限清单","level":"3.4.2","depth":2,"path":"misc/android-permission-list.md","ref":"./misc/android-permission-list.md","articles":[]},{"title":"动态库清单","level":"3.4.3","depth":2,"path":"misc/shared-library-list.md","ref":"./misc/shared-library-list.md","articles":[]},{"title":"构建中间产物清单","level":"3.4.4","depth":2,"path":"misc/build-artifact-list.md","ref":"./misc/build-artifact-list.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["mathjax","splitter","codeblock-filename","theme-comscore","livereload"],"root":"./content/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"livereload":{},"splitter":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":1},"highlight":{},"codeblock-filename":{},"theme-comscore":{},"mathjax":{"forceSVG":false,"version":"2.6-latest"},"sharing":{"facebook":false,"twitter":false,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":[]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":true}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"深入理解 Booster","language":"zh-hans","links":{"sharing":{"google":false,"facebook":false,"twitter":false,"all":false}},"gitbook":">=3.1.0","description":"使用 Booster 对你的 Android 应用进行深度优化"},"file":{"path":"misc/dependencies-check-on-release-build.md","mtime":"2020-04-19T12:52:35.000Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-04-19T05:10:39.369Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

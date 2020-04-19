@@ -28,9 +28,10 @@
   * [资源为 null 的问题](./bugfix/null-resource-assets.md)
   * [Android 7.1 Toast 崩溃](./bugfix/toast-crash-on-android-25.md)
 * 其它
-  * 正式包版本检查
-  * 权限清单
-  * 构建中间产物清单
+  * [Release 构建依赖检查](./misc/dependencies-check-on-release-build.md)
+  * [Android 权限清单](./misc/android-permission-list.md)
+  * [动态库清单](./misc/shared-library-list.md)
+  * [构建中间产物清单](./misc/build-artifact-list.md)
 
 ## Booster 插件开发
 
