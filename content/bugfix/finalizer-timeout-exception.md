@@ -230,7 +230,7 @@ public static void kill() {
 
 # 如何使用
 
-解决 *TimeoutException* 只需要引入 [booster-transform-finalizer-watchdog-daemon](https://github.com/didi/booster/blob/master/booster-transform-finalizer-watchdog-daemon) 即可，如下所示：
+修复 `FinalizerDaemon` 导致的 *TimeoutException* 只需要引入 [booster-transform-finalizer-watchdog-daemon](https://github.com/didi/booster/blob/master/booster-transform-finalizer-watchdog-daemon) 即可，如下所示：
 
 
 ```gradle:build.gradle

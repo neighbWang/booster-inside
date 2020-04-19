@@ -69,6 +69,8 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
+    <link rel="next" href="null-resource-assets.html" />
+    
     
     <link rel="prev" href="prevent-crash-from-system-bug.html" />
     
@@ -411,31 +413,31 @@
             
         </li>
     
-        <li class="chapter " data-level="3.3.3" >
+        <li class="chapter " data-level="3.3.3" data-path="null-resource-assets.html">
             
-                <span>
+                <a href="null-resource-assets.html">
             
                     
                         <b>3.3.3.</b>
                     
-                    Android 7.0 覆盖安装问题
+                    资源为 null 的问题
             
-                </span>
+                </a>
             
 
             
         </li>
     
-        <li class="chapter " data-level="3.3.4" >
+        <li class="chapter " data-level="3.3.4" data-path="toast-crash-on-android-25.html">
             
-                <span>
+                <a href="toast-crash-on-android-25.html">
             
                     
                         <b>3.3.4.</b>
                     
-                    Android 7.1 上 Toast 问题
+                    Android 7.1 Toast 崩溃
             
-                </span>
+                </a>
             
 
             
@@ -1112,7 +1114,7 @@
 }
 </code></pre>
 <h1 id="&#x5982;&#x4F55;&#x4F7F;&#x7528;">&#x5982;&#x4F55;&#x4F7F;&#x7528;</h1>
-<p>&#x89E3;&#x51B3; <em>TimeoutException</em> &#x53EA;&#x9700;&#x8981;&#x5F15;&#x5165; <a href="https://github.com/didi/booster/blob/master/booster-transform-finalizer-watchdog-daemon" target="_blank">booster-transform-finalizer-watchdog-daemon</a> &#x5373;&#x53EF;&#xFF0C;&#x5982;&#x4E0B;&#x6240;&#x793A;&#xFF1A;</p>
+<p>&#x4FEE;&#x590D; <code>FinalizerDaemon</code> &#x5BFC;&#x81F4;&#x7684; <em>TimeoutException</em> &#x53EA;&#x9700;&#x8981;&#x5F15;&#x5165; <a href="https://github.com/didi/booster/blob/master/booster-transform-finalizer-watchdog-daemon" target="_blank">booster-transform-finalizer-watchdog-daemon</a> &#x5373;&#x53EF;&#xFF0C;&#x5982;&#x4E0B;&#x6240;&#x793A;&#xFF1A;</p>
 <div><p class="code-filename">build.gradle</p></div>
 <pre><code class="lang-gradle"><span class="hljs-keyword">buildscript</span> {
     ext {
@@ -1164,10 +1166,14 @@
 
             
                 
-                <a href="prevent-crash-from-system-bug.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: 为系统崩溃兜底">
+                <a href="prevent-crash-from-system-bug.html" class="navigation navigation-prev " aria-label="Previous page: 为系统崩溃兜底">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
+                
+                <a href="null-resource-assets.html" class="navigation navigation-next " aria-label="Next page: 资源为 null 的问题">
+                    <i class="fa fa-angle-right"></i>
+                </a>
                 
             
         
@@ -1176,7 +1182,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Finalizer 导致的 TimeoutException","level":"3.3.2","depth":2,"next":{"title":"Android 7.0 覆盖安装问题","level":"3.3.3","depth":2,"ref":"","articles":[]},"previous":{"title":"为系统崩溃兜底","level":"3.3.1","depth":2,"path":"bugfix/prevent-crash-from-system-bug.md","ref":"./bugfix/prevent-crash-from-system-bug.md","articles":[]},"dir":"ltr"},"config":{"plugins":["mathjax","splitter","codeblock-filename","theme-comscore","livereload"],"root":"./content/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"livereload":{},"splitter":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":1},"highlight":{},"codeblock-filename":{},"theme-comscore":{},"mathjax":{"forceSVG":false,"version":"2.6-latest"},"sharing":{"facebook":false,"twitter":false,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":[]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":true}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"深入理解 Booster","language":"zh-hans","links":{"sharing":{"google":false,"facebook":false,"twitter":false,"all":false}},"gitbook":">=3.1.0","description":"使用 Booster 对你的 Android 应用进行深度优化"},"file":{"path":"bugfix/finalizer-timeout-exception.md","mtime":"2020-04-19T07:44:59.000Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-04-19T05:10:39.369Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Finalizer 导致的 TimeoutException","level":"3.3.2","depth":2,"next":{"title":"资源为 null 的问题","level":"3.3.3","depth":2,"path":"bugfix/null-resource-assets.md","ref":"./bugfix/null-resource-assets.md","articles":[]},"previous":{"title":"为系统崩溃兜底","level":"3.3.1","depth":2,"path":"bugfix/prevent-crash-from-system-bug.md","ref":"./bugfix/prevent-crash-from-system-bug.md","articles":[]},"dir":"ltr"},"config":{"plugins":["mathjax","splitter","codeblock-filename","theme-comscore","livereload"],"root":"./content/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"livereload":{},"splitter":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":1},"highlight":{},"codeblock-filename":{},"theme-comscore":{},"mathjax":{"forceSVG":false,"version":"2.6-latest"},"sharing":{"facebook":false,"twitter":false,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":[]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":true}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"深入理解 Booster","language":"zh-hans","links":{"sharing":{"google":false,"facebook":false,"twitter":false,"all":false}},"gitbook":">=3.1.0","description":"使用 Booster 对你的 Android 应用进行深度优化"},"file":{"path":"bugfix/finalizer-timeout-exception.md","mtime":"2020-04-19T10:50:27.000Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-04-19T05:10:39.369Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

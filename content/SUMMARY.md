@@ -25,8 +25,8 @@
 * 系统 bug 修复
   * [为系统崩溃兜底](./bugfix/prevent-crash-from-system-bug.md)
   * [Finalizer 导致的 TimeoutException](./bugfix/finalizer-timeout-exception.md)
-  * Android 7.0 覆盖安装问题
-  * Android 7.1 上 Toast 问题
+  * [资源为 null 的问题](./bugfix/null-resource-assets.md)
+  * [Android 7.1 Toast 崩溃](./bugfix/toast-crash-on-android-25.md)
 * 其它
   * 正式包版本检查
   * 权限清单

@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>移除冗余资源 · 深入理解 Booster</title>
+        <title>Android 7.1 Toast 崩溃 · 深入理解 Booster</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -69,10 +69,8 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="res-index-inline.html" />
     
-    
-    <link rel="prev" href="zip-compression.html" />
+    <link rel="prev" href="null-resource-assets.html" />
     
 
     </head>
@@ -287,9 +285,9 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="3.2.1" data-path="png-compression.html">
+        <li class="chapter " data-level="3.2.1" data-path="../shrink/png-compression.html">
             
-                <a href="png-compression.html">
+                <a href="../shrink/png-compression.html">
             
                     
                         <b>3.2.1.</b>
@@ -302,9 +300,9 @@
             
         </li>
     
-        <li class="chapter " data-level="3.2.2" data-path="webp-compression.html">
+        <li class="chapter " data-level="3.2.2" data-path="../shrink/webp-compression.html">
             
-                <a href="webp-compression.html">
+                <a href="../shrink/webp-compression.html">
             
                     
                         <b>3.2.2.</b>
@@ -317,9 +315,9 @@
             
         </li>
     
-        <li class="chapter " data-level="3.2.3" data-path="zip-compression.html">
+        <li class="chapter " data-level="3.2.3" data-path="../shrink/zip-compression.html">
             
-                <a href="zip-compression.html">
+                <a href="../shrink/zip-compression.html">
             
                     
                         <b>3.2.3.</b>
@@ -332,9 +330,9 @@
             
         </li>
     
-        <li class="chapter active" data-level="3.2.4" data-path="res-deredundancy.html">
+        <li class="chapter " data-level="3.2.4" data-path="../shrink/res-deredundancy.html">
             
-                <a href="res-deredundancy.html">
+                <a href="../shrink/res-deredundancy.html">
             
                     
                         <b>3.2.4.</b>
@@ -347,9 +345,9 @@
             
         </li>
     
-        <li class="chapter " data-level="3.2.5" data-path="res-index-inline.html">
+        <li class="chapter " data-level="3.2.5" data-path="../shrink/res-index-inline.html">
             
-                <a href="res-index-inline.html">
+                <a href="../shrink/res-index-inline.html">
             
                     
                         <b>3.2.5.</b>
@@ -383,9 +381,9 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="3.3.1" data-path="../bugfix/prevent-crash-from-system-bug.html">
+        <li class="chapter " data-level="3.3.1" data-path="prevent-crash-from-system-bug.html">
             
-                <a href="../bugfix/prevent-crash-from-system-bug.html">
+                <a href="prevent-crash-from-system-bug.html">
             
                     
                         <b>3.3.1.</b>
@@ -398,9 +396,9 @@
             
         </li>
     
-        <li class="chapter " data-level="3.3.2" data-path="../bugfix/finalizer-timeout-exception.html">
+        <li class="chapter " data-level="3.3.2" data-path="finalizer-timeout-exception.html">
             
-                <a href="../bugfix/finalizer-timeout-exception.html">
+                <a href="finalizer-timeout-exception.html">
             
                     
                         <b>3.3.2.</b>
@@ -413,9 +411,9 @@
             
         </li>
     
-        <li class="chapter " data-level="3.3.3" data-path="../bugfix/null-resource-assets.html">
+        <li class="chapter " data-level="3.3.3" data-path="null-resource-assets.html">
             
-                <a href="../bugfix/null-resource-assets.html">
+                <a href="null-resource-assets.html">
             
                     
                         <b>3.3.3.</b>
@@ -428,9 +426,9 @@
             
         </li>
     
-        <li class="chapter " data-level="3.3.4" data-path="../bugfix/toast-crash-on-android-25.html">
+        <li class="chapter active" data-level="3.3.4" data-path="toast-crash-on-android-25.html">
             
-                <a href="../bugfix/toast-crash-on-android-25.html">
+                <a href="toast-crash-on-android-25.html">
             
                     
                         <b>3.3.4.</b>
@@ -899,7 +897,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >移除冗余资源</a>
+        <a href=".." >Android 7.1 Toast 崩溃</a>
     </h1>
 </div>
 
@@ -914,87 +912,213 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="&#x8D44;&#x6E90;&#x9650;&#x5B9A;&#x7B26;">&#x8D44;&#x6E90;&#x9650;&#x5B9A;&#x7B26;</h1>
-<p><em>Android</em> &#x4E3A;&#x4E86;&#x4FBF;&#x4E8E;&#x5BF9;&#x7279;&#x5B9A;&#x8BBE;&#x5907;&#x8FDB;&#x884C;&#x9002;&#x914D;&#xFF0C;&#x5B9A;&#x4E49;&#x4E86;&#x4E00;&#x7CFB;&#x5217;&#x8D44;&#x6E90;&#x914D;&#x7F6E;&#x9650;&#x5B9A;&#x7B26;&#xFF08;Configuration Qualifier&#xFF09;&#xFF0C;&#x5F00;&#x53D1;&#x8005;&#x53EA;&#x9700;&#x8981;&#x6839;&#x636E;&#x9650;&#x5B9A;&#x7B26;&#x6765;&#x5BF9;&#x8D44;&#x6E90;&#x8FDB;&#x884C;&#x547D;&#x540D;&#xFF0C;<em>Android Framework</em> &#x4F1A;&#x6839;&#x636E;&#x4E0A;&#x4E0B;&#x6587;&#x73AF;&#x5883;&#x5B8C;&#x6210;&#x9002;&#x914D;&#x5DE5;&#x4F5C;&#xFF0C;&#x5E38;&#x7528;&#x7684; <em>Configuration</em> &#x6709;&#xFF1A;</p>
-<ol>
-<li>&#x8BED;&#x8A00;&#x548C;&#x533A;&#x57DF;</li>
-<li>&#x5E55;&#x5C3A;&#x5BF8;<ul>
-<li>small</li>
-<li>normal</li>
-<li>large</li>
-<li>xlarge</li>
-</ul>
-</li>
-<li>&#x5C4F;&#x5E55;&#x65B9;&#x5411;<ul>
-<li>port</li>
-<li>land</li>
-</ul>
-</li>
-<li>&#x5C4F;&#x5E55;&#x50CF;&#x7D20;&#x5BC6;&#x5EA6;<ul>
-<li>ldpi</li>
-<li>mdpi</li>
-<li>hdpi</li>
-<li>xhdpi</li>
-<li>xxhdpi</li>
-<li>xxxhdpi</li>
-<li>nodpi</li>
-<li>tvdpi</li>
-<li>anydpi</li>
-<li><em>nnn</em>dpi</li>
-</ul>
-</li>
-<li>&#x5E73;&#x53F0;&#x7248;&#x672C;&#xFF08;API Level&#xFF09;<ul>
-<li>v3</li>
-<li>v4</li>
-<li>v7</li>
-<li>...</li>
-</ul>
-</li>
-</ol>
-<h1 id="&#x79FB;&#x9664;&#x4E0D;&#x5FC5;&#x8981;&#x7684;&#x8D44;&#x6E90;">&#x79FB;&#x9664;&#x4E0D;&#x5FC5;&#x8981;&#x7684;&#x8D44;&#x6E90;</h1>
-<p>&#x5BF9;&#x4E8E;&#x53EA;&#x53D1;&#x5E03;&#x5728;&#x56FD;&#x5185;&#x5E94;&#x7528;&#x5E02;&#x573A;&#x7684; <em>APP</em> &#x6765;&#x8BF4;&#xFF0C;&#x6709;&#x4E9B;&#x4E0D;&#x662F;&#x5B8C;&#x5168;&#x9700;&#x8981;&#x7684;&#xFF0C;&#x5982;&#xFF1A;&#x591A;&#x8BED;&#x8A00;&#x3001;&#x591A;&#x5C4F;&#x5E55;&#x5BC6;&#x5EA6;&#x7B49;&#xFF0C;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x5728; <em>build.gradle</em> &#x4E2D;&#x901A;&#x8FC7;&#x5982;&#x4E0B;&#x914D;&#x7F6E;&#x6765;&#x79FB;&#x9664;&#x4E0D;&#x5FC5;&#x8981;&#x7684;&#x8D44;&#x6E90;&#xFF1A;</p>
-<div><p class="code-filename">build.gradle</p></div>
-<pre><code class="lang-gradle">android {
-    defaultConfig {
-        resConfigs <span class="hljs-string">&quot;zh&quot;</span>
-    }
-}
-</code></pre>
-<p>&#x53E6;&#x4E00;&#x79CD;&#x65B9;&#x5F0F;&#x662F;&#x9488;&#x5BF9;&#x4E0D;&#x540C;&#x7684; <em>Configuration</em> &#x5206;&#x522B;&#x6784;&#x5EFA; <em>APK</em>&#xFF0C;&#x4F8B;&#x5982;&#xFF0C;&#x6839;&#x636E;&#x5C4F;&#x5E55;&#x5BC6;&#x5EA6;&#x6765;&#x4E3A;&#x6BCF;&#x79CD;&#x5C4F;&#x5E55;&#x5BC6;&#x5EA6;&#x6784;&#x5EFA;&#x4E00;&#x4E2A;&#x72EC;&#x7ACB; <em>APK</em>&#xFF1A;</p>
-<div><p class="code-filename">build.gradle</p></div>
-<pre><code class="lang-gradle">android {
-    splits {
-        density {
-            enable <span class="hljs-keyword">true</span>
-            <span class="hljs-keyword">exclude</span> <span class="hljs-string">&quot;ldpi&quot;</span>, <span class="hljs-string">&quot;xxhdpi&quot;</span>, <span class="hljs-string">&quot;xxxhdpi&quot;</span>
-            compatibleScreens <span class="hljs-string">&apos;small&apos;</span>, <span class="hljs-string">&apos;normal&apos;</span>, <span class="hljs-string">&apos;large&apos;</span>, <span class="hljs-string">&apos;xlarge&apos;</span>
+                                <h1 id="toast-&#x5D29;&#x6E83;">Toast &#x5D29;&#x6E83;</h1>
+<p>&#x76F8;&#x4FE1;&#x5F88;&#x591A; <em>Android</em> &#x5F00;&#x53D1;&#x8005;&#x90FD;&#x89C1;&#x8FC7;&#x50CF;&#x8FD9;&#x6837;&#x7684;&#x5D29;&#x6E83;&#xFF1A;</p>
+<pre><code>android.view.WindowManager$BadTokenException: Unable to add window -- token android.os.BinderProxy@e2815e is not valid; is your activity running?
+    at android.view.ViewRootImpl.setView(ViewRootImpl.java:679)
+    at android.view.WindowManagerGlobal.addView(WindowManagerGlobal.java:342)
+    at android.view.WindowManagerImpl.addView(WindowManagerImpl.java:93)
+    at android.widget.Toast$TN.handleShow(Toast.java:459)
+    at android.widget.Toast$TN$2.handleMessage(Toast.java:342)
+    at android.os.Handler.dispatchMessage(Handler.java:102)
+    at android.os.Looper.loop(Looper.java:154)
+    at android.app.ActivityThread.main(ActivityThread.java:6119)
+    at java.lang.reflect.Method.invoke(Native Method)
+</code></pre><p>&#x901A;&#x8FC7; <em>APM</em> &#x5E73;&#x53F0;&#x5206;&#x6790;&#x53D1;&#x73B0;&#xFF0C;&#x8FD9;&#x4E2A;&#x95EE;&#x9898;&#x4EC5;&#x53D1;&#x751F;&#x5728; <em>Android 7.1 (API Level 25)</em> &#x7248;&#x672C;&#xFF0C;&#x6240;&#x4EE5;&#x65AD;&#x5B9A;&#xFF0C;&#x8FD9;&#x662F; <em>Android 7.1</em> &#x7684;&#x7CFB;&#x7EDF; bug&#xFF0C;&#x901A;&#x8FC7;&#x67E5;&#x770B;&#x6E90;&#x7801;&#xFF0C;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x770B;&#x5230;&#xFF1A;</p>
+<div><p class="code-filename">Toast.java</p></div>
+<pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Toast</span> </span>{
+
+    <span class="hljs-keyword">final</span> TN mTN;
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">handleShow</span><span class="hljs-params">(IBinder windowToken)</span> </span>{
+        <span class="hljs-keyword">if</span> (localLOGV) Log.v(TAG, <span class="hljs-string">&quot;HANDLE SHOW: &quot;</span> + <span class="hljs-keyword">this</span> + <span class="hljs-string">&quot; mView=&quot;</span> + mView
+                + <span class="hljs-string">&quot; mNextView=&quot;</span> + mNextView);
+        <span class="hljs-keyword">if</span> (mView != mNextView) {
+            <span class="hljs-comment">// remove the old view if necessary</span>
+            handleHide();
+            mView = mNextView;
+            Context context = mView.getContext().getApplicationContext();
+            String packageName = mView.getContext().getOpPackageName();
+            <span class="hljs-keyword">if</span> (context == <span class="hljs-keyword">null</span>) {
+                context = mView.getContext();
+            }
+            mWM = (WindowManager)context.getSystemService(Context.WINDOW_SERVICE);
+            <span class="hljs-comment">// We can resolve the Gravity here by using the Locale for getting</span>
+            <span class="hljs-comment">// the layout direction</span>
+            <span class="hljs-keyword">final</span> Configuration config = mView.getContext().getResources().getConfiguration();
+            <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> gravity = Gravity.getAbsoluteGravity(mGravity, config.getLayoutDirection());
+            mParams.gravity = gravity;
+            <span class="hljs-keyword">if</span> ((gravity &amp; Gravity.HORIZONTAL_GRAVITY_MASK) == Gravity.FILL_HORIZONTAL) {
+                mParams.horizontalWeight = <span class="hljs-number">1.0f</span>;
+            }
+            <span class="hljs-keyword">if</span> ((gravity &amp; Gravity.VERTICAL_GRAVITY_MASK) == Gravity.FILL_VERTICAL) {
+                mParams.verticalWeight = <span class="hljs-number">1.0f</span>;
+            }
+            mParams.x = mX;
+            mParams.y = mY;
+            mParams.verticalMargin = mVerticalMargin;
+            mParams.horizontalMargin = mHorizontalMargin;
+            mParams.packageName = packageName;
+            mParams.hideTimeoutMilliseconds = mDuration ==
+                Toast.LENGTH_LONG ? LONG_DURATION_TIMEOUT : SHORT_DURATION_TIMEOUT;
+            mParams.token = windowToken;
+            <span class="hljs-keyword">if</span> (mView.getParent() != <span class="hljs-keyword">null</span>) {
+                <span class="hljs-keyword">if</span> (localLOGV) Log.v(TAG, <span class="hljs-string">&quot;REMOVE! &quot;</span> + mView + <span class="hljs-string">&quot; in &quot;</span> + <span class="hljs-keyword">this</span>);
+                mWM.removeView(mView);
+            }
+            <span class="hljs-keyword">if</span> (localLOGV) Log.v(TAG, <span class="hljs-string">&quot;ADD! &quot;</span> + mView + <span class="hljs-string">&quot; in &quot;</span> + <span class="hljs-keyword">this</span>);
+            mWM.addView(mView, mParams); <span class="hljs-comment">// &#x1F448;&#x1F448;&#x1F448;&#x1F448; &#x5D29;&#x6E83;&#x53D1;&#x751F;&#x5728;&#x8FD9;&#x91CC;</span>
+            trySendAccessibilityEvent();
         }
     }
+
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TN</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">ITransientNotification</span>.<span class="hljs-title">Stub</span> </span>{
+
+        <span class="hljs-keyword">final</span> Handler mHandler = <span class="hljs-keyword">new</span> Handler() {
+            <span class="hljs-meta">@Override</span>
+            <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">handleMessage</span><span class="hljs-params">(Message msg)</span> </span>{
+                <span class="hljs-keyword">switch</span> (msg.what) {
+                    <span class="hljs-keyword">case</span> SHOW: {
+                        IBinder token = (IBinder) msg.obj;
+                        handleShow(token);
+                        <span class="hljs-keyword">break</span>;
+                    }
+                    <span class="hljs-keyword">case</span> HIDE: {
+                        handleHide();
+                        <span class="hljs-comment">// Don&apos;t do this in handleHide() because it is also invoked by handleShow()</span>
+                        mNextView = <span class="hljs-keyword">null</span>;
+                        <span class="hljs-keyword">break</span>;
+                    }
+                    <span class="hljs-keyword">case</span> CANCEL: {
+                        handleHide();
+                        <span class="hljs-comment">// Don&apos;t do this in handleHide() because it is also invoked by handleShow()</span>
+                        mNextView = <span class="hljs-keyword">null</span>;
+                        <span class="hljs-keyword">try</span> {
+                            getService().cancelToast(mPackageName, TN.<span class="hljs-keyword">this</span>);
+                        } <span class="hljs-keyword">catch</span> (RemoteException e) {
+                        }
+                        <span class="hljs-keyword">break</span>;
+                    }
+                }
+            }
+        };
+
+    }
+
 }
 </code></pre>
-<p>&#x65E2;&#x7136;&#x79FB;&#x9664;&#x5197;&#x4F59;&#x8D44;&#x6E90;&#x8FD9;&#x4E48;&#x7B80;&#x5355;&#xFF0C;&#x90A3;&#x8FD8;&#x8981; <em>Booster</em> &#x505A;&#x4EC0;&#x4E48;&#xFF1F;</p>
-<h1 id="&#x56FD;&#x5185;&#x7684;&#x73B0;&#x72B6;">&#x56FD;&#x5185;&#x7684;&#x73B0;&#x72B6;</h1>
-<p>&#x56FD;&#x5185;&#x7684;&#x5927;&#x591A;&#x6570; <em>APP</em> &#x5BF9;&#x4E8E;&#x4E0D;&#x540C;&#x7684;&#x5C4F;&#x5E55;&#x5BC6;&#x5EA6;&#x9002;&#x914D;&#x505A;&#x5F97;&#x4E0D;&#x662F;&#x5F88;&#x5B8C;&#x5584;&#xFF0C;&#x53EF;&#x80FD;&#x6709;&#x7684;&#x53EA;&#x9002;&#x914D;&#x4E86; <code>xhdpi</code>&#xFF0C;&#x6709;&#x7684;&#x9002;&#x914D;&#x4E86; <code>xhdpi</code> &#x548C; <code>xxhdpi</code>&#xFF0C;&#x603B;&#x4E4B;&#x4E0D;&#x662F;&#x6240;&#x6709;&#x7684;&#x56FE;&#x7247;&#x8D44;&#x6E90;&#x9002;&#x914D;&#x7684;&#x5BC6;&#x5EA6;&#x662F;&#x4E00;&#x81F4;&#x7684;&#xFF0C;&#x5982;&#x679C;&#x7528;&#x4E0A;&#x9762;&#x7684;&#x300C;&#x62C6;&#x5206; APK&#x300D;&#x7684;&#x65B9;&#x5F0F;&#x6765;&#x6784;&#x5EFA;&#x7684;&#x8BDD;&#xFF0C;&#x5C31;&#x4F1A;&#x51FA;&#x73B0;&#x6709;&#x4E9B;&#x8D44;&#x6E90;&#x627E;&#x4E0D;&#x5230;&#x7684;&#x60C5;&#x51B5;&#xFF0C;&#x4E3A;&#x4E86;&#x89E3;&#x51B3;&#x8FD9;&#x4E00;&#x95EE;&#x9898;&#xFF0C;<em>Booster</em> &#x91C7;&#x7528;&#x4E86;&#x53E6;&#x4E00;&#x79CD;&#x53BB;&#x5197;&#x4F59;&#x7684;&#x65B9;&#x5F0F;&#xFF1A;</p>
-<ol>
-<li>&#x5148;&#x6309;&#x8D44;&#x6E90;&#x7C7B;&#x578B;&#x5206;&#x7EC4;&#xFF1B;</li>
-<li>&#x540C;&#x7C7B;&#x578B;&#x8D44;&#x6E90;&#x6309;&#x540D;&#x79F0;&#x5206;&#x7EC4;&#xFF1B;</li>
-<li>&#x540C;&#x540D;&#x79F0;&#x8D44;&#x6E90;&#x6309; <em>density</em> &#x4ECE;&#x9AD8;&#x5230;&#x5E95;&#x6392;&#x5E8F;</li>
-<li>&#x9488;&#x5BF9;&#x540C;&#x7C7B;&#x578B;&#x3001;&#x540C;&#x540D;&#x79F0;&#x7684;&#x4E0D;&#x540C; <em>denisty</em> &#x8D44;&#x6E90;&#xFF0C;&#x4FDD;&#x7559;&#x6700;&#x9AD8; <em>density</em> &#x7684;&#x8D44;&#x6E90;&#xFF0C;&#x79FB;&#x9664;&#x5176;&#x5B83; <em>density</em> &#x8D44;&#x6E90;</li>
-</ol>
-<p>&#x4E0A;&#x9762;&#x7684;&#x8FC7;&#x7A0B;&#x770B;&#x8D77;&#x6765;&#x5F88;&#x7B80;&#x5355;&#xFF0C;&#x4F46;&#x662F;&#xFF0C;&#x5B9E;&#x9645;&#x60C5;&#x51B5;&#x8981;&#x6BD4;&#x8FD9;&#x66F4;&#x590D;&#x6742;&#xFF0C;&#x6709;&#x6CA1;&#x6709;&#x53EF;&#x80FD;&#x5B58;&#x5728;&#x540C;&#x7C7B;&#x578B;&#x3001;&#x540C;&#x540D;&#x79F0;&#x3001;&#x540C; <em>density</em> &#x7684;&#x8D44;&#x6E90;&#x5462;&#xFF1F;&#x5F53;&#x7136;&#x662F;&#x53EF;&#x80FD;&#x7684;&#xFF0C;&#x6BD5;&#x7ADF; <em>Configuration</em> &#x6709;&#x5F88;&#x591A;&#x4E2A;&#x9002;&#x914D;&#x7EF4;&#x5EA6;&#xFF0C;&#x6BD4;&#x5982;&#xFF1A;&#x5C4F;&#x5E55;&#x5E03;&#x5C40;&#x65B9;&#x5411;&#xFF08;<a href="https://github.com/didi/booster/blob/master/booster-aapt2/src/main/kotlin/com/didiglobal/booster/aapt/Configuration.kt#L415" target="_blank">ScreenConfig.layout</a>)&#x3002;</p>
-<h1 id="&#x652F;&#x6301;-rtl-&#x5E03;&#x5C40;&#x65B9;&#x5411;">&#x652F;&#x6301; RTL &#x5E03;&#x5C40;&#x65B9;&#x5411;</h1>
-<p>&#x5927;&#x591A;&#x6570;&#x56FD;&#x5BB6;&#x6216;&#x5730;&#x533A;&#x7684;&#x8BED;&#x8A00;&#x91C7;&#x7528;&#x7684;&#x662F;&#x4ECE;&#x5DE6;&#x5230;&#x53F3;&#xFF08;Left-To-Right&#xFF09;&#x7684;&#x5E03;&#x5C40;&#x65B9;&#x5411;&#xFF0C;&#x50CF;&#x963F;&#x62C9;&#x4F2F;&#x8BED;&#x91C7;&#x7528;&#x7684;&#x662F;&#x4ECE;&#x53F3;&#x5230;&#x5DE6;&#xFF08;Right-To-Left&#xFF09;&#x7684;&#x5E03;&#x5C40;&#x65B9;&#x5411;&#xFF0C;&#x5728; <em>Android 4.1.1 (API Level 16)</em> &#x53CA;&#x4EE5;&#x4E0B;&#x7248;&#x672C;&#x662F;&#x5FFD;&#x7565;&#x4E86; <em>android:supportsRtl</em> &#x5C5E;&#x6027;&#x7684;&#xFF0C;&#x800C;&#x4ECE; <em>API Level 17</em> &#x5F00;&#x59CB;&#xFF0C;&#x53EF;&#x4EE5;&#x5728; <em>AndroidManifest.xml</em> &#x4E2D;&#x8BBE;&#x7F6E; <em>android:supportsRtl</em> &#x5C5E;&#x6027;&#xFF1A;</p>
-<div><p class="code-filename">AndroidManifest.xml</p></div>
-<pre><code class="lang-xml"><span class="hljs-tag">&lt;<span class="hljs-name">manifest</span> <span class="hljs-attr">...</span> &gt;</span>
-    ...
-    <span class="hljs-tag">&lt;<span class="hljs-name">application</span> <span class="hljs-attr">...</span>
-        <span class="hljs-attr">android:supportsRtl</span>=<span class="hljs-string">&quot;true&quot;</span>&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-name">application</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">manifest</span>&gt;</span>
+<h1 id="&#x89E3;&#x51B3;&#x601D;&#x8DEF;">&#x89E3;&#x51B3;&#x601D;&#x8DEF;</h1>
+<p>&#x5728; <em>Android O (API Level 26)</em> &#x6E90;&#x7801;&#x4E2D;&#xFF0C;&#x8FD9;&#x4E2A;&#x95EE;&#x9898;&#x5DF2;&#x7ECF;&#x88AB;&#x4FEE;&#x590D;&#x4E86;&#xFF0C;&#x4FEE;&#x590D;&#x65B9;&#x6CD5;&#x5C31;&#x662F;&#x7B80;&#x5355;&#x7C97;&#x66B4;&#x7684; <code>try-catch</code>&#xFF1A;</p>
+<div><p class="code-filename">Toast.java</p></div>
+<pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Toast</span> </span>{
+
+    <span class="hljs-keyword">final</span> TN mTN;
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">handleShow</span><span class="hljs-params">(IBinder windowToken)</span> </span>{
+        <span class="hljs-keyword">if</span> (localLOGV) Log.v(TAG, <span class="hljs-string">&quot;HANDLE SHOW: &quot;</span> + <span class="hljs-keyword">this</span> + <span class="hljs-string">&quot; mView=&quot;</span> + mView
+                + <span class="hljs-string">&quot; mNextView=&quot;</span> + mNextView);
+        <span class="hljs-comment">// If a cancel/hide is pending - no need to show - at this point</span>
+        <span class="hljs-comment">// the window token is already invalid and no need to do any work.</span>
+        <span class="hljs-keyword">if</span> (mHandler.hasMessages(CANCEL) || mHandler.hasMessages(HIDE)) {
+            <span class="hljs-keyword">return</span>;
+        }
+        <span class="hljs-keyword">if</span> (mView != mNextView) {
+            <span class="hljs-comment">// remove the old view if necessary</span>
+            handleHide();
+            mView = mNextView;
+            Context context = mView.getContext().getApplicationContext();
+            String packageName = mView.getContext().getOpPackageName();
+            <span class="hljs-keyword">if</span> (context == <span class="hljs-keyword">null</span>) {
+                context = mView.getContext();
+            }
+            mWM = (WindowManager)context.getSystemService(Context.WINDOW_SERVICE);
+            <span class="hljs-comment">// We can resolve the Gravity here by using the Locale for getting</span>
+            <span class="hljs-comment">// the layout direction</span>
+            <span class="hljs-keyword">final</span> Configuration config = mView.getContext().getResources().getConfiguration();
+            <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> gravity = Gravity.getAbsoluteGravity(mGravity, config.getLayoutDirection());
+            mParams.gravity = gravity;
+            <span class="hljs-keyword">if</span> ((gravity &amp; Gravity.HORIZONTAL_GRAVITY_MASK) == Gravity.FILL_HORIZONTAL) {
+                mParams.horizontalWeight = <span class="hljs-number">1.0f</span>;
+            }
+            <span class="hljs-keyword">if</span> ((gravity &amp; Gravity.VERTICAL_GRAVITY_MASK) == Gravity.FILL_VERTICAL) {
+                mParams.verticalWeight = <span class="hljs-number">1.0f</span>;
+            }
+            mParams.x = mX;
+            mParams.y = mY;
+            mParams.verticalMargin = mVerticalMargin;
+            mParams.horizontalMargin = mHorizontalMargin;
+            mParams.packageName = packageName;
+            mParams.hideTimeoutMilliseconds = mDuration ==
+                Toast.LENGTH_LONG ? LONG_DURATION_TIMEOUT : SHORT_DURATION_TIMEOUT;
+            mParams.token = windowToken;
+            <span class="hljs-keyword">if</span> (mView.getParent() != <span class="hljs-keyword">null</span>) {
+                <span class="hljs-keyword">if</span> (localLOGV) Log.v(TAG, <span class="hljs-string">&quot;REMOVE! &quot;</span> + mView + <span class="hljs-string">&quot; in &quot;</span> + <span class="hljs-keyword">this</span>);
+                mWM.removeView(mView);
+            }
+            <span class="hljs-keyword">if</span> (localLOGV) Log.v(TAG, <span class="hljs-string">&quot;ADD! &quot;</span> + mView + <span class="hljs-string">&quot; in &quot;</span> + <span class="hljs-keyword">this</span>);
+            <span class="hljs-comment">// Since the notification manager service cancels the token right</span>
+            <span class="hljs-comment">// after it notifies us to cancel the toast there is an inherent</span>
+            <span class="hljs-comment">// race and we may attempt to add a window after the token has been</span>
+            <span class="hljs-comment">// invalidated. Let us hedge against that.</span>
+            <span class="hljs-keyword">try</span> {
+                mWM.addView(mView, mParams);
+                trySendAccessibilityEvent();
+            } <span class="hljs-keyword">catch</span> (WindowManager.BadTokenException e) { <span class="hljs-comment">// &#x1F448;&#x1F448;&#x1F448;&#x1F448; &#x5FFD;&#x7565;&#x6389;&#x5F02;&#x5E38;</span>
+                <span class="hljs-comment">/* ignore */</span>
+            }
+        }
+    }
+
+}
 </code></pre>
-<p>&#x56E0;&#x6B64;&#xFF0C;&#x5728;&#x53BB;&#x5197;&#x4F59;&#x8D44;&#x6E90;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x8FD8;&#x9700;&#x8981;&#x6839;&#x636E; <em>supportsRtl</em> &#x5C5E;&#x6027;&#x6765;&#x51B3;&#x5B9A;&#x662F;&#x5426;&#x4FDD;&#x7559;&#x540C; <em>density</em> &#x4F46;&#x4E0D;&#x540C;&#x5E03;&#x5C40;&#x65B9;&#x5411;&#x7684;&#x8D44;&#x6E90;&#x3002;</p>
+<p>&#x6240;&#x4EE5;&#xFF0C;<em>Booster</em> &#x4E5F;&#x7B80;&#x5355;&#x7C97;&#x66B4;&#x7684;&#x5C06;&#x5F02;&#x5E38; <code>catch</code> &#x4F4F;&#xFF0C;&#x53EA;&#x4E0D;&#x8FC7;&#xFF0C;<code>catch</code> &#x7684;&#x4E0D;&#x662F; <code>mWM.addView(mView, mParams)</code>&#xFF0C;&#x800C;&#x662F; <code>Toast$TN</code> &#x8FD9;&#x4E2A;&#x5185;&#x90E8;&#x7C7B;&#x7684; <code>mHandler</code>&#xFF0C;&#x7ED9;&#x5B83;&#x8BBE;&#x7F6E;&#x4E00;&#x4E2A; <code>Handler.Callback</code>&#xFF1A;</p>
+<div><p class="code-filename">ShadowToast.java</p></div>
+<pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ShadowToast</span> </span>{
+
+    <span class="hljs-comment">/**
+     * Fix {<span class="hljs-doctag">@code</span> WindowManager$BadTokenException} for Android N
+     *
+     * <span class="hljs-doctag">@param</span> toast
+     *         The original toast
+     */</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">show</span><span class="hljs-params">(<span class="hljs-keyword">final</span> Toast toast)</span> </span>{
+        <span class="hljs-keyword">if</span> (Build.VERSION.SDK_INT == <span class="hljs-number">25</span>) {
+            workaround(toast).show();
+        } <span class="hljs-keyword">else</span> {
+            toast.show();
+        }
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> Toast <span class="hljs-title">workaround</span><span class="hljs-params">(<span class="hljs-keyword">final</span> Toast toast)</span> </span>{
+        <span class="hljs-keyword">final</span> Object tn = getFieldValue(toast, <span class="hljs-string">&quot;mTN&quot;</span>);
+        <span class="hljs-keyword">if</span> (<span class="hljs-keyword">null</span> == tn) {
+            Log.w(TAG, <span class="hljs-string">&quot;Field mTN of &quot;</span> + toast + <span class="hljs-string">&quot; is null&quot;</span>);
+            <span class="hljs-keyword">return</span> toast;
+        }
+
+        <span class="hljs-keyword">final</span> Object handler = getFieldValue(tn, <span class="hljs-string">&quot;mHandler&quot;</span>);
+        <span class="hljs-keyword">if</span> (handler <span class="hljs-keyword">instanceof</span> Handler) {
+            <span class="hljs-keyword">if</span> (setFieldValue(handler, <span class="hljs-string">&quot;mCallback&quot;</span>, <span class="hljs-keyword">new</span> CaughtCallback((Handler) handler))) {
+                <span class="hljs-keyword">return</span> toast;
+            }
+        }
+
+        <span class="hljs-keyword">final</span> Object show = getFieldValue(tn, <span class="hljs-string">&quot;mShow&quot;</span>);
+        <span class="hljs-keyword">if</span> (show <span class="hljs-keyword">instanceof</span> Runnable) {
+            <span class="hljs-keyword">if</span> (setFieldValue(tn, <span class="hljs-string">&quot;mShow&quot;</span>, <span class="hljs-keyword">new</span> CaughtRunnable((Runnable) show))) {
+                <span class="hljs-keyword">return</span> toast;
+            }
+        }
+
+        Log.w(TAG, <span class="hljs-string">&quot;Neither field mHandler nor mShow of &quot;</span> + tn + <span class="hljs-string">&quot; is accessible&quot;</span>);
+        <span class="hljs-keyword">return</span> toast;
+    }
+
+}
+</code></pre>
+<p>&#x5728; <a href="https://github.com/didi/booster/blob/master/booster-transform-toast" target="_blank">booster-transform-toast</a> &#x4E2D;&#xFF0C;&#x5C06; <code>Toast</code> &#x7C7B;&#x53CA;&#x5176;&#x5B50;&#x7C7B;&#x7684; <code>show()</code> &#x65B9;&#x6CD5;&#x8C03;&#x7528;&#x66FF;&#x6362;&#x6210; <code>ShadowToast.show(Toast)</code>&#x3002;</p>
 <h1 id="&#x5982;&#x4F55;&#x4F7F;&#x7528;">&#x5982;&#x4F55;&#x4F7F;&#x7528;</h1>
-<p>&#x5F00;&#x542F;&#x53BB;&#x5197;&#x4F59;&#x8D44;&#x6E90;&#x53EA;&#x9700;&#x8981;&#x5F15;&#x5165; <a href="https://github.com/didi/booster/blob/master/booster-task-resource-deredundancy" target="_blank">booster-task-resource-deredundancy</a> &#x5373;&#x53EF;&#xFF0C;&#x5982;&#x4E0B;&#x6240;&#x793A;&#xFF1A;</p>
+<p>&#x4FEE;&#x590D; <code>Toast</code> &#x5728; <em>Android 7.1</em> &#x7684; bug &#x53EA;&#x9700;&#x8981;&#x5F15;&#x5165; <a href="https://github.com/didi/booster/blob/master/booster-transform-toast" target="_blank">booster-transform-toast</a> &#x5373;&#x53EF;&#xFF0C;&#x5982;&#x4E0B;&#x6240;&#x793A;&#xFF1A;</p>
 <div><p class="code-filename">build.gradle</p></div>
 <pre><code class="lang-gradle"><span class="hljs-keyword">buildscript</span> {
     ext {
@@ -1015,7 +1139,7 @@
         <span class="hljs-keyword">classpath</span> <span class="hljs-string">&quot;com.didiglobal.booster:booster-gradle-plugin:$booster_version&quot;</span>
 
         <span class="hljs-comment">/* &#x1F447;&#x1F447;&#x1F447;&#x1F447; &#x5F15;&#x7528;&#x8FD9;&#x4E2A;&#x6A21;&#x5757; &#x1F447;&#x1F447;&#x1F447;&#x1F447; */</span>
-        <span class="hljs-keyword">classpath</span> <span class="hljs-string">&quot;com.didiglobal.booster:booster-task-resource-deredundancy:$booster_version&quot;</span>
+        <span class="hljs-keyword">classpath</span> <span class="hljs-string">&quot;com.didiglobal.booster:booster-transform-toast:$booster_version&quot;</span>
     }
 }
 </code></pre>
@@ -1046,14 +1170,10 @@
 
             
                 
-                <a href="zip-compression.html" class="navigation navigation-prev " aria-label="Previous page: ZIP 文件压缩">
+                <a href="null-resource-assets.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: 资源为 null 的问题">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
-                
-                <a href="res-index-inline.html" class="navigation navigation-next " aria-label="Next page: 资源索引内联">
-                    <i class="fa fa-angle-right"></i>
-                </a>
                 
             
         
@@ -1062,7 +1182,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"移除冗余资源","level":"3.2.4","depth":2,"next":{"title":"资源索引内联","level":"3.2.5","depth":2,"path":"shrink/res-index-inline.md","ref":"./shrink/res-index-inline.md","articles":[]},"previous":{"title":"ZIP 文件压缩","level":"3.2.3","depth":2,"path":"shrink/zip-compression.md","ref":"./shrink/zip-compression.md","articles":[]},"dir":"ltr"},"config":{"plugins":["mathjax","splitter","codeblock-filename","theme-comscore","livereload"],"root":"./content/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"livereload":{},"splitter":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":1},"highlight":{},"codeblock-filename":{},"theme-comscore":{},"mathjax":{"forceSVG":false,"version":"2.6-latest"},"sharing":{"facebook":false,"twitter":false,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":[]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":true}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"深入理解 Booster","language":"zh-hans","links":{"sharing":{"google":false,"facebook":false,"twitter":false,"all":false}},"gitbook":">=3.1.0","description":"使用 Booster 对你的 Android 应用进行深度优化"},"file":{"path":"shrink/res-deredundancy.md","mtime":"2020-04-19T07:44:59.000Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-04-19T05:10:39.369Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Android 7.1 Toast 崩溃","level":"3.3.4","depth":2,"next":{"title":"其它","level":"3.4","depth":1,"ref":"","articles":[{"title":"正式包版本检查","level":"3.4.1","depth":2,"ref":"","articles":[]},{"title":"权限清单","level":"3.4.2","depth":2,"ref":"","articles":[]},{"title":"构建中间产物清单","level":"3.4.3","depth":2,"ref":"","articles":[]}]},"previous":{"title":"资源为 null 的问题","level":"3.3.3","depth":2,"path":"bugfix/null-resource-assets.md","ref":"./bugfix/null-resource-assets.md","articles":[]},"dir":"ltr"},"config":{"plugins":["mathjax","splitter","codeblock-filename","theme-comscore","livereload"],"root":"./content/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"livereload":{},"splitter":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":1},"highlight":{},"codeblock-filename":{},"theme-comscore":{},"mathjax":{"forceSVG":false,"version":"2.6-latest"},"sharing":{"facebook":false,"twitter":false,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":[]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":true}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"深入理解 Booster","language":"zh-hans","links":{"sharing":{"google":false,"facebook":false,"twitter":false,"all":false}},"gitbook":">=3.1.0","description":"使用 Booster 对你的 Android 应用进行深度优化"},"file":{"path":"bugfix/toast-crash-on-android-25.md","mtime":"2020-04-19T10:49:08.000Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-04-19T05:10:39.369Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
