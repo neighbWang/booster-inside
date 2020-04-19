@@ -28,7 +28,7 @@ java.lang.NullPointerException: Attempt to invoke virtual method 'android.conten
 
 # 解决思路
 
-像这样的系统 bug，可能跟系统版本有关，也没有什么通用的解决方案，所以 *Booster* 的解决思路是，在 *Application* 启动的时候，对 *Resources* 和 *Assets* 作检查，遇到这种问题，直接杀进程：
+像这样的系统 bug，可能跟系统版本有关，也没有什么通用的解决方案，所以 *Booster* 的解决思路是，在 *Application* 启动的时候，对 *Resources* 和 *Assets* 进行检查，如果 `Resources` 或者 `AssetManager` 为 `null`，直接杀进程：
 
 ```java:ResChecker.java
 public class ResChecker {
