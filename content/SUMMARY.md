@@ -12,30 +12,30 @@
 ## Booster 特性简介
 
 * 性能优化
-  * [静态分析](./performance/static-analysis.md)
-  * [多线程优化](./performance/multithreading-optimization.md)
-  * [SharedPreferences 优化](./performance/shared-preferences-optimization.md)
-  * [WebView 预加载](./performance/webview-preloading.md)
+  * [静态分析](./feature/performance/static-analysis.md)
+  * [多线程优化](./feature/performance/multithreading-optimization.md)
+  * [SharedPreferences 优化](./feature/performance/shared-preferences-optimization.md)
+  * [WebView 预加载](./feature/performance/webview-preloading.md)
 * 包体积瘦身
-  * [PNG 图片压缩](./shrink/png-compression.md)
-  * [WebP 图片压缩](./shrink/webp-compression.md)
-  * [ZIP 文件压缩](./shrink/zip-compression.md)
-  * [移除冗余资源](./shrink/res-deredundancy.md)
-  * [资源索引内联](./shrink/res-index-inline.md)
+  * [PNG 图片压缩](./feature/shrink/png-compression.md)
+  * [WebP 图片压缩](./feature/shrink/webp-compression.md)
+  * [ZIP 文件压缩](./feature/shrink/zip-compression.md)
+  * [移除冗余资源](./feature/shrink/res-deredundancy.md)
+  * [资源索引内联](./feature/shrink/res-index-inline.md)
 * 系统 bug 修复
-  * [为系统崩溃兜底](./bugfix/prevent-crash-from-system-bug.md)
-  * [Finalizer 导致的 TimeoutException](./bugfix/finalizer-timeout-exception.md)
-  * [资源为 null 的问题](./bugfix/null-resource-assets.md)
-  * [Android 7.1 Toast 崩溃](./bugfix/toast-crash-on-android-25.md)
+  * [为系统崩溃兜底](./feature/bugfix/prevent-crash-from-system-bug.md)
+  * [Finalizer 导致的 TimeoutException](./feature/bugfix/finalizer-timeout-exception.md)
+  * [资源为 null 的问题](./feature/bugfix/null-resource-assets.md)
+  * [Android 7.1 Toast 崩溃](./feature/bugfix/toast-crash-on-android-25.md)
 * 其它
-  * [Release 构建依赖检查](./misc/dependencies-check-on-release-build.md)
-  * [Android 权限清单](./misc/android-permission-list.md)
-  * [动态库清单](./misc/shared-library-list.md)
-  * [构建中间产物清单](./misc/build-artifact-list.md)
+  * [Release 构建依赖检查](./feature/misc/dependencies-check-on-release-build.md)
+  * [Android 权限清单](./feature/misc/android-permission-list.md)
+  * [动态库清单](./feature/misc/shared-library-list.md)
+  * [构建中间产物清单](./feature/misc/build-artifact-list.md)
 
 ## Booster 插件开发
 
-* Javassist 还是 ASM？
+* [Javassist 还是 ASM？](./developer/javassist-or-asm.md)
 * 第一个 Transformer
 * 第一个 VariantProcessor
 * Transformer 与 VariantProcessor 完美组合
