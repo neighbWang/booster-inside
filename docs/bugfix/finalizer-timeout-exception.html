@@ -1,0 +1,1235 @@
+
+<!DOCTYPE HTML>
+<html lang="zh-hans" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Finalizer 导致的 TimeoutException · 深入理解 Booster</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-splitter/splitter.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-codeblock-filename/block.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-theme-comscore/test.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    
+    <link rel="prev" href="prevent-crash-from-system-bug.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="输入并搜索" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                        <b>1.1.</b>
+                    
+                    关于本书
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../contributors.html">
+            
+                <a href="../contributors.html">
+            
+                    
+                        <b>1.2.</b>
+                    
+                    贡献者
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="../donate.html">
+            
+                <a href="../donate.html">
+            
+                    
+                        <b>1.3.</b>
+                    
+                    买杯咖啡
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">概览</li>
+        
+        
+    
+        <li class="chapter " data-level="2.1" data-path="../overview.html">
+            
+                <a href="../overview.html">
+            
+                    
+                        <b>2.1.</b>
+                    
+                    Booster 简介
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2" data-path="../getting-started.html">
+            
+                <a href="../getting-started.html">
+            
+                    
+                        <b>2.2.</b>
+                    
+                    快速上手
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">Booster 特性简介</li>
+        
+        
+    
+        <li class="chapter " data-level="3.1" >
+            
+                <span>
+            
+                    
+                        <b>3.1.</b>
+                    
+                    性能优化
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.1.1" data-path="../performance/static-analysis.html">
+            
+                <a href="../performance/static-analysis.html">
+            
+                    
+                        <b>3.1.1.</b>
+                    
+                    静态分析
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.2" data-path="../performance/multithreading-optimization.html">
+            
+                <a href="../performance/multithreading-optimization.html">
+            
+                    
+                        <b>3.1.2.</b>
+                    
+                    多线程优化
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.3" data-path="../performance/shared-preferences-optimization.html">
+            
+                <a href="../performance/shared-preferences-optimization.html">
+            
+                    
+                        <b>3.1.3.</b>
+                    
+                    SharedPreferences 优化
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.4" data-path="../performance/webview-preloading.html">
+            
+                <a href="../performance/webview-preloading.html">
+            
+                    
+                        <b>3.1.4.</b>
+                    
+                    WebView 预加载
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2" >
+            
+                <span>
+            
+                    
+                        <b>3.2.</b>
+                    
+                    包体积瘦身
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.2.1" data-path="../shrink/png-compression.html">
+            
+                <a href="../shrink/png-compression.html">
+            
+                    
+                        <b>3.2.1.</b>
+                    
+                    PNG 图片压缩
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2.2" data-path="../shrink/webp-compression.html">
+            
+                <a href="../shrink/webp-compression.html">
+            
+                    
+                        <b>3.2.2.</b>
+                    
+                    WebP 图片压缩
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2.3" data-path="../shrink/zip-compression.html">
+            
+                <a href="../shrink/zip-compression.html">
+            
+                    
+                        <b>3.2.3.</b>
+                    
+                    ZIP 文件压缩
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2.4" data-path="../shrink/res-deredundancy.html">
+            
+                <a href="../shrink/res-deredundancy.html">
+            
+                    
+                        <b>3.2.4.</b>
+                    
+                    移除冗余资源
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2.5" data-path="../shrink/res-index-inline.html">
+            
+                <a href="../shrink/res-index-inline.html">
+            
+                    
+                        <b>3.2.5.</b>
+                    
+                    资源索引内联
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3" >
+            
+                <span>
+            
+                    
+                        <b>3.3.</b>
+                    
+                    系统 bug 修复
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.3.1" data-path="prevent-crash-from-system-bug.html">
+            
+                <a href="prevent-crash-from-system-bug.html">
+            
+                    
+                        <b>3.3.1.</b>
+                    
+                    为系统崩溃兜底
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="3.3.2" data-path="finalizer-timeout-exception.html">
+            
+                <a href="finalizer-timeout-exception.html">
+            
+                    
+                        <b>3.3.2.</b>
+                    
+                    Finalizer 导致的 TimeoutException
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3.3" >
+            
+                <span>
+            
+                    
+                        <b>3.3.3.</b>
+                    
+                    Android 7.0 覆盖安装问题
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3.4" >
+            
+                <span>
+            
+                    
+                        <b>3.3.4.</b>
+                    
+                    Android 7.1 上 Toast 问题
+            
+                </span>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="3.4" >
+            
+                <span>
+            
+                    
+                        <b>3.4.</b>
+                    
+                    其它
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.4.1" >
+            
+                <span>
+            
+                    
+                        <b>3.4.1.</b>
+                    
+                    正式包版本检查
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.4.2" >
+            
+                <span>
+            
+                    
+                        <b>3.4.2.</b>
+                    
+                    权限清单
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.4.3" >
+            
+                <span>
+            
+                    
+                        <b>3.4.3.</b>
+                    
+                    构建中间产物清单
+            
+                </span>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+        
+        <li class="header">Booster 插件开发</li>
+        
+        
+    
+        <li class="chapter " data-level="4.1" >
+            
+                <span>
+            
+                    
+                        <b>4.1.</b>
+                    
+                    Javassist 还是 ASM？
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2" >
+            
+                <span>
+            
+                    
+                        <b>4.2.</b>
+                    
+                    第一个 Transformer
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.3" >
+            
+                <span>
+            
+                    
+                        <b>4.3.</b>
+                    
+                    第一个 VariantProcessor
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.4" >
+            
+                <span>
+            
+                    
+                        <b>4.4.</b>
+                    
+                    Transformer 与 VariantProcessor 完美组合
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.5" >
+            
+                <span>
+            
+                    
+                        <b>4.5.</b>
+                    
+                    在 Java 工程中使用 Transformer
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.6" >
+            
+                <span>
+            
+                    
+                        <b>4.6.</b>
+                    
+                    Transformer 实战
+            
+                </span>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">Android 构建概述</li>
+        
+        
+    
+        <li class="chapter " data-level="5.1" >
+            
+                <span>
+            
+                    
+                        <b>5.1.</b>
+                    
+                    Android Gradle Plugin 概述
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.2" >
+            
+                <span>
+            
+                    
+                        <b>5.2.</b>
+                    
+                    AAPT2 容器
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.3" >
+            
+                <span>
+            
+                    
+                        <b>5.3.</b>
+                    
+                    Resource Table 概述
+            
+                </span>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">Android 构建进阶</li>
+        
+        
+    
+        <li class="chapter " data-level="6.1" >
+            
+                <span>
+            
+                    
+                        <b>6.1.</b>
+                    
+                    增量编译概述
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="6.2" >
+            
+                <span>
+            
+                    
+                        <b>6.2.</b>
+                    
+                    Gradle 缓存概述
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="6.3" >
+            
+                <span>
+            
+                    
+                        <b>6.3.</b>
+                    
+                    VirtualAPK 插件构建
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="6.4" >
+            
+                <span>
+            
+                    
+                        <b>6.4.</b>
+                    
+                    Android 构建优化
+            
+                </span>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">深入字节码</li>
+        
+        
+    
+        <li class="chapter " data-level="7.1" >
+            
+                <span>
+            
+                    
+                        <b>7.1.</b>
+                    
+                    Java 虚拟机
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="7.1.1" data-path="../jvm/class-file.html">
+            
+                <a href="../jvm/class-file.html">
+            
+                    
+                        <b>7.1.1.</b>
+                    
+                    class 文件格式
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.1.2" data-path="../jvm/instructions.html">
+            
+                <a href="../jvm/instructions.html">
+            
+                    
+                        <b>7.1.2.</b>
+                    
+                    JVM 指令
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.1.3" >
+            
+                <span>
+            
+                    
+                        <b>7.1.3.</b>
+                    
+                    栈帧
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.1.4" >
+            
+                <span>
+            
+                    
+                        <b>7.1.4.</b>
+                    
+                    Java Agent
+            
+                </span>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="7.2" >
+            
+                <span>
+            
+                    
+                        <b>7.2.</b>
+                    
+                    Dalvik 虚拟机
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="7.2.1" >
+            
+                <span>
+            
+                    
+                        <b>7.2.1.</b>
+                    
+                    dex 文件格式
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.2.2" >
+            
+                <span>
+            
+                    
+                        <b>7.2.2.</b>
+                    
+                    Dalvik 指令
+            
+                </span>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            本书使用 GitBook 发布
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >Finalizer 导致的 TimeoutException</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="finalizer-&#x7684;&#x95EE;&#x9898;">Finalizer &#x7684;&#x95EE;&#x9898;</h1>
+<p>&#x76F8;&#x4FE1;&#x5F88;&#x591A; <em>Android</em> &#x5F00;&#x53D1;&#x8005;&#x90FD;&#x89C1;&#x8FC7;&#x50CF;&#x8FD9;&#x6837;&#x7684; <em>TimeoutException</em> : </p>
+<pre><code>java.util.concurrent.TimeoutException: android.content.res.AssetManager.finalize() timed out after 10 seconds
+  at android.content.res.AssetManager.destroy(Native Method)
+  at android.content.res.AssetManager.finalize(AssetManager.java:603)
+  at java.lang.Daemons$FinalizerDaemon.doFinalize(Daemons.java:187)
+  at java.lang.Daemons$FinalizerDaemon.run(Daemons.java:170)
+  at java.lang.Thread.run(Thread.java:856)
+</code></pre><p>&#x901A;&#x8FC7;&#x67E5;&#x770B; <em>AOSP</em> &#x6E90;&#x7801;&#xFF0C;&#x6211;&#x4EEC;&#x5F88;&#x5BB9;&#x6613;&#x5C31;&#x80FD;&#x5B9A;&#x4F4D;&#x5230;&#x5F02;&#x5E38;&#x53D1;&#x751F;&#x5728; <em>Daemons$FinalizerWatchdogDaemon.finalizerTimedOut</em> :</p>
+<div><p class="code-filename">FinalizerWatchdogDaemon.java</p></div>
+<pre><code class="lang-java"><span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">finalizerTimedOut</span><span class="hljs-params">(Object object)</span> </span>{
+    <span class="hljs-comment">// The current object has exceeded the finalization deadline; abort!</span>
+    String message = object.getClass().getName() + <span class="hljs-string">&quot;.finalize() timed out after &quot;</span>
+            + VMRuntime.getRuntime().getFinalizerTimeoutMs() / <span class="hljs-number">1000</span> + <span class="hljs-string">&quot; seconds&quot;</span>;
+    Exception syntheticException = <span class="hljs-keyword">new</span> TimeoutException(message);
+    <span class="hljs-comment">// We use the stack from where finalize() was running to show where it was stuck.</span>
+    syntheticException.setStackTrace(FinalizerDaemon.INSTANCE.getStackTrace());
+    <span class="hljs-comment">// Send SIGQUIT to get native stack traces.</span>
+    <span class="hljs-keyword">try</span> {
+        Os.kill(Os.getpid(), OsConstants.SIGQUIT);
+        <span class="hljs-comment">// Sleep a few seconds to let the stack traces print.</span>
+        Thread.sleep(<span class="hljs-number">5000</span>);
+    } <span class="hljs-keyword">catch</span> (Exception e) {
+        System.logE(<span class="hljs-string">&quot;failed to send SIGQUIT&quot;</span>, e);
+    } <span class="hljs-keyword">catch</span> (OutOfMemoryError ignored) {
+        <span class="hljs-comment">// May occur while trying to allocate the exception.</span>
+    }
+    <span class="hljs-comment">// Ideally, we&apos;d want to do this if this Thread had no handler to dispatch to.</span>
+    <span class="hljs-comment">// Unfortunately, it&apos;s extremely to messy to query whether a given Thread has *some*</span>
+    <span class="hljs-comment">// handler to dispatch to, either via a handler set on itself, via its ThreadGroup</span>
+    <span class="hljs-comment">// object or via the defaultUncaughtExceptionHandler.</span>
+    <span class="hljs-comment">//</span>
+    <span class="hljs-comment">// As an approximation, we log by hand an exit if there&apos;s no pre-exception handler nor</span>
+    <span class="hljs-comment">// a default uncaught exception handler.</span>
+    <span class="hljs-comment">//</span>
+    <span class="hljs-comment">// Note that this condition will only ever be hit by ART host tests and standalone</span>
+    <span class="hljs-comment">// dalvikvm invocations. All zygote forked process *will* have a pre-handler set</span>
+    <span class="hljs-comment">// in RuntimeInit and they cannot subsequently override it.</span>
+    <span class="hljs-keyword">if</span> (Thread.getUncaughtExceptionPreHandler() == <span class="hljs-keyword">null</span> &amp;&amp;
+            Thread.getDefaultUncaughtExceptionHandler() == <span class="hljs-keyword">null</span>) {
+        <span class="hljs-comment">// If we have no handler, log and exit.</span>
+        System.logE(message, syntheticException);
+        System.exit(<span class="hljs-number">2</span>);
+    }
+    <span class="hljs-comment">// Otherwise call the handler to do crash reporting.</span>
+    <span class="hljs-comment">// We don&apos;t just throw because we&apos;re not the thread that</span>
+    <span class="hljs-comment">// timed out; we&apos;re the thread that detected it.</span>
+    Thread.currentThread().dispatchUncaughtException(syntheticException);
+}
+</code></pre>
+<p>&#x4ECE;&#x6E90;&#x7801;&#x91CC;&#xFF0C;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x770B;&#x5230; <em>finalizerTimedOut</em> &#x4F1A;&#x629B;&#x51FA; <em>UncaughtException</em>&#xFF0C;&#x90A3;&#x4E3A;&#x4EC0;&#x4E48;&#x4F1A;&#x8C03;&#x5230;&#x8FD9;&#x513F;&#x5462;&#xFF1F;&#x8BA9;&#x6211;&#x4EEC;&#x7EE7;&#x7EED;&#x770B;&#x6E90;&#x7801;&#xFF1A;</p>
+<div><p class="code-filename">FinalizerWatchdogDaemon.java</p></div>
+<pre><code class="lang-java"><span class="hljs-meta">@Override</span> <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">runInternal</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-keyword">while</span> (isRunning()) {
+        <span class="hljs-keyword">if</span> (!sleepUntilNeeded()) {
+            <span class="hljs-comment">// We have been interrupted, need to see if this daemon has been stopped.</span>
+            <span class="hljs-keyword">continue</span>;
+        }
+        <span class="hljs-keyword">final</span> Object finalizing = waitForFinalization();
+        <span class="hljs-keyword">if</span> (finalizing != <span class="hljs-keyword">null</span> &amp;&amp; !VMDebug.isDebuggerConnected()) {
+            finalizerTimedOut(finalizing);
+            <span class="hljs-keyword">break</span>;
+        }
+    }
+}
+</code></pre>
+<p>&#x539F;&#x6765;&#xFF0C;<em>FinalizerWatchdogDaemon</em> &#x4F1A;&#x5F02;&#x6B65;&#x7B49;&#x5F85; <em>Finalization</em> &#x7ED3;&#x675F;&#xFF1A;</p>
+<div><p class="code-filename">FinalizerWatchdogDaemon.java</p></div>
+<pre><code class="lang-java"><span class="hljs-function"><span class="hljs-keyword">private</span> Object <span class="hljs-title">waitForFinalization</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-keyword">if</span> (finalizerTimeoutMs == <span class="hljs-number">0</span>) {
+        finalizerTimeoutMs = VMRuntime.getRuntime().getFinalizerTimeoutMs();
+        <span class="hljs-comment">// Temporary app backward compatibility. Remove eventually.</span>
+        MAX_FINALIZE_NANOS = NANOS_PER_MILLI * finalizerTimeoutMs;
+    }
+    <span class="hljs-keyword">long</span> startCount = FinalizerDaemon.INSTANCE.progressCounter.get();
+    <span class="hljs-comment">// Avoid remembering object being finalized, so as not to keep it alive.</span>
+    <span class="hljs-keyword">if</span> (!sleepForMillis(finalizerTimeoutMs)) {
+        <span class="hljs-comment">// Don&apos;t report possibly spurious timeout if we are interrupted.</span>
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">null</span>;
+    }
+    <span class="hljs-keyword">if</span> (getNeedToWork() &amp;&amp; FinalizerDaemon.INSTANCE.progressCounter.get() == startCount) {
+        <span class="hljs-comment">// We assume that only remove() and doFinalize() may take time comparable to</span>
+        <span class="hljs-comment">// the finalizer timeout.</span>
+        <span class="hljs-comment">// We observed neither the effect of the gotoSleep() nor the increment preceding a</span>
+        <span class="hljs-comment">// later wakeUp. Any remove() call by the FinalizerDaemon during our sleep</span>
+        <span class="hljs-comment">// interval must have been followed by a wakeUp call before we checked needToWork.</span>
+        <span class="hljs-comment">// But then we would have seen the counter increment.  Thus there cannot have</span>
+        <span class="hljs-comment">// been such a remove() call.</span>
+        <span class="hljs-comment">// The FinalizerDaemon must not have progressed (from either the beginning or the</span>
+        <span class="hljs-comment">// last progressCounter increment) to either the next increment or gotoSleep()</span>
+        <span class="hljs-comment">// call.  Thus we must have taken essentially the whole finalizerTimeoutMs in a</span>
+        <span class="hljs-comment">// single doFinalize() call.  Thus it&apos;s OK to time out.  finalizingObject was set</span>
+        <span class="hljs-comment">// just before the counter increment, which preceded the doFinalize call.  Thus we</span>
+        <span class="hljs-comment">// are guaranteed to get the correct finalizing value below, unless doFinalize()</span>
+        <span class="hljs-comment">// just finished as we were timing out, in which case we may get null or a later</span>
+        <span class="hljs-comment">// one.  In this last case, we are very likely to discard it below.</span>
+        Object finalizing = FinalizerDaemon.INSTANCE.finalizingObject;
+        sleepForMillis(<span class="hljs-number">500</span>);
+        <span class="hljs-comment">// Recheck to make it even less likely we report the wrong finalizing object in</span>
+        <span class="hljs-comment">// the case which a very slow finalization just finished as we were timing out.</span>
+        <span class="hljs-keyword">if</span> (getNeedToWork()
+                &amp;&amp; FinalizerDaemon.INSTANCE.progressCounter.get() == startCount) {
+            <span class="hljs-keyword">return</span> finalizing;
+        }
+    }
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">null</span>;
+}
+</code></pre>
+<p>&#x770B;&#x5230;&#x8FD9;&#x91CC;&#xFF0C;&#x6211;&#x60F3;&#x5927;&#x5BB6;&#x5DF2;&#x7ECF;&#x5F04;&#x660E;&#x767D;&#xFF0C;&#x4E3A;&#x4EC0;&#x4E48;&#x4F1A;&#x629B;&#x51FA; <em>TimeoutException</em> &#x4E86;&#xFF0C;&#x8FD9;&#x662F;&#x56E0;&#x4E3A; <em>FinalizerWatchdogDaemon</em> &#x4F1A;&#x7B49;&#x5F85; <em>FinalizerDaemon.doFinalize()</em> &#x7684;&#x7ED3;&#x679C;&#xFF0C;&#x5982;&#x679C;&#x5728; <em>MAX_FINALIZE_NANOS</em> &#x65F6;&#x95F4;&#x4E4B;&#x5185;&#x6CA1;&#x6709;&#x5B8C;&#x6210;&#xFF0C;&#x5C31;&#x4F1A;&#x629B;&#x51FA; <em>TimeoutException</em>&#x3002;</p>
+<h2 id="&#x6839;&#x672C;&#x539F;&#x56E0;">&#x6839;&#x672C;&#x539F;&#x56E0;</h2>
+<p>&#x4ECE;&#x6E90;&#x7801;&#x4E2D;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x770B;&#x5230;&#xFF0C;<em>Daemons</em> &#x542F;&#x4E86; <em>4</em> &#x4E2A; <em>Daemon</em> &#x7EBF;&#x7A0B;&#xFF1A;</p>
+<div><p class="code-filename">Daemons.java</p></div>
+<pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Daemons</span> </span>{
+
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> Daemon[] DAEMONS = <span class="hljs-keyword">new</span> Daemon[] {
+            HeapTaskDaemon.INSTANCE,
+            ReferenceQueueDaemon.INSTANCE,
+            FinalizerDaemon.INSTANCE,
+            FinalizerWatchdogDaemon.INSTANCE,
+    };
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">start</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-keyword">for</span> (Daemon daemon : DAEMONS) {
+            daemon.start();
+        }
+    }
+
+}
+</code></pre>
+<h3 id="heaptaskdaemon">HeapTaskDaemon</h3>
+<p><em>HeapTaskDaemon</em> &#x7528;&#x6765;&#x542F;&#x52A8;&#x7528;&#x4E8E;&#x5904;&#x7406; <em>GC</em> &#x76F8;&#x5173;&#x7684;&#x4EFB;&#x52A1;&#xFF0C;&#x5982;&#xFF1A;<em>Heap Trimming</em>, <em>Heap Transition</em> &#x4EE5;&#x53CA; <em>Concurrent GC</em>&#xFF0C;&#x8BE6;&#x89C1;&#xFF1A;<a href="https://android.googlesource.com/platform/art/+/master/runtime/gc/task_processor.h" target="_blank">task_processor.h</a></p>
+<h3 id="referencequeuedaemon">ReferenceQueueDaemon</h3>
+<p><em>ReferenceQueueDaemon</em> &#x8D1F;&#x8D23;&#x5C06; <em>FinalizerReference</em> &#xFF08;&#x91CD;&#x5199;&#x4E86; <em>finalize()</em> &#x65B9;&#x6CD5;&#x7684;&#x7C7B;&#x5728;&#x5B9E;&#x4F8B;&#x5316;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x4F1A;&#x88AB; <em>FinalizerReference</em> &#x5F15;&#x7528;&#xFF0C;&#x5F53;&#x8BE5;&#x5B9E;&#x4F8B;&#x5177;&#x6709;&#x4E14;&#x4EC5;&#x6709; <em>FinalizerReference</em> &#x5F15;&#x7528;&#x5B83;&#x65F6;&#xFF0C;&#x5219;&#x8BA4;&#x4E3A;&#x8BE5;&#x5BF9;&#x8C61;&#x9002;&#x5408;&#x88AB; <em>GC</em> &#x56DE;&#x6536;&#xFF09;&#x5165;&#x961F;&#x5230; <em>ReferenceQueue</em> &#x4E2D;</p>
+<h3 id="finalizerdaemon">FinalizerDaemon</h3>
+<p><em>FinalizerDaemon</em> &#x8D1F;&#x8D23;&#x5728; <em>GC</em> &#x88AB;&#x89E6;&#x53D1;&#x65F6;&#xFF0C;&#x6267;&#x884C;&#x88AB; <em>FinalizerReference</em> &#x5F15;&#x7528;&#x7684;&#x5BF9;&#x8C61;&#x7684; <em>finalize</em> &#x65B9;&#x6CD5;</p>
+<h3 id="finalizerwatchdogdaemon">FinalizerWatchdogDaemon</h3>
+<p><em>FinalizerWatchdogDaemon</em> &#x987E;&#x540D;&#x601D;&#x4E49;&#xFF0C;&#x5B83;&#x5C31;&#x662F; <em>Finalizer</em> &#x7684;&#x300C;&#x770B;&#x95E8;&#x72D7;&#x300D;&#xFF0C;&#x4E00;&#x65E6;&#x5728;&#x89C4;&#x5B9A;&#x7684;&#x65F6;&#x95F4;&#x4E4B;&#x5185;&#xFF0C;&#x6CA1;&#x6709;&#x7ED9;&#x5B83;&#x300C;&#x5582;&#x9AA8;&#x5934;&#x300D;&#xFF0C;&#x5219;&#x8BA4;&#x4E3A; <em>Finalizer</em> &#x8FC7;&#x7A0B;&#x88AB;&#x963B;&#x585E;&#x4E86;&#xFF0C;&#x5B83;&#x5C31;&#x4F1A;&#x629B;&#x5F02;&#x5E38;&#x4E86;&#xFF0C;&#x800C; <em>FinalizerDaemon</em> &#x5C31;&#x662F;&#x7ED9;&#x5B83;&#x300C;&#x5582;&#x9AA8;&#x5934;&#x300D;&#x7684;&#x7EBF;&#x7A0B;&#x3002;</p>
+<h1 id="&#x89E3;&#x51B3;&#x601D;&#x8DEF;">&#x89E3;&#x51B3;&#x601D;&#x8DEF;</h1>
+<p>&#x4E86;&#x89E3;&#x4E86; <em>4</em> &#x4E2A; <em>Daemon</em> &#x7EBF;&#x7A0B;&#x7684;&#x4F5C;&#x7528;&#xFF0C;&#x90A3;&#x8FD9;&#x4E2A;&#x95EE;&#x9898;&#x5C31;&#x597D;&#x529E;&#x4E86;&#xFF0C;&#x6709;&#x4EBA;&#x63D0;&#x51FA;&#x628A;&#x8D85;&#x65F6;&#x65F6;&#x95F4; <em>MAX_FINALIZE_NANOS</em> &#x8BBE;&#x7F6E;&#x957F;&#x4E00;&#x4E9B;&#x4E0D;&#x5C31;&#x884C;&#x4E86;&#xFF1F;&#x6BD4;&#x5982;&#xFF1A;<em>Integer.MAX_VALUE</em>&#xFF0C;&#x770B;&#x8D77;&#x6765;&#x8C8C;&#x4F3C;&#x8FD9;&#x662F;&#x6700;&#x7B80;&#x5355;&#x7684;&#x529E;&#x6CD5;&#xFF0C;&#x771F;&#x7684;&#x53EF;&#x884C;&#x5417;&#xFF1F;&#x8BA9;&#x6211;&#x4EEC;&#x6765;&#x770B;&#x770B;&#x6E90;&#x7801;&#xFF1A;</p>
+<pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Daemons</span> </span>{
+
+    <span class="hljs-comment">// This used to be final. IT IS NOW ONLY WRITTEN. We now update it when we look at the command</span>
+    <span class="hljs-comment">// line argument, for the benefit of mis-behaved apps that might read it.  SLATED FOR REMOVAL.</span>
+    <span class="hljs-comment">// There is no reason to use this: Finalizers should not rely on the value. If a finalizer takes</span>
+    <span class="hljs-comment">// appreciable time, the work should be done elsewhere.  Based on disassembly of Daemons.class,</span>
+    <span class="hljs-comment">// the value is effectively inlined, so changing the field never did have an effect.</span>
+    <span class="hljs-comment">// DO NOT USE. FOR ANYTHING. THIS WILL BE REMOVED SHORTLY.</span>
+    <span class="hljs-meta">@UnsupportedAppUsage</span>
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">long</span> MAX_FINALIZE_NANOS = <span class="hljs-number">10L</span> * <span class="hljs-number">1000</span> * NANOS_PER_MILLI;
+</code></pre>
+<p>&#x4ECE;&#x6E90;&#x7801;&#x4E2D;&#xFF0C;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x770B;&#x5230; <em>MAX_FINALIZE_NANOS</em> &#x662F;&#x4E00;&#x4E2A;&#x5E38;&#x91CF;&#x503C;&#xFF0C;&#x6839;&#x636E;&#x6211;&#x4EEC;&#x5BF9; <em>JVM</em> &#x89C4;&#x8303;&#x7684;&#x4E86;&#x89E3;&#xFF0C;&#x5E38;&#x91CF;&#x662F;&#x4E00;&#x4E2A;&#x7ACB;&#x5373;&#x6570;&#xFF0C;&#x5DF2;&#x7ECF;&#x88AB;&#x7F16;&#x7801;&#x8FDB;&#x6307;&#x4EE4;&#x4E2D;&#xFF0C;&#x5373;&#x4F7F;&#x8FD0;&#x884C;&#x65F6;&#x4FEE;&#x6539;&#x5B83;&#xFF0C;&#x4E5F;&#x4E0D;&#x4F1A;&#x6709;&#x4EFB;&#x4F55;&#x4F5C;&#x7528;&#x3002;</p>
+<p><em>Booster</em> &#x7684;&#x89E3;&#x51B3;&#x65B9;&#x6848;&#x662F;&#x89E3;&#x51B3;&#x629B;&#x51FA;&#x5F02;&#x5E38;&#x7684;&#x300C;&#x770B;&#x95E8;&#x72D7;&#x300D;&#x2014;&#x2014; &#x5728;&#x5E94;&#x7528;&#x542F;&#x52A8;&#x540E;&#xFF0C;&#x505C;&#x6389; <em>FinalizerWatchdogDaemon</em> &#x7EBF;&#x7A0B;&#xFF0C;&#x8FD9;&#x6837;&#x505A;&#x5BF9;&#x4E8E; <em>APP</em> &#x6765;&#x8BF4;&#xFF0C;&#x5E76;&#x6CA1;&#x6709;&#x4EC0;&#x4E48;&#x5B9E;&#x8D28;&#x6027;&#x7684;&#x5F71;&#x54CD;&#xFF1A;</p>
+<div><p class="code-filename">FinalizerWatchdogDaemonKiller.java</p></div>
+<pre><code class="lang-java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">kill</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-keyword">new</span> Thread(<span class="hljs-keyword">new</span> Runnable() {
+        <span class="hljs-meta">@Override</span>
+        <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">run</span><span class="hljs-params">()</span> </span>{
+            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> retry = <span class="hljs-number">0</span>; isFinalizerWatchdogDaemonExists() &amp;&amp; retry &lt; MAX_RETRY_TIMES; retry++) {
+                <span class="hljs-keyword">try</span> {
+                    <span class="hljs-keyword">final</span> Class clazz = Class.forName(<span class="hljs-string">&quot;java.lang.Daemons$FinalizerWatchdogDaemon&quot;</span>);
+                    <span class="hljs-keyword">final</span> Field field = clazz.getDeclaredField(<span class="hljs-string">&quot;INSTANCE&quot;</span>);
+                    field.setAccessible(<span class="hljs-keyword">true</span>);
+                    <span class="hljs-keyword">final</span> Object watchdog = field.get(<span class="hljs-keyword">null</span>);
+
+                    <span class="hljs-keyword">try</span> {
+                        <span class="hljs-keyword">final</span> Field thread = clazz.getSuperclass().getDeclaredField(<span class="hljs-string">&quot;thread&quot;</span>);
+                        thread.setAccessible(<span class="hljs-keyword">true</span>);
+                        thread.set(watchdog, <span class="hljs-keyword">null</span>);
+                    } <span class="hljs-keyword">catch</span> (<span class="hljs-keyword">final</span> Throwable t) {
+                        Log.e(TAG, <span class="hljs-string">&quot;Clearing reference of thread `FinalizerWatchdogDaemon` failed&quot;</span>, t);
+
+                        <span class="hljs-keyword">try</span> {
+                            <span class="hljs-keyword">final</span> Method method = clazz.getSuperclass().getDeclaredMethod(<span class="hljs-string">&quot;stop&quot;</span>);
+                            method.setAccessible(<span class="hljs-keyword">true</span>);
+                            method.invoke(watchdog);
+                        } <span class="hljs-keyword">catch</span> (<span class="hljs-keyword">final</span> Throwable e) {
+                            Log.e(TAG, <span class="hljs-string">&quot;Interrupting thread `FinalizerWatchdogDaemon` failed&quot;</span>, e);
+                            <span class="hljs-keyword">break</span>;
+                        }
+                    }
+
+                    <span class="hljs-keyword">try</span> {
+                        Thread.sleep(THREAD_SLEEP_TIME);
+                    } <span class="hljs-keyword">catch</span> (<span class="hljs-keyword">final</span> InterruptedException ignore) {
+                    }
+                } <span class="hljs-keyword">catch</span> (<span class="hljs-keyword">final</span> Throwable t) {
+                    Log.e(TAG, <span class="hljs-string">&quot;Killing thread `FinalizerWatchdogDaemon` failed&quot;</span>, t);
+                    <span class="hljs-keyword">break</span>;
+                }
+            }
+            <span class="hljs-keyword">if</span> (isFinalizerWatchdogDaemonExists()) {
+                Log.e(TAG, <span class="hljs-string">&quot;Killing thread `FinalizerWatchdogDaemon` failed&quot;</span>);
+            } <span class="hljs-keyword">else</span> {
+                Log.i(TAG, <span class="hljs-string">&quot;Thread `FinalizerWatchdogDaemon` does not exist&quot;</span>);
+            }
+        }
+    }, <span class="hljs-string">&quot;FinalizerWatchdogDaemonKiller&quot;</span>).start();
+}
+</code></pre>
+<h1 id="&#x5982;&#x4F55;&#x4F7F;&#x7528;">&#x5982;&#x4F55;&#x4F7F;&#x7528;</h1>
+<p>&#x89E3;&#x51B3; <em>TimeoutException</em> &#x53EA;&#x9700;&#x8981;&#x5F15;&#x5165; <a href="https://github.com/didi/booster/blob/master/booster-transform-finalizer-watchdog-daemon" target="_blank">booster-transform-finalizer-watchdog-daemon</a> &#x5373;&#x53EF;&#xFF0C;&#x5982;&#x4E0B;&#x6240;&#x793A;&#xFF1A;</p>
+<div><p class="code-filename">build.gradle</p></div>
+<pre><code class="lang-gradle"><span class="hljs-keyword">buildscript</span> {
+    ext {
+        kotlin_version = <span class="hljs-string">&apos;1.3.31&apos;</span>
+        booster_version = <span class="hljs-string">&apos;1.6.0&apos;</span>
+    }
+    <span class="hljs-keyword">repositories</span> {
+        mavenLocal()
+        mavenCentral()
+        google()
+        jcenter()
+        maven { url <span class="hljs-string">&apos;https://oss.sonatype.org/content/repositories/public/&apos;</span> }
+        maven { url <span class="hljs-string">&apos;https://oss.sonatype.org/content/repositories/snapshots/&apos;</span> }
+    }
+    <span class="hljs-keyword">dependencies</span> {
+        <span class="hljs-keyword">classpath</span> <span class="hljs-string">&apos;com.android.tools.build:gradle:3.5.0&apos;</span>
+        <span class="hljs-keyword">classpath</span> <span class="hljs-string">&quot;org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version&quot;</span>
+        <span class="hljs-keyword">classpath</span> <span class="hljs-string">&quot;com.didiglobal.booster:booster-gradle-plugin:$booster_version&quot;</span>
+
+        <span class="hljs-comment">/* &#x1F447;&#x1F447;&#x1F447;&#x1F447; &#x5F15;&#x7528;&#x8FD9;&#x4E2A;&#x6A21;&#x5757; &#x1F447;&#x1F447;&#x1F447;&#x1F447; */</span>
+        <span class="hljs-keyword">classpath</span> <span class="hljs-string">&quot;com.didiglobal.booster:booster-transform-finalizer-watchdog-daemon:$booster_version&quot;</span>
+    }
+}
+</code></pre>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="prevent-crash-from-system-bug.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: 为系统崩溃兜底">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Finalizer 导致的 TimeoutException","level":"3.3.2","depth":2,"next":{"title":"Android 7.0 覆盖安装问题","level":"3.3.3","depth":2,"ref":"","articles":[]},"previous":{"title":"为系统崩溃兜底","level":"3.3.1","depth":2,"path":"bugfix/prevent-crash-from-system-bug.md","ref":"./bugfix/prevent-crash-from-system-bug.md","articles":[]},"dir":"ltr"},"config":{"plugins":["mathjax","splitter","codeblock-filename","theme-comscore","livereload"],"root":"./content/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"livereload":{},"splitter":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":1},"highlight":{},"codeblock-filename":{},"theme-comscore":{},"mathjax":{"forceSVG":false,"version":"2.6-latest"},"sharing":{"facebook":false,"twitter":false,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":[]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":true}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"深入理解 Booster","language":"zh-hans","links":{"sharing":{"google":false,"facebook":false,"twitter":false,"all":false}},"gitbook":">=3.1.0","description":"使用 Booster 对你的 Android 应用进行深度优化"},"file":{"path":"bugfix/finalizer-timeout-exception.md","mtime":"2020-04-19T07:44:59.000Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-04-19T05:10:39.369Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="https://cdn.mathjax.org/mathjax/2.6-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-mathjax/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-splitter/splitter.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-livereload/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-theme-comscore/test.js"></script>
+        
+    
+
+    </body>
+</html>
+

@@ -120,7 +120,7 @@ class ActivityThreadCallback implements Handler.Callback {
 buildscript {
     ext {
         kotlin_version = '1.3.31'
-        booster_version = '1.5.1'
+        booster_version = '1.6.0'
     }
     repositories {
         mavenLocal()

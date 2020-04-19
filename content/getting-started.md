@@ -4,7 +4,7 @@
 
 ```gradle:build.gradle
 buildscript {
-    ext.booster_version = '1.5.1'
+    ext.booster_version = '1.6.0'
 
     repositories {
         google()
@@ -25,7 +25,7 @@ buildscript {
 
 ```gradle:build.gradle
 buildscript {
-    ext.booster_version = '1.5.1'
+    ext.booster_version = '1.6.0'
 
     repositories {
         google()
@@ -60,7 +60,7 @@ apply plugin: 'com.didiglobal.booster'
 
 ```gradle:build.gradle
 buildscript {
-    ext.booster_version = '1.5.1'
+    ext.booster_version = '1.6.0'
     ext.debug = gradle.startParameter.taskNames.any { it.contains('debug') || it.contains('Debug') }
 
     repositories {

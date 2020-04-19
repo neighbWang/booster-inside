@@ -39,7 +39,7 @@ Booster 不仅仅只是一个框架，它还提供了性能检测、多线程优
 
 - [Transformer SPI](https://github.com/didi/booster/blob/master/booster-transform-spi)
 
-  *Transformer SPI* 用于在 *Transform* 的过程中插入自定的 *Transformer* 对字节码进行操作。为了照顾到大多数的开发者，*Booster* 中提供了两种 *Transformer SPI*：
+  *Transformer SPI* 用于在 *Transform* 的过程中插入自定义的 *Transformer* 对字节码进行操作。为了照顾到大多数的开发者，*Booster* 中提供了两种 *Transformer SPI*：
 
     1. 基于 ASM 的 [ClassTransformer](https://github.com/didi/booster/blob/master/booster-transform-asm/src/main/kotlin/com/didiglobal/booster/transform/asm/ClassTransformer.kt)
     1. 基于 Javassist 的 [ClassTransformer](https://github.com/didi/booster/blob/master/booster-transform-javassist/src/main/kotlin/com/didiglobal/booster/transform/javassist/ClassTransformer.kt)

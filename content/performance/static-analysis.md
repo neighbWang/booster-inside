@@ -119,7 +119,7 @@ Android 本身提供了 [Thread Annotations](https://developer.android.com/studi
 ```gradle:build.gradle
 buildscript {
 
-    ext.booster_version = '1.5.1'
+    ext.booster_version = '1.6.0'
 
     dependencies {
         classpath "com.didiglobal.booster:booster-gradle-plugin:$booster_version"
