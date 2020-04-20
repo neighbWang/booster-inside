@@ -36,7 +36,7 @@
 ## Booster 插件开发
 
 * [Javassist 还是 ASM？](./developer/javassist-or-asm.md)
-* 第一个 Transformer
+* [第一个 Transformer](./developer/first-class-transformer.md)
 * 第一个 VariantProcessor
 * Transformer 与 VariantProcessor 完美组合
 * 在 Java 工程中使用 Transformer

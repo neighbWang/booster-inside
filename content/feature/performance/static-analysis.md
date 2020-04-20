@@ -133,13 +133,13 @@ apply plugin: 'com.didiglobal.booster'
 
 然后在命令行执行 *analyse* 任务：
 
-```shell
+```bash
 $ ./gradlew analyse
 ```
 
 执行成功之后，在 *build/reports/* 目录中会生成相应的 *dot* 格式的报告，可以通过 *dot* 工具，将 *dot* 文件转换成 *png* 格式：
 
-```shell
+```bash
 $ find build/reports -name '*.dot' | xargs -t -I{} dot -O -Tpng {}
 ```
 
@@ -156,7 +156,7 @@ booster.task.analyser.blacklist=file:///Users/booster/blacklist.txt
 
 ## 通过命令行指定黑/白名单
 
-```shell
+```bash
 $ ./gradlew assembleDebug \
     -Pbooster.task.analyser.whitelist=file:///Users/booster/whitelist.txt \
     -Pbooster.task.analyser.blacklist=file:///Users/booster/blacklist.txt
@@ -164,7 +164,7 @@ $ ./gradlew assembleDebug \
 
 *whitelist* 和 *blacklist* 可以是远程的 URL，如:
 
-```shell
+```bash
 ./gradlew assembleDebug \
     -Pbooster.task.analyser.whitelist=https://booster.johnsonlee.io/analyser/whitelist.txt
 ```

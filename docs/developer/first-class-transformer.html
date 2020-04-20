@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>Javassist 还是 ASM？ · 深入理解 Booster</title>
+        <title>第一个 Transformer · 深入理解 Booster</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -69,10 +69,8 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="first-class-transformer.html" />
     
-    
-    <link rel="prev" href="../feature/misc/build-artifact-list.html" />
+    <link rel="prev" href="javassist-or-asm.html" />
     
 
     </head>
@@ -536,7 +534,7 @@
         
         
     
-        <li class="chapter active" data-level="4.1" data-path="javassist-or-asm.html">
+        <li class="chapter " data-level="4.1" data-path="javassist-or-asm.html">
             
                 <a href="javassist-or-asm.html">
             
@@ -551,7 +549,7 @@
             
         </li>
     
-        <li class="chapter " data-level="4.2" data-path="first-class-transformer.html">
+        <li class="chapter active" data-level="4.2" data-path="first-class-transformer.html">
             
                 <a href="first-class-transformer.html">
             
@@ -914,7 +912,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >Javassist 还是 ASM？</a>
+        <a href=".." >第一个 Transformer</a>
     </h1>
 </div>
 
@@ -929,132 +927,282 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="javassist-&#x8FD8;&#x662F;-asm&#xFF1F;">Javassist &#x8FD8;&#x662F; ASM&#xFF1F;</h1>
-<p>&#x5F88;&#x591A;&#x5F00;&#x53D1;&#x8005;&#x5728;&#x9009;&#x62E9;&#x5B57;&#x8282;&#x7801;&#x64CD;&#x4F5C;&#x6846;&#x67B6;&#x4E4B;&#x521D;&#xFF0C;&#x90FD;&#x4F1A;&#x6709;&#x6240;&#x7591;&#x60D1;&#xFF0C;&#x5230;&#x5E95;&#x662F;&#x9009;&#x62E9; <em>Javassist</em> &#x5462;&#xFF1F;&#x8FD8;&#x662F; <em>ASM</em> &#x5462;&#xFF1F;&#x6211;&#x4EEC;&#x53EF;&#x80FD;&#x4ECE;&#x4EE5;&#x4E0B;&#x51E0;&#x4E2A;&#x65B9;&#x9762;&#x6765;&#x5BF9;&#x6BD4;&#x4E00;&#x4E0B;&#x4E24;&#x8005;&#x4E4B;&#x95F4;&#x7684;&#x5DEE;&#x5F02;&#xFF0C;&#x4EE5;&#x53CA;&#x9002;&#x7528;&#x8303;&#x56F4;&#xFF1A;</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:left">&#x7279;&#x6027;</th>
-<th style="text-align:left">Javassist</th>
-<th style="text-align:left">ASM</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">&#x5305;&#x5927;&#x5C0F;</td>
-<td style="text-align:left">771 KB (3.27)</td>
-<td style="text-align:left">265 KB (6.0 BETA)</td>
-</tr>
-<tr>
-<td style="text-align:left">&#x6027;&#x80FD;</td>
-<td style="text-align:left">&#x52A3;&#x4E8E; <em>ASM</em></td>
-<td style="text-align:left">&#x4F18;&#x4E8E; <em>Javassist</em></td>
-</tr>
-<tr>
-<td style="text-align:left">API &#x5C01;&#x88C5;&#x7A0B;&#x5EA6;</td>
-<td style="text-align:left">&#x9AD8;</td>
-<td style="text-align:left">&#x4F4E;</td>
-</tr>
-<tr>
-<td style="text-align:left">&#x529F;&#x80FD;&#x5B8C;&#x5907;&#x7A0B;&#x5EA6;</td>
-<td style="text-align:left">&#x5B8C;&#x5907;</td>
-<td style="text-align:left">&#x5B8C;&#x5907;</td>
-</tr>
-<tr>
-<td style="text-align:left">&#x5BF9;&#x5F00;&#x53D1;&#x8005;&#x7684;&#x8981;&#x6C42;</td>
-<td style="text-align:left">&#x57FA;&#x672C;&#x4E86;&#x89E3; <em>class</em> &#x6587;&#x4EF6;&#x683C;&#x5F0F;&#x548C; <em>JVM</em> &#x6307;&#x4EE4;&#x96C6;</td>
-<td style="text-align:left">&#x9700;&#x8981;&#x7CBE;&#x901A; <em>class</em> &#x6587;&#x4EF6;&#x683C;&#x5F0F;&#x548C; <em>JVM</em> &#x6307;&#x4EE4;&#x96C6;</td>
-</tr>
-<tr>
-<td style="text-align:left">&#x5B66;&#x4E60;&#x66F2;&#x7EBF;</td>
-<td style="text-align:left">&#x5E73;&#x7F13;</td>
-<td style="text-align:left">&#x9661;&#x5CED;</td>
-</tr>
-<tr>
-<td style="text-align:left">&#x6587;&#x6863;&#x53CA;&#x624B;&#x518C;</td>
-<td style="text-align:left">&#x7B80;&#x5355;&#x660E;&#x4E86;</td>
-<td style="text-align:left">&#x6709;&#x4E9B;&#x7E41;&#x7410;&#xFF08;Vistor &#x6A21;&#x5F0F;&#x8BA9;&#x521D;&#x5B66;&#x8005;&#x6709;&#x70B9;&#x61F5;&#xFF09;</td>
-</tr>
-</tbody>
-</table>
-<p>&#x4ECE;&#x4E0A;&#x9762;&#x7684;&#x5BF9;&#x6BD4;&#x6765;&#x770B;&#xFF0C;&#x6211;&#x60F3;&#x5404;&#x4F4D;&#x8BFB;&#x8005;&#x5DF2;&#x7ECF;&#x6709;&#x6240;&#x9009;&#x62E9;&#xFF0C;&#x5BF9;&#x6211;&#x4E2A;&#x4EBA;&#x800C;&#x8A00;&#xFF0C;&#x5982;&#x679C;&#x662F;&#x521D;&#x5B66;&#x8005;&#xFF0C;&#x5EFA;&#x8BAE;&#x9009;&#x62E9; <em>Javassist</em>&#xFF0C;&#x6BD5;&#x7ADF;&#x4E0A;&#x624B;&#x5FEB;&#xFF0C;&#x5B66;&#x4E60;&#x8D77;&#x6765;&#x6BD4;&#x8F83;&#x5BB9;&#x6613;&#xFF0C;&#x5982;&#x679C;&#x662F;&#x5BF9;&#x6027;&#x80FD;&#x3001;&#x5305;&#x4F53;&#x79EF;&#x65B9;&#x9762;&#x8981;&#x6C42;&#x6BD4;&#x8F83;&#x9AD8;&#xFF0C;&#x5EFA;&#x8BAE;&#x9009;&#x62E9; <em>ASM</em>&#x3002;</p>
-<p>&#x6240;&#x4EE5;&#xFF0C;&#x4E3A;&#x4E86;&#x7167;&#x987E;&#x5230;&#x5C3D;&#x53EF;&#x80FD;&#x591A;&#x7684;&#x5F00;&#x53D1;&#x8005;&#xFF0C;<em>Booster</em> &#x5BF9;&#x4E24;&#x8005;&#x90FD;&#x505A;&#x4E86;&#x652F;&#x6301;&#xFF0C;&#x770B;&#x8FC7; <em>Booster</em> &#x7684;&#x6E90;&#x7801;&#x7684;&#x540C;&#x5B66;&#x53EF;&#x80FD;&#x4F1A;&#x95EE;&#xFF0C;&#x4E3A;&#x4EC0;&#x4E48; <em>Booster</em> &#x7684;&#x5927;&#x90E8;&#x5206;&#x5B9E;&#x73B0;&#x90FD;&#x662F;&#x57FA;&#x4E8E; <em>ASM</em> &#x5462;&#xFF1F;&#x7A76;&#x7ADF;&#x6709;&#x54EA;&#x4E9B;&#x8003;&#x91CF;&#xFF1F;</p>
-<h1 id="benchmark">Benchmark</h1>
-<p><em>Booster</em> &#x6700;&#x521D;&#x5728;&#x9009;&#x62E9;&#x5B57;&#x8282;&#x7801;&#x64CD;&#x4F5C;&#x6846;&#x67B6;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x6700;&#x4E3B;&#x8981;&#x7684;&#x8003;&#x91CF;&#x56E0;&#x7D20;&#x662F;&#x6027;&#x80FD;&#xFF0C;<em>Booster</em> &#x4F5C;&#x4E3A;&#x8D28;&#x91CF;&#x4F18;&#x5316;&#x6846;&#x67B6;&#xFF0C;&#x4E0D;&#x4EC5;&#x81EA;&#x8EAB;&#x6A21;&#x5757;&#x5728;&#x6027;&#x80FD;&#x4E0A;&#x8981;&#x6C42;&#x505A;&#x5230;&#x6781;&#x81F4;&#xFF0C;&#x4E5F;&#x8981;&#x8BA9;&#x5176;&#x4ED6;&#x5F00;&#x53D1;&#x8005;&#x57FA;&#x4E8E; <em>Booster</em> &#x5F00;&#x53D1;&#x7684;&#x529F;&#x80FD;&#x5728;&#x6027;&#x80FD;&#x4E0A;&#x4E5F;&#x8981;&#x8868;&#x73B0;&#x5353;&#x8D8A;&#xFF0C;&#x6240;&#x4EE5;&#xFF0C;&#x9488;&#x5BF9; <em>Javassist</em> &#x7684; <em>ASM</em> &#x5728;&#x5B57;&#x8282;&#x7801;&#x5904;&#x7406;&#x65B9;&#x9762;&#x7684;&#x6027;&#x80FD;&#x4F5C;&#x4E86; <em>benchmark</em> &#x6D4B;&#x8BD5;&#xFF0C;&#x4EE5;&#x4E0B;&#x662F;&#x901A;&#x8FC7;&#x5904;&#x7406; <em>guava-28.2-jre.jar</em> &#x6765;&#x5BF9;&#x6BD4;&#x4E8C;&#x8005;&#x4E4B;&#x524D;&#x7684;&#x6027;&#x80FD;&#xFF1A;</p>
-<div><p class="code-filename">JavassistVsAsmBenchmark.kt</p></div>
-<pre><code class="lang-kotlin">@BenchmarkMode(Mode.AverageTime)
-@OutputTimeUnit(TimeUnit.MILLISECONDS)
-@Fork(value = <span class="hljs-number">2</span>, jvmArgs = [<span class="hljs-string">&quot;-Xms2G&quot;</span>, <span class="hljs-string">&quot;-Xmx2G&quot;</span>])
-@State(Scope.Benchmark)
-<span class="hljs-keyword">open</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">JavassistVsAsmBenchmark</span> </span>{
+                                <h1 id="&#x521B;&#x5EFA;&#x5DE5;&#x7A0B;">&#x521B;&#x5EFA;&#x5DE5;&#x7A0B;</h1>
+<p>&#x5728;&#x5199;&#x7B2C;&#x4E00;&#x4E2A; <em>ClassTransformer</em> &#x4E4B;&#x524D;&#xFF0C;&#x9700;&#x8981;&#x6709;&#x4E00;&#x4E2A; <em>Java</em> &#x6216; <em>Kotlin</em> &#x5DE5;&#x7A0B;&#xFF0C;&#x8FD9;&#x91CC;&#x6709;&#x4E24;&#x79CD;&#x5DE5;&#x7A0B;&#x5F62;&#x5F0F;&#x3002;</p>
+<h2 id="&#x72EC;&#x7ACB;&#x7684;-java-&#x5DE5;&#x7A0B;">&#x72EC;&#x7ACB;&#x7684; Java &#x5DE5;&#x7A0B;</h2>
+<p>&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x901A;&#x8FC7; <em>gradle</em> &#x547D;&#x4EE4;&#xFF0C;&#x6765;&#x521B;&#x5EFA;&#x4E00;&#x4E2A; <em>Java</em> &#x5DE5;&#x7A0B;&#xFF1A;</p>
+<pre><code class="lang-bash">$ mkdir BoosterDemo                 <span class="hljs-comment"># &#x521B;&#x5EFA; BoosterDemo &#x5DE5;&#x7A0B; </span>
+$ <span class="hljs-built_in">cd</span> BoosterDemo &amp;&amp; gradle init     <span class="hljs-comment"># &#x521D;&#x59CB;&#x5316;&#x5DE5;&#x7A0B;</span>
+</code></pre>
+<p>&#x7136;&#x540E;&#x9009;&#x62E9;&#x5DE5;&#x7A0B;&#x7C7B;&#x578B;&#xFF1A;</p>
+<pre><code>Starting a Gradle Daemon (subsequent builds will be faster)
 
-    <span class="hljs-keyword">private</span> lateinit <span class="hljs-variable"><span class="hljs-keyword">var</span> file</span>: File
+Select type of project to generate:
+  1: basic
+  2: application
+  3: library
+  4: Gradle plugin
+Enter selection (default: basic) [1..4]
+</code></pre><p>&#x8FD9;&#x91CC;&#xFF0C;&#x6211;&#x4EEC;&#x9009;&#x62E9; <em>3: library</em>&#xFF0C;&#x63A5;&#x4E0B;&#x6765;&#xFF0C;&#x9009;&#x62E9;&#x8BED;&#x8A00;&#xFF1A;</p>
+<pre><code>Select implementation language:
+  1: C++
+  2: Groovy
+  3: Java
+  4: Kotlin
+  5: Scala
+  6: Swift
+Enter selection (default: Java) [1..6]
+</code></pre><p>&#x8FD9;&#x91CC;&#x53EF;&#x4EE5;&#x6839;&#x636E;&#x81EA;&#x5DF1;&#x7684;&#x559C;&#x597D;&#x9009;&#x62E9;&#xFF1A; <em>Groovy</em> / <em>Java</em> / <em>Kotlin</em> &#xFF0F; <em>Scala</em> &#x5176;&#x4E2D;&#x4E4B;&#x4E00;&#xFF0C;&#x5047;&#x8BBE;&#xFF0C;&#x6211;&#x4EEC;&#x9009;&#x62E9; <em>4: Kotlin</em>&#xFF1A;</p>
+<p>&#x63A5;&#x4E0B;&#x6765;&#xFF0C;&#x9009;&#x62E9;&#x6784;&#x5EFA;&#x811A;&#x672C;&#x7684; <em>DSL</em>&#xFF1A;</p>
+<pre><code>Select build script DSL:
+  1: Groovy
+  2: Kotlin
+Enter selection (default: Kotlin) [1..2]
+</code></pre><p>&#x5982;&#x679C;&#x5BF9; <em>Kotlin DSL</em> &#x4E0D;&#x592A;&#x719F;&#x7684;&#x8BDD;&#xFF0C;&#x53EF;&#x4EE5;&#x9009;&#x62E9; <em>1: Groovy</em>&#xFF1A;</p>
+<p>&#x7136;&#x540E;&#xFF0C;&#x8F93;&#x5165;&#x5DE5;&#x7A0B;&#x540D;&#xFF0C;&#x6216;&#x8005;&#x7528;&#x9ED8;&#x8BA4;&#x7684;&#x5DE5;&#x7A0B;&#x540D;&#xFF08;&#x76EE;&#x5F55;&#x540D;&#xFF09;&#xFF1A;</p>
+<pre><code>Project name (default: BoosterDemo):
+</code></pre><p>&#x7136;&#x540E;&#x8F93;&#x5165;&#x6E90;&#x4EE3;&#x7801;&#x7684;&#x5305;&#x540D;&#xFF1A;</p>
+<pre><code>Source package (default: BoosterDemo): io.johnsonlee.booster.demo
+</code></pre><p>&#x8FD9;&#x6837;&#xFF0C;<em>Java Library</em> &#x5DE5;&#x7A0B;&#x5C31;&#x521B;&#x5EFA;&#x597D;&#x4E86;&#x3002;</p>
+<pre><code>.
+&#x251C;&#x2500;&#x2500; build.gradle
+&#x251C;&#x2500;&#x2500; gradle
+&#x2502;   &#x2514;&#x2500;&#x2500; wrapper
+&#x2502;       &#x251C;&#x2500;&#x2500; gradle-wrapper.jar
+&#x2502;       &#x2514;&#x2500;&#x2500; gradle-wrapper.properties
+&#x251C;&#x2500;&#x2500; gradlew
+&#x251C;&#x2500;&#x2500; gradlew.bat
+&#x251C;&#x2500;&#x2500; settings.gradle
+&#x2514;&#x2500;&#x2500; src
+    &#x251C;&#x2500;&#x2500; main
+    &#x2502;   &#x251C;&#x2500;&#x2500; kotlin
+    &#x2502;   &#x2502;   &#x2514;&#x2500;&#x2500; io
+    &#x2502;   &#x2502;       &#x2514;&#x2500;&#x2500; johnsonlee
+    &#x2502;   &#x2502;           &#x2514;&#x2500;&#x2500; booster
+    &#x2502;   &#x2502;               &#x2514;&#x2500;&#x2500; Library.kt
+    &#x2502;   &#x2514;&#x2500;&#x2500; resources
+    &#x2514;&#x2500;&#x2500; test
+        &#x251C;&#x2500;&#x2500; kotlin
+        &#x2502;   &#x2514;&#x2500;&#x2500; io
+        &#x2502;       &#x2514;&#x2500;&#x2500; johnsonlee
+        &#x2502;           &#x2514;&#x2500;&#x2500; booster
+        &#x2502;               &#x2514;&#x2500;&#x2500; LibraryTest.kt
+        &#x2514;&#x2500;&#x2500; resources
+</code></pre><h2 id="buildsrc-&#x5DE5;&#x7A0B;">buildSrc &#x5DE5;&#x7A0B;</h2>
+<p>&#x5982;&#x679C;&#x5DF2;&#x7ECF;&#x6709;&#x4E00;&#x4E2A; <em>Android</em> &#x5DE5;&#x7A0B;&#x4E86;&#xFF0C;&#x53EF;&#x80FD;&#x76F4;&#x63A5;&#x5728;&#x5DE5;&#x7A0B;&#x6839;&#x76EE;&#x5F55;&#x65B0;&#x5EFA;&#x4E00;&#x4E2A; <em>buildSrc</em> &#x76EE;&#x5F55;&#xFF0C;<em>Gradle</em> &#x4F1A;&#x628A; <em>buildSrc</em> &#x5F53;&#x4F5C;&#x6784;&#x5EFA;&#x5DE5;&#x7A0B;&#xFF0C;&#x5BF9;&#x5B83;&#x8FDB;&#x884C;&#x7F16;&#x8BD1;&#x548C;&#x6D4B;&#x8BD5;&#xFF0C;&#x7136;&#x540E;&#x5C06;&#x5176;&#x52A0;&#x5165; <em>buildscript</em> &#x7684; <em>classpath</em> &#x4E2D;&#xFF0C;&#x5BF9;&#x4E8E;&#x6709;&#x591A;&#x4E2A;&#x5B50;&#x7A0B;&#x7684;&#x9879;&#x76EE;&#x6765;&#x8BF4;&#xFF0C;&#x53EA;&#x80FD;&#x6709;&#x4E00;&#x4E2A; <em>buildSrc</em> &#x76EE;&#x5F55;&#x4F4D;&#x4E8E;&#x5DE5;&#x7A0B;&#x6839;&#x76EE;&#x5F55;&#xFF0C;&#x5BF9;&#x4E8E;&#x590D;&#x6742;&#x7684;&#x6784;&#x5EFA;&#x6765;&#x8BF4;&#xFF0C;&#x4F18;&#x5148;&#x9009;&#x62E9;&#x901A;&#x8FC7; <em>buildSrc</em> &#x6765;&#x7EC4;&#x7EC7;&#x6784;&#x5EFA;&#x811A;&#x672C;&#x3002;</p>
+<p>&#x7136;&#x540E;&#x5728; <em>buildSrc</em> &#x76EE;&#x5F55;&#x4E0B;&#xFF0C;&#x521B;&#x5EFA;&#x5982;&#x4E0B;&#x76EE;&#x5F55;&#x7ED3;&#x6784;&#xFF1A;</p>
+<pre><code>buildSrc/
+&#x251C;&#x2500;&#x2500; build.gradle
+&#x2514;&#x2500;&#x2500; src
+    &#x2514;&#x2500;&#x2500; main
+        &#x251C;&#x2500;&#x2500; java
+        &#x2514;&#x2500;&#x2500; kotlin
+</code></pre><blockquote>
+<p>&#x5BF9;&#x4E8E; <em>Android</em> &#x5F00;&#x53D1;&#x8005;&#x6765;&#x8BF4;&#xFF0C;&#x63A8;&#x8350;&#x7528; <em>buildSrc</em> &#x7684;&#x65B9;&#x5F0F;&#xFF0C;&#x8FD9;&#x6837;&#x5728;&#x4E00;&#x4E2A;&#x5DE5;&#x7A0B;&#x4E2D;&#xFF0C;&#x4E0A;&#x624B;&#x66F4;&#x5BB9;&#x6613;&#x3002;</p>
+</blockquote>
+<h1 id="&#x5F15;&#x5165;-booster">&#x5F15;&#x5165; <em>Booster</em></h1>
+<p>&#x51C6;&#x5907;&#x597D;&#x5DE5;&#x7A0B;&#x540E;&#xFF0C;&#x63A5;&#x4E0B;&#x6765;&#x5728; <em>Java Library</em> &#x5DE5;&#x7A0B;&#x6216;&#x8005; <em>Android</em> &#x5DE5;&#x7A0B;&#x7684; <em>buildSrc</em> &#x76EE;&#x5F55;&#x4E2D;&#x7684; <em>build.gradle</em> &#x6587;&#x4EF6;&#x4E2D;&#xFF0C;&#x5F15;&#x5165; <em>Booster</em> &#x4F9D;&#x8D56;&#xFF1A;</p>
+<div><p class="code-filename">build.gradle</p></div>
+<pre><code class="lang-gradle"><span class="hljs-keyword">buildscript</span> {
+    ext {
+        kotlin_version = <span class="hljs-string">&apos;1.3.31&apos;</span>
+        booster_version = <span class="hljs-string">&apos;1.6.0&apos;</span>
+    }
+    <span class="hljs-keyword">repositories</span> {
+        mavenLocal()
+        mavenCentral()
+        google()
+        jcenter()
+        maven { url <span class="hljs-string">&apos;https://oss.sonatype.org/content/repositories/public/&apos;</span> }
+        maven { url <span class="hljs-string">&apos;https://oss.sonatype.org/content/repositories/snapshots/&apos;</span> }
+    }
+    <span class="hljs-keyword">dependencies</span> {
+        <span class="hljs-keyword">classpath</span> <span class="hljs-string">&quot;org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version&quot;</span>
+    }
+}
 
-    @Setup
-    <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">setup</span><span class="hljs-params">()</span> {</span>
-        this.file = File.createTempFile(<span class="hljs-string">&quot;guava-&quot;</span>, <span class="hljs-string">&quot;-28.2-jre.jar&quot;</span>)
-        javaClass.classLoader.getResourceAsStream(<span class="hljs-string">&quot;guava-28.2-jre.jar&quot;</span>).use { input -&gt;
-            file.outputStream().use { output -&gt;
-                input!!.copyTo(output)
-            }
+apply plugin: <span class="hljs-string">&apos;kotlin&apos;</span>
+apply plugin: <span class="hljs-string">&apos;kotlin-kapt&apos;</span>
+
+<span class="hljs-keyword">repositories</span> {
+    mavenLocal()
+    mavenCentral()
+    google()
+    jcenter()
+    maven { url <span class="hljs-string">&apos;https://oss.sonatype.org/content/repositories/public/&apos;</span> }
+    maven { url <span class="hljs-string">&apos;https://oss.sonatype.org/content/repositories/snapshots/&apos;</span> }
+}
+
+<span class="hljs-keyword">sourceSets</span> {
+    main {
+        java {
+            srcDirs += []
+        }
+        kotlin {
+            srcDirs += [<span class="hljs-string">&apos;src/main/kotlin&apos;</span>, <span class="hljs-string">&apos;src/main/java&apos;</span>]
         }
     }
-
-    @Benchmark
-    <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">transformJarUsingAsm</span><span class="hljs-params">()</span> {</span>
-        TransformHelper(this.file, AndroidSdk.getAndroidJar().parentFile)
-                .transform(transformers = *arrayOf(AsmTransformer(AsmThreadTransformer())))
+    test {
+        java {
+            srcDirs += []
+        }
+        kotlin {
+            srcDirs += [<span class="hljs-string">&apos;src/main/kotlin&apos;</span>, <span class="hljs-string">&apos;src/main/java&apos;</span>]
+        }
     }
+}
 
-    @Benchmark
-    <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">transformJarUsingJavassist</span><span class="hljs-params">()</span> {</span>
-        TransformHelper(this.file, AndroidSdk.getAndroidJar().parentFile)
-                .transform(transformers = *arrayOf(JavassistTransformer(JavassistThreadTransformer())))
-    }
+compileKotlin {
+    kotlinOptions.jvmTarget = JavaVersion.VERSION_1_8
+}
 
-    @TearDown
-    <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">teardown</span><span class="hljs-params">()</span> {</span>
-        this.file.delete()
+compileTestKotlin {
+    kotlinOptions.jvmTarget = JavaVersion.VERSION_1_8
+}
+
+<span class="hljs-keyword">dependencies</span> {
+    <span class="hljs-comment">/* &#x1F447;&#x1F447;&#x1F447;&#x1F447; &#x5F15;&#x7528;&#x8FD9;&#x4E24;&#x4E2A;&#x6A21;&#x5757; &#x1F447;&#x1F447;&#x1F447;&#x1F447; */</span>
+    kapt <span class="hljs-string">&quot;com.google.auto.service:auto-service:1.0-rc6&quot;</span>
+    api <span class="hljs-string">&quot;com.didiglobal.booster:booster-transform-asm:$booster_version&quot;</span>
+}
+</code></pre>
+<h1 id="&#x81EA;&#x5B9A;&#x4E49;-classtransformer">&#x81EA;&#x5B9A;&#x4E49; <em>ClassTransformer</em></h1>
+<p>&#x63A5;&#x4E0B;&#x6765;&#xFF0C;&#x6211;&#x4EEC;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x81EA;&#x5B9A;&#x4E49;&#x7684; <em>ClassTransformer</em> &#x7C7B;&#x3002;</p>
+<h2 id="&#x57FA;&#x4E8E;-javassist">&#x57FA;&#x4E8E; Javassist</h2>
+<div><p class="code-filename">FirstClassTransformer.kt</p></div>
+<pre><code class="lang-kotlin"><span class="hljs-keyword">package</span> io.johnsonlee.booster.demo
+
+<span class="hljs-keyword">import</span> com.didiglobal.booster.transform.TransformContext
+<span class="hljs-keyword">import</span> com.didiglobal.booster.transform.asm.ClassTransformer
+<span class="hljs-keyword">import</span> org.objectweb.asm.tree.ClassNode
+<span class="hljs-keyword">import</span> com.google.auto.service.AutoService
+
+@AutoService(ClassTransformer::<span class="hljs-class"><span class="hljs-keyword">class</span>)</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">FirstClassTransformer</span> : <span class="hljs-type">ClassTransformer {</span></span>
+
+    <span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">transform</span><span class="hljs-params">(context: <span class="hljs-type">TransformContext, klass: ClassNode</span>)</span>: ClassNode {</span>
+        println(<span class="hljs-string">&quot;Transforming ${klass.name}&quot;</span>)
+        <span class="hljs-keyword">return</span> klass
     }
 
 }
 </code></pre>
-<blockquote>
-<p><em>Benchmark</em> &#x6D4B;&#x8BD5;&#x4EE3;&#x7801;&#xFF1A;<a href="https://github.com/johnsonlee/booster-benchmark" target="_blank">https://github.com/johnsonlee/booster-benchmark</a></p>
-</blockquote>
-<p><em>Benchmark</em> &#x6D4B;&#x8BD5;&#x7ED3;&#x679C;&#x5982;&#x4E0B;&#xFF1A;</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:left">Benchmark</th>
-<th>Mode</th>
-<th>Cnt</th>
-<th>Score</th>
-<th>Error</th>
-<th>Units</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">JavassistVsAsmBenchmark.transformJarUsingAsm</td>
-<td>avgt</td>
-<td>10</td>
-<td>203.489</td>
-<td>&#xB1; 52.174</td>
-<td>ms/op</td>
-</tr>
-<tr>
-<td style="text-align:left">JavassistVsAsmBenchmark.transformJarUsingJavassist</td>
-<td>avgt</td>
-<td>10</td>
-<td>277.695</td>
-<td>&#xB1; 10.801</td>
-<td>ms/op</td>
-</tr>
-</tbody>
-</table>
-<p>&#x4ECE;&#x4E0A;&#x9762;&#x7684;&#x7ED3;&#x679C;&#x6765;&#x770B;&#xFF0C;<em>ASM</em> &#x5E73;&#x5747;&#x8017;&#x65F6;&#x66F4;&#x4F4E;&#x3002;</p>
+<h2 id="&#x57FA;&#x4E8E;-asm">&#x57FA;&#x4E8E; ASM</h2>
+<div><p class="code-filename">FirstClassTransformer.kt</p></div>
+<pre><code class="lang-kotlin"><span class="hljs-keyword">package</span> io.johnsonlee.booster.demo
 
+<span class="hljs-keyword">import</span> com.didiglobal.booster.transform.TransformContext
+<span class="hljs-keyword">import</span> com.didiglobal.booster.transform.javassist.ClassTransformer
+<span class="hljs-keyword">import</span> com.google.auto.service.AutoService
+<span class="hljs-keyword">import</span> javassist.CtClass
+
+@AutoService(ClassTransformer::<span class="hljs-class"><span class="hljs-keyword">class</span>)</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">FirstClassTransformer</span> : <span class="hljs-type">ClassTransformer {</span></span>
+
+    <span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">transform</span><span class="hljs-params">(context: <span class="hljs-type">TransformContext, klass: CtClass</span>)</span>: CtClass {</span>
+        println(<span class="hljs-string">&quot;Transforming ${klass.name}&quot;</span>)
+        <span class="hljs-keyword">return</span> klass
+    }
+
+}
+</code></pre>
+<h1 id="&#x914D;&#x7F6E;-android-&#x5DE5;&#x7A0B;">&#x914D;&#x7F6E; <em>Android</em> &#x5DE5;&#x7A0B;</h1>
+<p>&#x81F3;&#x6B64;&#xFF0C;&#x7B2C;&#x4E00;&#x4E2A; <em>ClassTransformer</em> &#x57FA;&#x672C;&#x5B8C;&#x6210;&#xFF0C;&#x63A5;&#x4E0B;&#x6765;&#x5728; <em>Android</em> &#x5DE5;&#x7A0B;&#x7684; <em>build.gradle</em> &#x4E2D;&#x914D;&#x7F6E; <em>Booster</em>&#xFF1A;</p>
+<div><p class="code-filename">build.gradle</p></div>
+<pre><code class="lang-gradle"><span class="hljs-keyword">buildscript</span> {
+    ext {
+        kotlin_version = <span class="hljs-string">&apos;1.3.31&apos;</span>
+        booster_version = <span class="hljs-string">&apos;1.6.0&apos;</span>
+    }
+    <span class="hljs-keyword">repositories</span> {
+        mavenLocal()
+        mavenCentral()
+        google()
+        jcenter()
+        maven { url <span class="hljs-string">&apos;https://oss.sonatype.org/content/repositories/public/&apos;</span> }
+        maven { url <span class="hljs-string">&apos;https://oss.sonatype.org/content/repositories/snapshots/&apos;</span> }
+    }
+    <span class="hljs-keyword">dependencies</span> {
+        <span class="hljs-keyword">classpath</span> <span class="hljs-string">&apos;com.android.tools.build:gradle:3.5.0&apos;</span>
+        <span class="hljs-keyword">classpath</span> <span class="hljs-string">&quot;org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version&quot;</span>
+
+        <span class="hljs-comment">/* &#x1F447;&#x1F447;&#x1F447;&#x1F447; &#x5F15;&#x7528; Booster Gradle &#x63D2;&#x4EF6; &#x1F447;&#x1F447;&#x1F447;&#x1F447; */</span>
+        <span class="hljs-keyword">classpath</span> <span class="hljs-string">&quot;com.didiglobal.booster:booster-gradle-plugin:$booster_version&quot;</span>
+    }
+}
+
+<span class="hljs-keyword">allprojects</span> {
+    <span class="hljs-keyword">repositories</span> {
+        mavenLocal()
+        mavenCentral()
+        google()
+        jcenter()
+        maven { url <span class="hljs-string">&apos;https://oss.sonatype.org/content/repositories/public/&apos;</span> }
+        maven { url <span class="hljs-string">&apos;https://oss.sonatype.org/content/repositories/snapshots/&apos;</span> }
+    }
+}
+
+apply plugin: <span class="hljs-string">&apos;com.android.application&apos;</span>
+apply plugin: <span class="hljs-string">&apos;kotlin-android&apos;</span>
+apply plugin: <span class="hljs-string">&apos;kotlin-android-extensions&apos;</span>
+
+<span class="hljs-comment">/* &#x1F447;&#x1F447;&#x1F447;&#x1F447; &#x5E94;&#x7528; Booster &#x63D2;&#x4EF6; &#x1F447;&#x1F447;&#x1F447;&#x1F447; */</span>
+apply plugin: <span class="hljs-string">&apos;com.didiglobal.booster&apos;</span>
+
+android {
+    compileSdkVersion <span class="hljs-number">28</span>
+    buildToolsVersion <span class="hljs-string">&quot;26.0.3&quot;</span>
+    defaultConfig {
+        applicationId <span class="hljs-string">&apos;io.johnsonlee.booster.demo&apos;</span>
+        minSdkVersion <span class="hljs-number">18</span>
+        targetSdkVersion <span class="hljs-number">26</span>
+        versionCode <span class="hljs-number">1</span>
+        versionName <span class="hljs-string">&apos;1.0&apos;</span>
+        testInstrumentationRunner <span class="hljs-string">&quot;androidx.test.runner.AndroidJUnitRunner&quot;</span>
+    }
+    buildTypes {
+        debug {
+            minifyEnabled <span class="hljs-keyword">false</span>
+            proguardFiles getDefaultProguardFile(<span class="hljs-string">&apos;proguard-android-optimize.txt&apos;</span>), <span class="hljs-string">&apos;proguard-rules.pro&apos;</span>
+        }
+        release {
+            minifyEnabled <span class="hljs-keyword">false</span>
+            proguardFiles getDefaultProguardFile(<span class="hljs-string">&apos;proguard-android-optimize.txt&apos;</span>), <span class="hljs-string">&apos;proguard-rules.pro&apos;</span>
+        }
+    }
+}
+
+tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
+    kotlinOptions {
+        jvmTarget = <span class="hljs-string">&quot;1.8&quot;</span>
+    }
+}
+
+<span class="hljs-keyword">dependencies</span> {
+    implementation <span class="hljs-string">&quot;org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version&quot;</span>
+    implementation <span class="hljs-string">&quot;androidx.appcompat:appcompat:${jetpack_appcompat_version}&quot;</span>
+}
+</code></pre>
+<h1 id="&#x9A8C;&#x8BC1;-firstclasstransformer">&#x9A8C;&#x8BC1; <em>FirstClassTransformer</em></h1>
+<p>&#x5728; <em>Android</em> &#x5DE5;&#x7A0B;&#x4E0B;&#xFF0C;&#x6267;&#x884C; <em>assemble</em> &#x4EFB;&#x52A1;&#xFF1A;</p>
+<pre><code class="lang-bash">$ ./gradlew assembleDebug
+</code></pre>
+<p>&#x89C2;&#x5BDF;&#x63A7;&#x5236;&#x53F0;&#x7684;&#x6807;&#x51C6;&#x8F93;&#x51FA;&#xFF0C;&#x662F;&#x5426;&#x6709;&#x5982;&#x4E0B;&#x5185;&#x5BB9;&#xFF1A;</p>
+<pre><code>Transforming kotlinx/android/parcel/TypeParceler
+Transforming androidx/appcompat/graphics/drawable/AnimatedStateListDrawableCompat$1
+Transforming androidx/appcompat/app/ActionBar$NavigationMode
+Transforming kotlinx/android/parcel/WriteWith
+Transforming kotlinx/android/parcel/IgnoredOnParcel
+Transforming kotlinx/android/parcel/RawValue
+Transforming kotlinx/android/parcel/Parcelize
+Transforming androidx/appcompat/app/ActionBar$DisplayOptions
+Transforming kotlinx/android/extensions/LayoutContainer
+Transforming androidx/appcompat/app/ActionBarDrawerToggle$Delegate
+Transforming androidx/appcompat/app/ActionBar$TabListener
+Transforming androidx/appcompat/app/ActionBar$OnMenuVisibilityListener
+Transforming kotlin/jvm/internal/Ref$DoubleRef
+......
+</code></pre>
                                 
                                 </section>
                             
@@ -1081,14 +1229,10 @@
 
             
                 
-                <a href="../feature/misc/build-artifact-list.html" class="navigation navigation-prev " aria-label="Previous page: 构建中间产物清单">
+                <a href="javassist-or-asm.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: Javassist 还是 ASM？">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
-                
-                <a href="first-class-transformer.html" class="navigation navigation-next " aria-label="Next page: 第一个 Transformer">
-                    <i class="fa fa-angle-right"></i>
-                </a>
                 
             
         
@@ -1097,7 +1241,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Javassist 还是 ASM？","level":"4.1","depth":1,"next":{"title":"第一个 Transformer","level":"4.2","depth":1,"path":"developer/first-class-transformer.md","ref":"./developer/first-class-transformer.md","articles":[]},"previous":{"title":"构建中间产物清单","level":"3.4.4","depth":2,"path":"feature/misc/build-artifact-list.md","ref":"./feature/misc/build-artifact-list.md","articles":[]},"dir":"ltr"},"config":{"plugins":["mathjax","splitter","codeblock-filename","theme-comscore","livereload"],"root":"./content/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"livereload":{},"splitter":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":1},"highlight":{},"codeblock-filename":{},"theme-comscore":{},"mathjax":{"forceSVG":false,"version":"2.6-latest"},"sharing":{"facebook":false,"twitter":false,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":[]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":true}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"深入理解 Booster","language":"zh-hans","links":{"sharing":{"google":false,"facebook":false,"twitter":false,"all":false}},"gitbook":">=3.1.0","description":"使用 Booster 对你的 Android 应用进行深度优化"},"file":{"path":"developer/javassist-or-asm.md","mtime":"2020-04-20T00:43:59.000Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-04-19T05:10:39.369Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"第一个 Transformer","level":"4.2","depth":1,"next":{"title":"第一个 VariantProcessor","level":"4.3","depth":1,"ref":"","articles":[]},"previous":{"title":"Javassist 还是 ASM？","level":"4.1","depth":1,"path":"developer/javassist-or-asm.md","ref":"./developer/javassist-or-asm.md","articles":[]},"dir":"ltr"},"config":{"plugins":["mathjax","splitter","codeblock-filename","theme-comscore","livereload"],"root":"./content/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"livereload":{},"splitter":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":1},"highlight":{},"codeblock-filename":{},"theme-comscore":{},"mathjax":{"forceSVG":false,"version":"2.6-latest"},"sharing":{"facebook":false,"twitter":false,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":[]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":true}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"深入理解 Booster","language":"zh-hans","links":{"sharing":{"google":false,"facebook":false,"twitter":false,"all":false}},"gitbook":">=3.1.0","description":"使用 Booster 对你的 Android 应用进行深度优化"},"file":{"path":"developer/first-class-transformer.md","mtime":"2020-04-20T00:43:59.000Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-04-19T05:10:39.369Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

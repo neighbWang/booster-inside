@@ -33,6 +33,6 @@ buildscript {
 
 然后，在命令行中执行 `listSharedLibraries` 任务：
 
-```shell
+```bash
 $ ./gradlew listSharedLibraries
 ```

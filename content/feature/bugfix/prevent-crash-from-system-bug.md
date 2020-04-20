@@ -157,6 +157,6 @@ booster.transform.activity.thread.packages.ignore=com.didiglobal.booster,io.john
 
 ## 通过命令行配置
 
-```shell
+```bash
 $ ./gradlew assembleDebug -Pbooster.transform.activity.thread.packages.ignore=com.didiglobal.booster,io.johnsonlee.booster
 ```

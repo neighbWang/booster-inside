@@ -8,7 +8,7 @@
 
 其中 `res/*` 是合并后的所有资源，`resources.arsc` 则是 `res/*` 的索引表（详见：[Resource Table 概述](../agp/resource-table.html)），通过 `file` 命令查看一下文件格式：
 
-```shell
+```bash
 $ file ./build/intermediates/processed_res/debug/out/resources-debug.ap_
 ```
 得到如下输出结果：
@@ -18,7 +18,7 @@ $ file ./build/intermediates/processed_res/debug/out/resources-debug.ap_
 
 原来 *AP_* 文件就是一个普通的 *ZIP* 文件，通过 `unzip` 命令查看该文件内容：
 
-```shell
+```bash
 $ unzip -lv ./build/intermediates/processed_res/debug/out/resources-debug.ap_
 ```
 得到如下输出结果：

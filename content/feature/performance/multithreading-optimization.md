@@ -141,7 +141,7 @@ booster.transform.thread.optimization.enabled=false
 
 ### 通过命令行配置
 
-```shell
+```bash
 ./gradlew assembleDebug -Pbooster.transform.thread.optimization.enabled=false
 ```
 

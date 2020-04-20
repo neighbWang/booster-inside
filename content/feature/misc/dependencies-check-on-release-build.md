@@ -64,6 +64,6 @@ buildscript {
 
 然后，在命令行中执行 `checkSnapshot` 任务：
 
-```shell
+```bash
 $ ./gradlew checkSnapshot
 ```

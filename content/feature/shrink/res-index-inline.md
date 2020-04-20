@@ -112,6 +112,6 @@ booster.transform.r.inline.ignores=android/*,androidx/*
 
 ## 通过命令行配置
 
-```shell
+```bash
 $ ./gradlew assembleDebug -Pbooster.transform.r.inline.ignores=android/*,androidx/*
 ```
