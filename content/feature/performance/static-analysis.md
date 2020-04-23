@@ -85,10 +85,10 @@
 
 ## 类继承分析
 
-类继承关系分析对于静态分析至关重要，它决定了分析结果的准确性和全面性，在 *Transform* 中 *CHA* 是通过 *ClassLoader* 来实现的，相对来说比较很简单，参见：[KlassPool](https://github.com/didi/booster/blob/master/booster-transform-spi/src/main/kotlin/com/didiglobal/booster/transform/KlassPool.kt) & [Klass](https://github.com/didi/booster/blob/master/booster-transform-spi/src/main/kotlin/com/didiglobal/booster/transform/Klass.kt)，主要是解决如何判断两个类型是否有继承关系的问题，*Analyser* 的 *CHA* 采用的方式是提前加载所有 *Class*，然后进行分析？主要有以下几个方面的原因：
+类继承关系分析对于静态分析至关重要，它决定了分析结果的准确性和全面性，在 *Transform* 中 *CHA* 是通过 *ClassLoader* 来实现的，相对来说比较简单，参见：[KlassPool](https://github.com/didi/booster/blob/master/booster-transform-spi/src/main/kotlin/com/didiglobal/booster/transform/KlassPool.kt) & [Klass](https://github.com/didi/booster/blob/master/booster-transform-spi/src/main/kotlin/com/didiglobal/booster/transform/Klass.kt)，主要是解决如何判断两个类型是否有继承关系的问题，*Analyser* 的 *CHA* 采用的方式是提前加载所有 *Class*，然后进行分析，主要有以下几个方面的原因：
 
 1. *ClassLoader* 加载 *Class* 时，虽然可以不对类进行初始化，但是 *ClassLoader* 会对 *bytecode* 进行 *verify* ，可能会抛出 *VerifyError* 导致整个分析过程失败；
-1. 性能开销 —— *ClassLoader* 加载 *Class* 的性能相较 *ASM* 相差甚远；
+1. 性能开销 —— *ClassLoader* 加载 *Class* 的性能跟 *ASM* 对比相差甚远；
 1. 除了分析类的继承关系外，还需要分析字段和方法以及注解，通过 *Class* 反射得到的信息有限；
 1. *Task* 相对于*Transform* 比较独立，如果在 *Transform* 的过程中加载所有的 *Class* ，可能导致内存吃紧，甚至 OOM
 

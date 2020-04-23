@@ -41,6 +41,7 @@
 * Transformer 与 VariantProcessor 完美组合
 * 在 Java 工程中使用 Transformer
 * Transformer 实战
+* [FAQ](./developer/faq.md)
 
 ## Android 构建概述
 
