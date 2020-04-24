@@ -173,7 +173,7 @@ compileTestKotlin {
 dependencies {
     /* 👇👇👇👇 引用这两个模块 👇👇👇👇 */
     kapt "com.google.auto.service:auto-service:1.0-rc6"
-    api "com.didiglobal.booster:booster-transform-asm:$booster_version"
+    api "com.didiglobal.booster:booster-api:$booster_version"
 }
 ```
 
@@ -181,7 +181,18 @@ dependencies {
 
 接下来，我们创建一个自定义的 *ClassTransformer* 类。
 
-## 基于 Javassist
+## 基于 ASM
+
+基于 *ASM* 的 *ClassTransformer* 需要在 `dependencies` 中引入 [booster-transform-asm](https://github.com/didi/booster/tree/master/booster-transform-asm) 依赖：
+
+```gradle:build.gradle
+dependencies {
+    /* 👇👇👇👇 引用这三个模块 👇👇👇👇 */
+    kapt "com.google.auto.service:auto-service:1.0-rc6"
+    api "com.didiglobal.booster:booster-api:$booster_version"
+    api "com.didiglobal.booster:booster-transform-asm:$booster_version"
+}
+```
 
 ```kotlin:FirstClassTransformer.kt
 package io.johnsonlee.booster.demo
@@ -202,7 +213,18 @@ class FirstClassTransformer : ClassTransformer {
 }
 ```
 
-## 基于 ASM
+## 基于 Javassist
+
+基于 *Javassist* 的 *ClassTransformer* 需要在 `dependencies` 中引入 [booster-transform-javassist](https://github.com/didi/booster/tree/master/booster-transform-javassist) 依赖：
+
+```gradle:build.gradle
+dependencies {
+    /* 👇👇👇👇 引用这三个模块 👇👇👇👇 */
+    kapt "com.google.auto.service:auto-service:1.0-rc6"
+    api "com.didiglobal.booster:booster-api:$booster_version"
+    api "com.didiglobal.booster:booster-transform-javassist:$booster_version"
+}
+```
 
 ```kotlin:FirstClassTransformer.kt
 package io.johnsonlee.booster.demo

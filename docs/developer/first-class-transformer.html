@@ -69,6 +69,8 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
+    <link rel="next" href="first-variant-processor.html" />
+    
     
     <link rel="prev" href="javassist-or-asm.html" />
     
@@ -564,31 +566,31 @@
             
         </li>
     
-        <li class="chapter " data-level="4.3" >
+        <li class="chapter " data-level="4.3" data-path="first-variant-processor.html">
             
-                <span>
+                <a href="first-variant-processor.html">
             
                     
                         <b>4.3.</b>
                     
                     第一个 VariantProcessor
             
-                </span>
+                </a>
             
 
             
         </li>
     
-        <li class="chapter " data-level="4.4" >
+        <li class="chapter " data-level="4.4" data-path="class-transformer-plus-variant-processor.html">
             
-                <span>
+                <a href="class-transformer-plus-variant-processor.html">
             
                     
                         <b>4.4.</b>
                     
-                    Transformer 与 VariantProcessor 完美组合
+                    Transformer + VariantProcessor
             
-                </span>
+                </a>
             
 
             
@@ -1078,12 +1080,21 @@ compileTestKotlin {
 <span class="hljs-keyword">dependencies</span> {
     <span class="hljs-comment">/* &#x1F447;&#x1F447;&#x1F447;&#x1F447; &#x5F15;&#x7528;&#x8FD9;&#x4E24;&#x4E2A;&#x6A21;&#x5757; &#x1F447;&#x1F447;&#x1F447;&#x1F447; */</span>
     kapt <span class="hljs-string">&quot;com.google.auto.service:auto-service:1.0-rc6&quot;</span>
-    api <span class="hljs-string">&quot;com.didiglobal.booster:booster-transform-asm:$booster_version&quot;</span>
+    api <span class="hljs-string">&quot;com.didiglobal.booster:booster-api:$booster_version&quot;</span>
 }
 </code></pre>
 <h1 id="&#x81EA;&#x5B9A;&#x4E49;-classtransformer">&#x81EA;&#x5B9A;&#x4E49; <em>ClassTransformer</em></h1>
 <p>&#x63A5;&#x4E0B;&#x6765;&#xFF0C;&#x6211;&#x4EEC;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x81EA;&#x5B9A;&#x4E49;&#x7684; <em>ClassTransformer</em> &#x7C7B;&#x3002;</p>
-<h2 id="&#x57FA;&#x4E8E;-javassist">&#x57FA;&#x4E8E; Javassist</h2>
+<h2 id="&#x57FA;&#x4E8E;-asm">&#x57FA;&#x4E8E; ASM</h2>
+<p>&#x57FA;&#x4E8E; <em>ASM</em> &#x7684; <em>ClassTransformer</em> &#x9700;&#x8981;&#x5728; <code>dependencies</code> &#x4E2D;&#x5F15;&#x5165; <a href="https://github.com/didi/booster/tree/master/booster-transform-asm" target="_blank">booster-transform-asm</a> &#x4F9D;&#x8D56;&#xFF1A;</p>
+<div><p class="code-filename">build.gradle</p></div>
+<pre><code class="lang-gradle"><span class="hljs-keyword">dependencies</span> {
+    <span class="hljs-comment">/* &#x1F447;&#x1F447;&#x1F447;&#x1F447; &#x5F15;&#x7528;&#x8FD9;&#x4E09;&#x4E2A;&#x6A21;&#x5757; &#x1F447;&#x1F447;&#x1F447;&#x1F447; */</span>
+    kapt <span class="hljs-string">&quot;com.google.auto.service:auto-service:1.0-rc6&quot;</span>
+    api <span class="hljs-string">&quot;com.didiglobal.booster:booster-api:$booster_version&quot;</span>
+    api <span class="hljs-string">&quot;com.didiglobal.booster:booster-transform-asm:$booster_version&quot;</span>
+}
+</code></pre>
 <div><p class="code-filename">FirstClassTransformer.kt</p></div>
 <pre><code class="lang-kotlin"><span class="hljs-keyword">package</span> io.johnsonlee.booster.demo
 
@@ -1102,7 +1113,16 @@ compileTestKotlin {
 
 }
 </code></pre>
-<h2 id="&#x57FA;&#x4E8E;-asm">&#x57FA;&#x4E8E; ASM</h2>
+<h2 id="&#x57FA;&#x4E8E;-javassist">&#x57FA;&#x4E8E; Javassist</h2>
+<p>&#x57FA;&#x4E8E; <em>Javassist</em> &#x7684; <em>ClassTransformer</em> &#x9700;&#x8981;&#x5728; <code>dependencies</code> &#x4E2D;&#x5F15;&#x5165; <a href="https://github.com/didi/booster/tree/master/booster-transform-javassist" target="_blank">booster-transform-javassist</a> &#x4F9D;&#x8D56;&#xFF1A;</p>
+<div><p class="code-filename">build.gradle</p></div>
+<pre><code class="lang-gradle"><span class="hljs-keyword">dependencies</span> {
+    <span class="hljs-comment">/* &#x1F447;&#x1F447;&#x1F447;&#x1F447; &#x5F15;&#x7528;&#x8FD9;&#x4E09;&#x4E2A;&#x6A21;&#x5757; &#x1F447;&#x1F447;&#x1F447;&#x1F447; */</span>
+    kapt <span class="hljs-string">&quot;com.google.auto.service:auto-service:1.0-rc6&quot;</span>
+    api <span class="hljs-string">&quot;com.didiglobal.booster:booster-api:$booster_version&quot;</span>
+    api <span class="hljs-string">&quot;com.didiglobal.booster:booster-transform-javassist:$booster_version&quot;</span>
+}
+</code></pre>
 <div><p class="code-filename">FirstClassTransformer.kt</p></div>
 <pre><code class="lang-kotlin"><span class="hljs-keyword">package</span> io.johnsonlee.booster.demo
 
@@ -1244,10 +1264,14 @@ Transforming kotlin/jvm/internal/Ref$DoubleRef
 
             
                 
-                <a href="javassist-or-asm.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: Javassist 还是 ASM？">
+                <a href="javassist-or-asm.html" class="navigation navigation-prev " aria-label="Previous page: Javassist 还是 ASM？">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
+                
+                <a href="first-variant-processor.html" class="navigation navigation-next " aria-label="Next page: 第一个 VariantProcessor">
+                    <i class="fa fa-angle-right"></i>
+                </a>
                 
             
         
@@ -1256,7 +1280,7 @@ Transforming kotlin/jvm/internal/Ref$DoubleRef
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"第一个 Transformer","level":"4.2","depth":1,"next":{"title":"第一个 VariantProcessor","level":"4.3","depth":1,"ref":"","articles":[]},"previous":{"title":"Javassist 还是 ASM？","level":"4.1","depth":1,"path":"developer/javassist-or-asm.md","ref":"./developer/javassist-or-asm.md","articles":[]},"dir":"ltr"},"config":{"plugins":["mathjax","splitter","codeblock-filename","theme-comscore","livereload"],"root":"./content/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"livereload":{},"splitter":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":1},"highlight":{},"codeblock-filename":{},"theme-comscore":{},"mathjax":{"forceSVG":false,"version":"2.6-latest"},"sharing":{"facebook":false,"twitter":false,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":[]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":true}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"深入理解 Booster","language":"zh-hans","links":{"sharing":{"google":false,"facebook":false,"twitter":false,"all":false}},"gitbook":">=3.1.0","description":"使用 Booster 对你的 Android 应用进行深度优化"},"file":{"path":"developer/first-class-transformer.md","mtime":"2020-04-20T00:43:59.000Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-04-19T05:10:39.369Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"第一个 Transformer","level":"4.2","depth":1,"next":{"title":"第一个 VariantProcessor","level":"4.3","depth":1,"path":"developer/first-variant-processor.md","ref":"./developer/first-variant-processor.md","articles":[]},"previous":{"title":"Javassist 还是 ASM？","level":"4.1","depth":1,"path":"developer/javassist-or-asm.md","ref":"./developer/javassist-or-asm.md","articles":[]},"dir":"ltr"},"config":{"plugins":["mathjax","splitter","codeblock-filename","theme-comscore","livereload"],"root":"./content/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"livereload":{},"splitter":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":1},"highlight":{},"codeblock-filename":{},"theme-comscore":{},"mathjax":{"forceSVG":false,"version":"2.6-latest"},"sharing":{"facebook":false,"twitter":false,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":[]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":true}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"深入理解 Booster","language":"zh-hans","links":{"sharing":{"google":false,"facebook":false,"twitter":false,"all":false}},"gitbook":">=3.1.0","description":"使用 Booster 对你的 Android 应用进行深度优化"},"file":{"path":"developer/first-class-transformer.md","mtime":"2020-04-23T17:24:14.000Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-04-19T05:10:39.369Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

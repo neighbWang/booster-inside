@@ -37,8 +37,8 @@
 
 * [Javassist 还是 ASM？](./developer/javassist-or-asm.md)
 * [第一个 Transformer](./developer/first-class-transformer.md)
-* 第一个 VariantProcessor
-* Transformer 与 VariantProcessor 完美组合
+* [第一个 VariantProcessor](./developer/first-variant-processor.md)
+* [Transformer + VariantProcessor](./developer/class-transformer-plus-variant-processor.md)
 * 在 Java 工程中使用 Transformer
 * Transformer 实战
 * [FAQ](./developer/faq.md)
