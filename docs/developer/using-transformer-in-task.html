@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>第一个 VariantProcessor · 深入理解 Booster</title>
+        <title>在 Task 中使用 Transformer · 深入理解 Booster</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -69,10 +69,10 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="class-transformer-plus-variant-processor.html" />
+    <link rel="next" href="standalone-transformer.html" />
     
     
-    <link rel="prev" href="first-class-transformer.html" />
+    <link rel="prev" href="class-transformer-plus-variant-processor.html" />
     
 
     </head>
@@ -566,7 +566,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="4.3" data-path="first-variant-processor.html">
+        <li class="chapter " data-level="4.3" data-path="first-variant-processor.html">
             
                 <a href="first-variant-processor.html">
             
@@ -596,7 +596,7 @@
             
         </li>
     
-        <li class="chapter " data-level="4.5" data-path="using-transformer-in-task.html">
+        <li class="chapter active" data-level="4.5" data-path="using-transformer-in-task.html">
             
                 <a href="using-transformer-in-task.html">
             
@@ -929,7 +929,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >第一个 VariantProcessor</a>
+        <a href=".." >在 Task 中使用 Transformer</a>
     </h1>
 </div>
 
@@ -944,100 +944,73 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="&#x5F15;&#x5165;-booster">&#x5F15;&#x5165; <em>Booster</em></h1>
-<p>&#x51C6;&#x5907;&#x597D;&#x5DE5;&#x7A0B;&#x540E;&#xFF0C;&#x63A5;&#x4E0B;&#x6765;&#x5728; <em>Java Library</em> &#x5DE5;&#x7A0B;&#x6216;&#x8005; <em>Android</em> &#x5DE5;&#x7A0B;&#x7684; <em>buildSrc</em> &#x76EE;&#x5F55;&#x4E2D;&#x7684; <em>build.gradle</em> &#x6587;&#x4EF6;&#x4E2D;&#xFF0C;&#x5F15;&#x5165; <em>Booster</em> &#x4F9D;&#x8D56;&#xFF1A;</p>
-<div><p class="code-filename">build.gradle</p></div>
-<pre><code class="lang-gradle"><span class="hljs-keyword">buildscript</span> {
-    ext {
-        agp_version = <span class="hljs-string">&apos;3.5.0&apos;</span>
-        kotlin_version = <span class="hljs-string">&apos;1.3.31&apos;</span>
-        booster_version = <span class="hljs-string">&apos;1.6.0&apos;</span>
-    }
-    <span class="hljs-keyword">repositories</span> {
-        mavenLocal()
-        mavenCentral()
-        google()
-        jcenter()
-        maven { url <span class="hljs-string">&apos;https://oss.sonatype.org/content/repositories/public/&apos;</span> }
-        maven { url <span class="hljs-string">&apos;https://oss.sonatype.org/content/repositories/snapshots/&apos;</span> }
-    }
-    <span class="hljs-keyword">dependencies</span> {
-        <span class="hljs-keyword">classpath</span> <span class="hljs-string">&quot;org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version&quot;</span>
-    }
-}
-
-apply plugin: <span class="hljs-string">&apos;kotlin&apos;</span>
-apply plugin: <span class="hljs-string">&apos;kotlin-kapt&apos;</span>
-
-<span class="hljs-keyword">repositories</span> {
-    mavenLocal()
-    mavenCentral()
-    google()
-    jcenter()
-    maven { url <span class="hljs-string">&apos;https://oss.sonatype.org/content/repositories/public/&apos;</span> }
-    maven { url <span class="hljs-string">&apos;https://oss.sonatype.org/content/repositories/snapshots/&apos;</span> }
-}
-
-<span class="hljs-keyword">sourceSets</span> {
-    main {
-        java {
-            srcDirs += []
-        }
-        kotlin {
-            srcDirs += [<span class="hljs-string">&apos;src/main/kotlin&apos;</span>, <span class="hljs-string">&apos;src/main/java&apos;</span>]
-        }
-    }
-    test {
-        java {
-            srcDirs += []
-        }
-        kotlin {
-            srcDirs += [<span class="hljs-string">&apos;src/main/kotlin&apos;</span>, <span class="hljs-string">&apos;src/main/java&apos;</span>]
-        }
-    }
-}
-
-compileKotlin {
-    kotlinOptions.jvmTarget = JavaVersion.VERSION_1_8
-}
-
-compileTestKotlin {
-    kotlinOptions.jvmTarget = JavaVersion.VERSION_1_8
-}
-
-<span class="hljs-keyword">dependencies</span> {
-    <span class="hljs-comment">/* &#x1F447;&#x1F447;&#x1F447;&#x1F447; &#x5F15;&#x7528;&#x8FD9;&#x4E09;&#x4E2A;&#x6A21;&#x5757; &#x1F447;&#x1F447;&#x1F447;&#x1F447; */</span>
-    kapt <span class="hljs-string">&quot;com.google.auto.service:auto-service:1.0-rc6&quot;</span>
-    api <span class="hljs-string">&apos;com.android.tools.build:gradle:$agp_version&apos;</span>
-    api <span class="hljs-string">&quot;com.didiglobal.booster:booster-api:$booster_version&quot;</span>
-}
-</code></pre>
-<h1 id="&#x81EA;&#x5B9A;&#x4E49;-variantprocessor">&#x81EA;&#x5B9A;&#x4E49; <em>VariantProcessor</em></h1>
-<div><p class="code-filename">FirstVariantProcessor.kt</p></div>
-<pre><code class="lang-kotlin"><span class="hljs-keyword">package</span> io.johnsonlee.booster.demo
-
-<span class="hljs-keyword">import</span> com.android.build.gradle.api.BaseVariant
-<span class="hljs-keyword">import</span> com.didiglobal.booster.gradle.project
-<span class="hljs-keyword">import</span> com.didiglobal.booster.task.spi.VariantProcessor
-<span class="hljs-keyword">import</span> com.google.auto.service.AutoService
-
-@AutoService(VariantProcessor::<span class="hljs-class"><span class="hljs-keyword">class</span>)</span>
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SimpleVariantProcessor</span> : <span class="hljs-type">VariantProcessor {</span></span>
+                                <h1 id="&#x5728;-task-&#x4E2D;&#x4F7F;&#x7528;-transformer">&#x5728; <em>Task</em> &#x4E2D;&#x4F7F;&#x7528; <em>Transformer</em></h1>
+<p>&#x5728;&#x5E73;&#x5E38;&#x7684;&#x5F00;&#x53D1;&#x8FC7;&#x7A0B;&#x4E2D;&#xFF0C;&#x6211;&#x4EEC;&#x53EF;&#x80FD;&#x9700;&#x8981;&#x5728; <em>Task</em> &#x4E2D;&#x4F9D;&#x8D56; <em>Android Transform Pipeline</em> &#x7684;&#x4EA7;&#x51FA;&#x7269;&#xFF0C;&#x4F8B;&#x5982;&#xFF1A;<a href="https://github.com/didi/booster/blob/master/booster-task-analyser" target="_blank">booster-task-analyser</a> &#x5C31;&#x662F;&#x5728; <a href="https://github.com/didi/booster/blob/master/booster-task-analyser/src/main/kotlin/com/didiglobal/booster/task/analyser/AnalyserTask.kt" target="_blank">AnalyserTask</a> &#x4E2D;&#x5BF9; <em>Android Transform Pipeline</em> &#x7684;&#x4EA7;&#x51FA;&#x7269;&#x8FDB;&#x884C;&#x9759;&#x6001;&#x5206;&#x6790;&#xFF0C;&#x9488;&#x5BF9;&#x8FD9;&#x79CD;&#x5E94;&#x7528;&#x573A;&#x666F;&#xFF0C;<em>Booster</em> &#x63D0;&#x4F9B;&#x4E86;&#x4E00;&#x7CFB;&#x5217;&#x5B9E;&#x7528;&#x7C7B;&#x548C;&#x6269;&#x5C55;&#x65B9;&#x6CD5;&#xFF1A;</p>
+<h2 id="booster-api"><a href="https://github.com/didi/booster/blob/master/booster-api" target="_blank">booster-api</a></h2>
+<ul>
+<li><a href="https://github.com/didi/booster/blob/master/booster-api/src/main/kotlin/com/didiglobal/booster/transform/VariantTransformHelper.kt" target="_blank">VariantTransformHelper.kt</a></li>
+</ul>
+<h1 id="&#x626B;&#x63CF;-android-transform-pipeline-&#x7684;&#x4EA7;&#x51FA;&#x7269;">&#x626B;&#x63CF; <em>Android Transform Pipeline</em> &#x7684;&#x4EA7;&#x51FA;&#x7269;</h1>
+<h2 id="&#x901A;&#x8FC7;-variantprocessor-&#x521B;&#x5EFA;-task">&#x901A;&#x8FC7; <em>VariantProcessor</em> &#x521B;&#x5EFA; <em>Task</em></h2>
+<div><p class="code-filename">ScannerVariantProcessor.kt</p></div>
+<pre><code class="lang-kotlin">@AutoService(VariantProcessor::<span class="hljs-class"><span class="hljs-keyword">class</span>)</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ScannerVariantProcessor</span> : <span class="hljs-type">VariantProcessor {</span></span>
 
     <span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">process</span><span class="hljs-params">(variant: <span class="hljs-type">BaseVariant</span>)</span> {</span>
-        println(<span class="hljs-string">&quot;${variant.project.name}: ${variant.name}&quot;</span>)
+        <span class="hljs-variable"><span class="hljs-keyword">val</span> project</span> = variant.project
+        <span class="hljs-variable"><span class="hljs-keyword">val</span> variantName</span> = variant.name.capitalize()
+        <span class="hljs-variable"><span class="hljs-keyword">val</span> transform</span> = variant.extension.transforms.reversed().first {
+            it.scopes.containsAll(TransformManager.SCOPE_FULL_PROJECT)
+                    &amp;&amp; it.inputTypes.contains(QualifiedContent.DefaultContentType.CLASSES)
+        } ?: <span class="hljs-keyword">throw</span> GradleException(<span class="hljs-string">&quot;No available transform&quot;</span>)
+
+        project.tasks.withType(TransformTask::<span class="hljs-class"><span class="hljs-keyword">class</span>.<span class="hljs-title">java</span>).<span class="hljs-title">find</span> </span>{
+            it.name.endsWith(variantName) &amp;&amp; it.transform == transform
+        }?.let { transformTask -&gt;
+            project.tasks.create(<span class="hljs-string">&quot;scan${variantName}&quot;</span>, ScannerTask::<span class="hljs-class"><span class="hljs-keyword">class</span>.<span class="hljs-title">java</span>) </span>{
+                it.variant = variant
+                it.supplier = {
+                    transformTask.outputs.files.single()
+                }
+            }.dependsOn(transformTask)
+        }
     }
 
 }
 </code></pre>
-<h1 id="&#x9A8C;&#x8BC1;-firstvariantprocessor">&#x9A8C;&#x8BC1; <em>FirstVariantProcessor</em></h1>
-<p>&#x5728; <em>Android</em> &#x5DE5;&#x7A0B;&#x4E0B;&#xFF0C;&#x6267;&#x884C; <em>assemble</em> &#x4EFB;&#x52A1;&#xFF1A;</p>
-<pre><code class="lang-bash">$ ./gradlew assembleDebug
+<h2 id="&#x901A;&#x8FC7;-varianttransformhelper-&#x590D;&#x7528;-transformer">&#x901A;&#x8FC7; <em>VariantTransformHelper</em> &#x590D;&#x7528; <em>Transformer</em></h2>
+<div><p class="code-filename">ScannerTask.kt</p></div>
+<pre><code class="lang-kotlin"><span class="hljs-keyword">open</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ScannerTask</span> : <span class="hljs-type">AbstractTask</span></span>() {
+
+    lateinit <span class="hljs-variable"><span class="hljs-keyword">var</span> variant</span>: BaseVariant
+
+    lateinit <span class="hljs-variable"><span class="hljs-keyword">var</span> supplier</span>: () -&gt; File
+
+    @<span class="hljs-keyword">get</span>:Input
+    <span class="hljs-variable"><span class="hljs-keyword">val</span> variantName</span>: String
+        <span class="hljs-keyword">get</span>() = variant.name
+
+    @TaskAction
+    <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">scan</span><span class="hljs-params">()</span> {</span>
+        VariantTransformHelper(variant, supplier())
+            .transform(project.projectDir, AsmTransformer(ScannerTransformer()))
+    }
+
+}
 </code></pre>
-<p>&#x89C2;&#x5BDF;&#x63A7;&#x5236;&#x53F0;&#x7684;&#x6807;&#x51C6;&#x8F93;&#x51FA;&#xFF0C;&#x662F;&#x5426;&#x6709;&#x5982;&#x4E0B;&#x5185;&#x5BB9;&#xFF1A;</p>
-<pre><code>app: debug
-app: release
+<h2 id="&#x81EA;&#x5B9A;&#x4E49;-classtransformer">&#x81EA;&#x5B9A;&#x4E49; <em>ClassTransformer</em></h2>
+<div><p class="code-filename">ScannerTransformer.kt</p></div>
+<pre><code class="lang-kotlin">@AutoService(ClassTransformer::<span class="hljs-class"><span class="hljs-keyword">class</span>)</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ScannerTransformer</span> : <span class="hljs-type">ClassTransformer {</span></span>
+
+    <span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">transform</span><span class="hljs-params">(context: <span class="hljs-type">TransformContext, klass: ClassNode</span>)</span>: ClassNode {</span>
+        <span class="hljs-comment">// scanning klass</span>
+        klass
+    }
+
+}
 </code></pre>
+
                                 
                                 </section>
                             
@@ -1064,12 +1037,12 @@ app: release
 
             
                 
-                <a href="first-class-transformer.html" class="navigation navigation-prev " aria-label="Previous page: 第一个 Transformer">
+                <a href="class-transformer-plus-variant-processor.html" class="navigation navigation-prev " aria-label="Previous page: Transformer + VariantProcessor">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
                 
-                <a href="class-transformer-plus-variant-processor.html" class="navigation navigation-next " aria-label="Next page: Transformer + VariantProcessor">
+                <a href="standalone-transformer.html" class="navigation navigation-next " aria-label="Next page: 脱离 Gradle 环境">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -1080,7 +1053,7 @@ app: release
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"第一个 VariantProcessor","level":"4.3","depth":1,"next":{"title":"Transformer + VariantProcessor","level":"4.4","depth":1,"path":"developer/class-transformer-plus-variant-processor.md","ref":"./developer/class-transformer-plus-variant-processor.md","articles":[]},"previous":{"title":"第一个 Transformer","level":"4.2","depth":1,"path":"developer/first-class-transformer.md","ref":"./developer/first-class-transformer.md","articles":[]},"dir":"ltr"},"config":{"plugins":["mathjax","splitter","codeblock-filename","theme-comscore","livereload"],"root":"./content/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"livereload":{},"splitter":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":1},"highlight":{},"codeblock-filename":{},"theme-comscore":{},"mathjax":{"forceSVG":false,"version":"2.6-latest"},"sharing":{"facebook":false,"twitter":false,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":[]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":true}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"深入理解 Booster","language":"zh-hans","links":{"sharing":{"google":false,"facebook":false,"twitter":false,"all":false}},"gitbook":">=3.1.0","description":"使用 Booster 对你的 Android 应用进行深度优化"},"file":{"path":"developer/first-variant-processor.md","mtime":"2020-04-23T17:40:10.000Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-04-24T16:01:41.728Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"在 Task 中使用 Transformer","level":"4.5","depth":1,"next":{"title":"脱离 Gradle 环境","level":"4.6","depth":1,"path":"developer/standalone-transformer.md","ref":"./developer/standalone-transformer.md","articles":[]},"previous":{"title":"Transformer + VariantProcessor","level":"4.4","depth":1,"path":"developer/class-transformer-plus-variant-processor.md","ref":"./developer/class-transformer-plus-variant-processor.md","articles":[]},"dir":"ltr"},"config":{"plugins":["mathjax","splitter","codeblock-filename","theme-comscore","livereload"],"root":"./content/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"livereload":{},"splitter":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":1},"highlight":{},"codeblock-filename":{},"theme-comscore":{},"mathjax":{"forceSVG":false,"version":"2.6-latest"},"sharing":{"facebook":false,"twitter":false,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":[]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":true}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"深入理解 Booster","language":"zh-hans","links":{"sharing":{"google":false,"facebook":false,"twitter":false,"all":false}},"gitbook":">=3.1.0","description":"使用 Booster 对你的 Android 应用进行深度优化"},"file":{"path":"developer/using-transformer-in-task.md","mtime":"2020-04-25T08:31:32.000Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-04-24T16:01:41.728Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

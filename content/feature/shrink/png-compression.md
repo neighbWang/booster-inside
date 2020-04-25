@@ -79,4 +79,3 @@ $ ./gradlew assembleDebug \
     -Pbooster.task.compression.pngquant.option.quality=75 \
     -Pbooster.task.compression.pngquant.option.speed=1
 ```
-

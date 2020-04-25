@@ -39,8 +39,8 @@
 * [第一个 Transformer](./developer/first-class-transformer.md)
 * [第一个 VariantProcessor](./developer/first-variant-processor.md)
 * [Transformer + VariantProcessor](./developer/class-transformer-plus-variant-processor.md)
-* 在 Java 工程中使用 Transformer
-* Transformer 实战
+* [在 *Task* 中使用 *Transformer*](./developer/using-transformer-in-task.md)
+* [脱离 Gradle 环境](./developer/standalone-transformer.md)
 * [FAQ](./developer/faq.md)
 
 ## Android 构建概述
