@@ -23,3 +23,18 @@
 如果这个类库（JAR / AAR）又依赖了其它的类库（JAR / AAR），那我们该怎么办呢？虽然这样会让事情变得很复杂，也不是没有办法，可以把 *Maven* 或者 *Ivy* 等依赖管理工具的类库集成进来。
 
 如果传递依赖的类库在 *APP* 中已经存在，而且跟 *APP* 依赖的类库版本不一致，那我们该怎么办呢？如果是这样的话，前面的方法就不太容易实现了，有没有更简单的办法呢？当然有，这就是设计 *VariantProcessor* 的初衷，让大规模的字节码注入变得更容易。
+
+
+# 动手实践
+
+相信很多 *Android* 开发者有遇到动态库加载失败的情况，例如：
+
+```
+java.lang.UnsatisfiedLinkError: Couldn't load xxx from loader dalvik.system.PathClassLoader: findLibrary returned null
+  at java.lang.Runtime.loadLibrary(Runtime.java:365)
+  at java.lang.System.loadLibrary(System.java:535)
+  at com.your.app.NativeClass.<clinit>(Native.java:16)
+  ... 63 more
+```
+
+我们可以使用 [ReLinker](https://github.com/KeepSafe/ReLinker) 来避免这种崩溃的发生，如何使用 *Booster* 来完成对 [ReLinker](https://github.com/KeepSafe/ReLinker) 的注入呢？这个问题就留给本书的读者吧。
