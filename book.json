@@ -26,6 +26,10 @@
         }
     },
     "links": {
+        "sidebar": {
+            "GitHub": "https://github.com/didi/booster/",
+            "Booster API 文档": "https://reference.johnsonlee.io/booster/"
+        },
         "sharing": {
             "google": false,
             "facebook": false,
