@@ -129,5 +129,9 @@ buildscript {
 
 # *7-zip* 压缩
 
-[7-zip](https://www.7-zip.org/) 与 *ZIP* 压缩的原理相同，只不过 *7-zip* 采用了压缩率更高的 *LZMA* 和 *LZMA2* 算法，瘦身效果更佳，推荐使用 [AndResguard](https://github.com/shwenzhang/AndResGuard)。
+[7-zip](https://www.7-zip.org/) 与 *ZIP* 压缩的原理相同，只不过 *7-zip* 采用了压缩率更高的 *LZMA* 和 *LZMA2* 算法，瘦身效果更佳，推荐使用 [AndResguard](https://github.com/shwenzhang/AndResGuard)，虽然 *7-zip* 的压缩效果非常显著，但是会存在一些副作用，可能会导致 *Google Play* 的优化算法失效。
+
+# 到底要不要压缩 *resources.arsc* 和 *so* ？
+
+从技术角度来说，*Google* 官方并不推荐对 *resources.arsc* 和 *so* 进行压缩，这样会导致它们不能被直接 *mmap* 到内存，但如果从业务角度来看，如果 *APK* 的大小成为了阻碍用户增长的一个因素，而通过压缩 *resources.arsc* 和 *so* 对用户增长有显著的正向收益，何尝不可呢？
 
