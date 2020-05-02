@@ -71,7 +71,7 @@ android.registerTransform(new MyTransform(), dependencies);
 当我们通过自定义 *Transform* 来处理构建中间产物，可以从两个维度来关注：
 
 1. *Content Types*：即 *Transform* 要处理的内容是什么类型，可以是多种类型；
-1. *Scope*：即 *Transform* 要处理哪里的内容，可以是多个作用域；
+1. *Scopes*：即 *Transform* 要处理哪里的内容，可以是多个作用域；
 
 当通过 *Transform API* 注册了自定义的 *Transform* 后，*Transform Manager* 就会根据 *Transform* 关注的 *Content Types* 和 *Scopes* 从现有的 *Transform Stream* 列表中选择对类型和作用域的流作为该 *Transform* 的输入，而该 *Transform* 的输出（*Intermediate Stream*）则作为下一个 *Transform* 的输入，每个 *Transform* 通过 *Transform Stream* 连接起来，这样就形成了管道。
 
