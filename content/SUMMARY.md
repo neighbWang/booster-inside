@@ -45,9 +45,9 @@
 
 ## Android 构建概述
 
-* Android Gradle Plugin 概述
-* AAPT2 容器
-* Resource Table 概述
+* [Android Gradle Plugin 概述](./agp/apk-build-process.md)
+* [AAPT2 容器](./agp/aapt2.md)
+* [Resource Table 概述](./agp/resources-arsc.md)
 
 ## Android 构建进阶
 
